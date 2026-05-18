@@ -1,0 +1,49 @@
+# Two Point Technologies (2PT)
+
+> Two Point Technologies deploys production AI inside enterprise marketing, advertising and communications. The product is the system that gets shipped into the client's stack and stays there. A small embedded team handles the deployment; the system is what the client buys, runs, and owns.
+
+## What 2PT does
+
+2PT deploys production AI systems that solve the five hard operational problems in marketing:
+
+1. Monitoring efficiency — agents that watch every channel and surface waste continuously.
+2. Monitoring growth — unified visibility across cohorts, channels and AI workflows.
+3. Driving growth — retail media autopilot that trades bids and ships creative variants across Amazon, Walmart and Instacart.
+4. Creative optimisation — generative pipelines tied to retail media platforms.
+5. Consistency and compliance — brand voice and regulatory enforcement across every piece of creative output.
+
+Each system is built bespoke, runs continuously inside the client's stack, and the IP belongs to the client.
+
+## How 2PT deploys
+
+Every system ships with a small embedded team. Three roles: a senior AI engineer, a marketing strategist, and a data engineer. They build inside the client's stack for 6 to 12 months and hand the system back when it runs on its own. The team is the delivery mechanism. The system is the product.
+
+## Who 2PT serves
+
+Enterprise marketing organisations. CMOs, CGOs, eCommerce leaders, and brand portfolio operators. Clients include Mars Petcare (Pedigree, Cesar, Dreamies), Yamaha Music, Tenth Avenue Holdings / Decamarx (Jolly Pets, Barker Beds, Horsemen's Pride), Marriott, NCR, and Walmart.
+
+## How 2PT is different
+
+- The product is a system, not a service. Live software, not slide decks. The client owns the system at the end.
+- Vertical specialisation: marketing, advertising and communications. Deep, focused, end to end.
+- Outcome pricing: fixed fee retainers tied to operational KPIs. Paid when the metric moves.
+- IP harvest: every deployment produces a reusable platform module. GEO Analyzer / Cheddar is the first productised piece.
+
+## Partnerships
+
+2PT is a partner in the Anthropic Claude Partner Network. Engagements use Claude as the foundation model layer for production agentic systems inside marketing organisations. 2PT is also a Walmart retail media API partner.
+
+## Productised offerings
+
+- Cheddar — productised brand visibility monitoring across AI search (ChatGPT, Claude, Perplexity, Gemini). Live at cheddar.2pt.ai.
+- Slice — unified marketing data and AI workflow dashboard. In build, 2026.
+- Whisk — generative creative production engine tied to retail media. In build, 2026.
+
+## Founding and structure
+
+Founded 2017 by Sam Gormley (CEO). Offices in New York (447 Broadway, 10013) and London (45 Fitzroy Street, Fitzrovia, W1D 3BW). Approximately 20 employees.
+
+## Contact
+
+- Website: https://2pttech.com
+- Email: info@twopointtechnologies.com
