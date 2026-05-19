@@ -23,8 +23,9 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background:
-            "radial-gradient(ellipse 80% 60% at 80% 80%, rgba(74,222,128,0.18) 0%, rgba(74,222,128,0.04) 40%, transparent 70%), #0A0A0A",
+          backgroundColor: "#0A0A0A",
+          backgroundImage:
+            "radial-gradient(ellipse 80% 60% at 80% 80%, rgba(74,222,128,0.18) 0%, rgba(74,222,128,0.04) 40%, transparent 70%)",
           color: "#FAFAFA",
           fontFamily: "system-ui, -apple-system, sans-serif",
         }}
