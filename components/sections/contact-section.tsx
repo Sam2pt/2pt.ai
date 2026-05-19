@@ -48,7 +48,7 @@ export function ContactSection() {
           >
             <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
             <span className="text-[10px] tracking-[0.3em] text-[var(--2pt-black)]/50 font-mono uppercase">
-              <span className="text-[var(--2pt-black)]/30 mr-2">IV.</span>Deploy with us
+              <span className="text-[var(--2pt-black)]/30 mr-2">III.</span>Deploy with us
             </span>
           </div>
 
@@ -103,8 +103,16 @@ export function ContactSection() {
         </div>
       </div>
 
-      {/* MASTHEAD — full-bleed dark closer. Editorial / publication back cover. */}
-      <div className="relative bg-[var(--2pt-black)] text-[var(--2pt-white)] overflow-hidden">
+      {/* MASTHEAD — full-bleed dark closer. Editorial / publication back cover.
+          Top edge shadow + thin green hairline above so it reads as a deliberate
+          layer landing on the conversion block rather than a flat colour swap. */}
+      <div
+        className="relative bg-[var(--2pt-black)] text-[var(--2pt-white)] overflow-hidden"
+        style={{
+          boxShadow:
+            "0 -1px 0 rgba(74,222,128,0.25), 0 -18px 36px -18px rgba(10,10,10,0.18)",
+        }}
+      >
         {/* Faint dot grid */}
         <div
           aria-hidden
@@ -150,7 +158,13 @@ export function ContactSection() {
 
           {/* Oversized wordmark — the masthead title */}
           <div className="mb-16 md:mb-20">
-            <h3 className="text-[46px] sm:text-[88px] md:text-[160px] lg:text-[200px] xl:text-[240px] font-medium tracking-[-0.045em] leading-[0.86] text-[var(--2pt-white)] break-words">
+            <h3
+              className="font-medium leading-[0.86] text-[var(--2pt-white)] whitespace-nowrap"
+              style={{
+                fontSize: "clamp(46px, 13.2vw, 196px)",
+                letterSpacing: "-0.055em",
+              }}
+            >
               Two Point
               <br />
               Technologies<span className="text-[var(--2pt-green)]">.</span>

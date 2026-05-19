@@ -12,6 +12,8 @@
  */
 
 import { useEffect, useRef, useState } from "react"
+import { Sparkline, seededSeries } from "@/components/ui/sparkline"
+import { CornerCrops } from "@/components/ui/corner-crops"
 
 const PROBLEMS = [
   {
@@ -176,18 +178,51 @@ export function WhatWeSolveCinematic() {
 
         {/* Main grid — text left, motion graphic right */}
         <div className="relative z-10 flex-1 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center max-w-[1400px] mx-auto w-full px-8 md:px-12 py-10">
-          {/* LEFT — text */}
-          <div className="lg:col-span-5">
-            <div className="text-[10px] tracking-[0.3em] font-mono uppercase text-[var(--2pt-green)] mb-6">
+          {/* LEFT — text. Keyed by panelIndex so the whole text column
+              remounts on panel change, re-firing the staggered word-by-word
+              reveal animations. */}
+          <div key={`text-${panelIndex}`} className="lg:col-span-5">
+            <div
+              className="text-[10px] tracking-[0.3em] font-mono uppercase text-[var(--2pt-green)] mb-6"
+              style={{
+                animation:
+                  "fadeInUp 600ms cubic-bezier(0.16,1,0.3,1) 0ms both",
+              }}
+            >
               Problem {current.label}
             </div>
-            <h2 className="text-[40px] sm:text-[52px] md:text-[64px] lg:text-[76px] font-medium tracking-[-0.025em] leading-[0.95] text-[var(--2pt-black)] mb-8">
-              {current.title}
+            <h2 className="text-[40px] sm:text-[52px] md:text-[60px] lg:text-[68px] font-medium tracking-[-0.025em] leading-[0.98] text-[var(--2pt-black)] mb-8">
+              {current.title.split(" ").flatMap((w, i, arr) => [
+                <span
+                  key={`w-${i}`}
+                  className="inline-block"
+                  style={{
+                    animation: `fadeInUp 800ms cubic-bezier(0.16,1,0.3,1) ${
+                      120 + i * 110
+                    }ms both`,
+                  }}
+                >
+                  {w}
+                </span>,
+                i < arr.length - 1 ? " " : null,
+              ])}
             </h2>
-            <p className="text-lg md:text-xl text-[var(--2pt-black)] leading-relaxed mb-5">
+            <p
+              className="text-lg md:text-xl text-[var(--2pt-black)] leading-relaxed mb-5"
+              style={{
+                animation:
+                  "fadeInUp 800ms cubic-bezier(0.16,1,0.3,1) 380ms both",
+              }}
+            >
               {current.line}
             </p>
-            <p className="text-base md:text-[17px] text-[var(--2pt-black)]/60 leading-relaxed max-w-md mb-8">
+            <p
+              className="text-base md:text-[17px] text-[var(--2pt-black)]/60 leading-relaxed max-w-md mb-8"
+              style={{
+                animation:
+                  "fadeInUp 800ms cubic-bezier(0.16,1,0.3,1) 480ms both",
+              }}
+            >
               {current.body}
             </p>
 
@@ -237,91 +272,195 @@ export function WhatWeSolveCinematic() {
 /* ====================== Motion graphic 1 — Monitoring efficiency ====================== */
 
 const CHANNELS = [
-  { name: "Amazon Ads",      base: 12_400 },
-  { name: "Walmart Connect", base:  8_200 },
-  { name: "Instacart Ads",   base:  6_800 },
-  { name: "Meta",            base: 14_600 },
-  { name: "Google",          base: 11_900 },
-  { name: "TikTok",          base:  7_300 },
+  { name: "Amazon Ads",      base: 12_400, trend:  +4.2, seed: 7 },
+  { name: "Walmart Connect", base:  8_200, trend:  +1.9, seed: 23 },
+  { name: "Instacart Ads",   base:  6_800, trend:  -0.6, seed: 41 },
+  { name: "Meta",            base: 14_600, trend:  +6.7, seed: 59 },
+  { name: "Google",          base: 11_900, trend:  +2.3, seed: 71 },
+  { name: "TikTok",          base:  7_300, trend: -2.4, seed: 89 },
 ]
 
 function EfficiencyMotion({ p }: { p: number }) {
   const now = useNow()
-  void p // panel renders fully on entry — scroll only drives the narrative pace below
+  void p
+
+  // ms-precision timestamp (HH:MM:SS.mmm) — reads as a real telemetry feed
+  const t = new Date()
+  const stamp = `${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}:${String(t.getSeconds()).padStart(2, "0")}.${String(t.getMilliseconds()).padStart(3, "0")}`
+
+  // Scan beam — soft green horizontal sweep travelling top→bottom every ~5s
+  const scanCycle = (now / 5000) % 1
 
   return (
-    <div className="absolute inset-0 bg-[var(--2pt-white)] border border-[var(--2pt-black)]/10 p-6 md:p-8 flex flex-col gap-3 overflow-hidden">
-      {/* Mini header */}
-      <div className="flex items-center justify-between pb-3 border-b border-[var(--2pt-black)]/10 mb-2">
+    <div
+      className="absolute inset-0 border border-[var(--2pt-black)]/8 rounded-[10px] p-6 md:p-7 flex flex-col gap-2 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%)",
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.8) inset, 0 14px 36px -18px rgba(10,10,10,0.20), 0 2px 6px -2px rgba(10,10,10,0.06)",
+      }}
+    >
+      <CornerCrops />
+      {/* Top gradient rule — signals "powered/live" */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(74,222,128,0.55), transparent)",
+        }}
+      />
+
+      {/* Scan beam — subtle horizontal green band sweeping down the panel */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 h-12 z-0"
+        style={{
+          top: `${scanCycle * 100}%`,
+          transform: "translateY(-50%)",
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(74,222,128,0.06) 50%, transparent 100%)",
+          opacity: 0.7,
+        }}
+      />
+
+      {/* Header */}
+      <div className="relative z-10 flex items-center justify-between pb-3 border-b border-[var(--2pt-black)]/10 mb-1">
         <div className="flex items-center gap-2.5">
-          <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
-          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/60">
-            Live · efficiency monitor
+          <span className="relative inline-flex">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+            <span className="absolute inset-0 w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-ping opacity-60" />
+          </span>
+          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/65">
+            Efficiency monitor
+          </span>
+          <span className="hidden md:inline text-[9px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-green)] border border-[var(--2pt-green)]/30 px-1.5 py-px rounded-[3px]">
+            Live
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[var(--2pt-black)]/40 tabular-nums">
-          {new Date().toISOString().slice(11, 19)}
+        <span className="text-[10px] font-mono text-[var(--2pt-black)]/45 tabular-nums">
+          {stamp}
         </span>
       </div>
 
+      {/* Column header row */}
+      <div className="relative z-10 grid grid-cols-[1.4fr_0.9fr_0.6fr_0.6fr_0.9fr] items-center gap-x-3 pb-1.5 text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/35">
+        <span>Channel</span>
+        <span className="text-right">Spend</span>
+        <span className="text-right">Δ 24h</span>
+        <span className="text-center">Trend</span>
+        <span className="text-right">Status</span>
+      </div>
+
       {CHANNELS.map((c, i) => {
-        // Continuous tick — sine wave, plus an occasional anomaly burst
-        const ticker = Math.sin((now / 700) + i * 1.7) * 0.05
+        const ticker = Math.sin(now / 700 + i * 1.7) * 0.05
         const liveSpend = c.base * (1 + ticker)
-        // Anomaly: every ~6 seconds for ~1 second per channel (phased)
         const cycle = ((now / 1000 + i * 1.2) % 6)
         const anomaly = cycle > 5
         const resolved = cycle > 5.5
-        const roas = (2.4 + Math.sin((now / 900) + i) * 0.4).toFixed(2)
+        const liveTrend = c.trend + Math.sin(now / 1800 + i) * 0.4
+        const trendUp = liveTrend >= 0
+        // Sparkline data — stable seeded series, slightly perturbed by the
+        // continuous tick so it breathes per row
+        const series = seededSeries(c.seed, 10, 0.5, 0.32).map(
+          (v, k) => v + Math.sin(now / 1200 + i + k * 0.6) * 0.04
+        )
 
         return (
           <div
             key={c.name}
-            className="grid grid-cols-12 items-center gap-3 text-[13px]"
+            className="relative z-10 grid grid-cols-[1.4fr_0.9fr_0.6fr_0.6fr_0.9fr] items-center gap-x-3 text-[13px] py-[3px]"
           >
-            <span className="col-span-4 text-[var(--2pt-black)]/75 font-medium">{c.name}</span>
-            <span className="col-span-3 font-mono tabular-nums text-[var(--2pt-black)] text-right">
+            {/* Channel */}
+            <span className="text-[var(--2pt-black)]/80 font-medium truncate">
+              {c.name}
+            </span>
+            {/* Spend */}
+            <span className="font-mono tabular-nums text-[var(--2pt-black)] text-right">
               ${Math.round(liveSpend).toLocaleString()}
             </span>
-            <span className="col-span-2 font-mono tabular-nums text-[var(--2pt-black)]/65 text-right">
-              {roas}×
+            {/* Δ 24h */}
+            <span
+              className="font-mono tabular-nums text-[11px] text-right transition-colors duration-300"
+              style={{
+                color: trendUp ? "var(--2pt-green)" : "rgb(200,70,70)",
+              }}
+            >
+              {trendUp ? "▲" : "▼"} {Math.abs(liveTrend).toFixed(1)}%
             </span>
-            <span className="col-span-3 flex items-center justify-end gap-2">
+            {/* Sparkline */}
+            <span className="flex items-center justify-center text-[var(--2pt-black)]/55">
+              <Sparkline
+                values={series}
+                width={48}
+                height={12}
+                strokeWidth={1}
+                color={trendUp ? "var(--2pt-green)" : "rgb(200,70,70)"}
+                fillOpacity={0.10}
+              />
+            </span>
+            {/* Status */}
+            <span className="flex items-center justify-end gap-1.5">
               <span
                 className="w-1.5 h-1.5 rounded-full transition-colors duration-300"
                 style={{
-                  backgroundColor: anomaly && !resolved
-                    ? "rgb(225, 90, 90)"
-                    : resolved
-                      ? "var(--2pt-green)"
-                      : "rgba(10,10,10,0.25)",
+                  backgroundColor:
+                    anomaly && !resolved
+                      ? "rgb(225,90,90)"
+                      : resolved
+                        ? "var(--2pt-green)"
+                        : "rgba(10,10,10,0.22)",
                 }}
               />
               <span
-                className="text-[10px] font-mono tracking-wider uppercase transition-colors duration-300"
+                className="text-[9px] font-mono tracking-[0.18em] uppercase transition-colors duration-300 tabular-nums"
                 style={{
-                  color: anomaly && !resolved
-                    ? "rgb(200, 70, 70)"
-                    : resolved
-                      ? "var(--2pt-green)"
-                      : "rgba(10,10,10,0.4)",
+                  color:
+                    anomaly && !resolved
+                      ? "rgb(200,70,70)"
+                      : resolved
+                        ? "var(--2pt-green)"
+                        : "rgba(10,10,10,0.40)",
                 }}
               >
-                {anomaly && !resolved ? "Anomaly" : resolved ? "Reallocated" : "Nominal"}
+                {anomaly && !resolved
+                  ? "Anomaly"
+                  : resolved
+                    ? "Resolved"
+                    : "Nominal"}
               </span>
             </span>
           </div>
         )
       })}
 
-      {/* Footer summary */}
-      <div className="mt-auto pt-3 border-t border-[var(--2pt-black)]/10 flex items-center justify-between">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Anomalies caught today
-        </span>
-        <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
-          {Math.floor((now / 1000) % 17) + 12}
-        </span>
+      {/* Footer — 3 micro stats, mono numerics */}
+      <div className="relative z-10 mt-auto pt-3 border-t border-[var(--2pt-black)]/10 grid grid-cols-3 gap-3">
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Anomalies today
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {Math.floor((now / 1000) % 17) + 12}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Waste reallocated
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-green)] tabular-nums">
+            ${(14_200 + Math.floor((now / 1500) % 220)).toLocaleString()}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Latency p95
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {(42 + Math.sin(now / 2200) * 6).toFixed(0)}<span className="text-[10px] text-[var(--2pt-black)]/40 ml-0.5">ms</span>
+          </span>
+        </div>
       </div>
     </div>
   )
@@ -343,17 +482,19 @@ function EfficiencyMotion({ p }: { p: number }) {
 type Segment = {
   name: string
   descriptor: string
-  share: number // 0-1 — width of the bar
-  growth: number // % growth
+  share: number
+  growth: number
+  delta7d: number
+  seed: number
 }
 
 const SEGMENTS: Segment[] = [
-  { name: "New parents",      descriptor: "25-34 · urban",       share: 0.92, growth: 47 },
-  { name: "High-LTV repeats", descriptor: "subscribers · annual", share: 0.78, growth: 31 },
-  { name: "Q4 acquisition",   descriptor: "promo · winter",      share: 0.61, growth: 19 },
-  { name: "Pet owners",       descriptor: "premium tier",        share: 0.44, growth: 12 },
-  { name: "Lapsed buyers",    descriptor: "winback · 90d",       share: 0.30, growth: 4 },
-  { name: "Premium tier",     descriptor: "VIP · concierge",     share: 0.22, growth: -3 },
+  { name: "New parents",      descriptor: "25-34 · urban",        share: 0.92, growth: 47,  delta7d: +6.2, seed: 13 },
+  { name: "High-LTV repeats", descriptor: "subscribers · annual", share: 0.78, growth: 31,  delta7d: +3.8, seed: 29 },
+  { name: "Q4 acquisition",   descriptor: "promo · winter",       share: 0.61, growth: 19,  delta7d: +1.4, seed: 47 },
+  { name: "Pet owners",       descriptor: "premium tier",         share: 0.44, growth: 12,  delta7d: +0.5, seed: 61 },
+  { name: "Lapsed buyers",    descriptor: "winback · 90d",        share: 0.30, growth: 4,   delta7d: -0.3, seed: 83 },
+  { name: "Premium tier",     descriptor: "VIP · concierge",      share: 0.22, growth: -3,  delta7d: -1.7, seed: 97 },
 ]
 
 function GrowthMotion({ p }: { p: number }) {
@@ -373,33 +514,82 @@ function GrowthMotion({ p }: { p: number }) {
   )
 
   return (
-    <div className="absolute inset-0 bg-[var(--2pt-white)] border border-[var(--2pt-black)]/10 p-6 md:p-8 flex flex-col">
+    <div
+      className="absolute inset-0 border border-[var(--2pt-black)]/8 rounded-[10px] p-6 md:p-8 flex flex-col overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%)",
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.8) inset, 0 14px 36px -18px rgba(10,10,10,0.20), 0 2px 6px -2px rgba(10,10,10,0.06)",
+      }}
+    >
+      <CornerCrops />
+      {/* Top gradient rule */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(74,222,128,0.55), transparent)",
+        }}
+      />
+
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-[var(--2pt-black)]/10 mb-3">
         <div className="flex items-center gap-2.5">
-          <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
-          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/60">
-            Growth by segment · last 30d
+          <span className="relative inline-flex">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+            <span className="absolute inset-0 w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-ping opacity-60" />
+          </span>
+          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/65">
+            Growth by segment
+          </span>
+          <span className="hidden md:inline text-[9px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-black)]/45 border border-[var(--2pt-black)]/15 px-1.5 py-px rounded-[3px]">
+            Last 30d
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[var(--2pt-black)]/40 tabular-nums">
-          {SEGMENTS.length} segments
+        <span className="text-[10px] font-mono text-[var(--2pt-black)]/45 tabular-nums">
+          {SEGMENTS.length} segments tracked
         </span>
+      </div>
+
+      {/* Column headers */}
+      <div className="hidden sm:grid grid-cols-12 gap-3 pb-2 text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/35">
+        <span className="col-span-4">Segment</span>
+        <span className="col-span-3 text-right">Share</span>
+        <span className="col-span-2 text-center">30d trend</span>
+        <span className="col-span-2 text-right">Growth</span>
+        <span className="col-span-1 text-right">7d Δ</span>
       </div>
 
       {/* Segment rows */}
       <div className="flex-1 flex flex-col justify-center gap-2.5">
         {live.map((s, i) => {
-          // Stagger bar reveal so the rows draw in top to bottom
           const reveal = Math.max(0, Math.min(1, (autoP - i * 0.08) * 2.2))
           const isTop = i === 0
           const isCooling = s.growth < 0
-          const status = isCooling ? "Cooling" : s.growth >= 25 ? "Hot" : "Steady"
+          const trendUp = s.delta7d >= 0
+          const accent = isCooling
+            ? "rgb(200,70,70)"
+            : isTop
+              ? "var(--2pt-green)"
+              : "rgba(10,10,10,0.55)"
+          // Sparkline — seeded series tilted up/down by overall trend
+          const trendBias = s.growth / 100
+          const series = seededSeries(s.seed, 12, 0.5, 0.22).map(
+            (v, k) =>
+              v +
+              trendBias * (k / 11) * 0.6 +
+              Math.sin(now / 1600 + i + k * 0.5) * 0.03
+          )
 
           return (
-            <div key={s.name} className="grid grid-cols-12 items-center gap-2 sm:gap-3">
+            <div
+              key={s.name}
+              className="grid grid-cols-7 sm:grid-cols-12 items-center gap-2 sm:gap-3"
+            >
               {/* Name + descriptor */}
-              <div className="col-span-5 sm:col-span-4 flex flex-col min-w-0">
+              <div className="col-span-3 sm:col-span-4 flex flex-col min-w-0">
                 <span className="text-[12px] sm:text-[13px] font-medium text-[var(--2pt-black)]/85 truncate">
                   {s.name}
                 </span>
@@ -408,17 +598,13 @@ function GrowthMotion({ p }: { p: number }) {
                 </span>
               </div>
 
-              {/* Bar */}
-              <div className="col-span-4 sm:col-span-5 h-3 relative bg-[var(--2pt-offwhite)]/60 border border-[var(--2pt-black)]/8">
+              {/* Share bar */}
+              <div className="col-span-2 sm:col-span-3 h-2.5 relative bg-[var(--2pt-offwhite)]/60 border border-[var(--2pt-black)]/8 rounded-[2px] overflow-hidden">
                 <div
                   className="absolute inset-y-0 left-0 transition-[width] duration-300 ease-out"
                   style={{
                     width: `${s.share * reveal * 100}%`,
-                    backgroundColor: isTop
-                      ? "var(--2pt-green)"
-                      : isCooling
-                        ? "rgba(200,70,70,0.45)"
-                        : "rgba(10,10,10,0.55)",
+                    backgroundColor: accent,
                   }}
                 />
                 {isTop && (
@@ -429,46 +615,40 @@ function GrowthMotion({ p }: { p: number }) {
                 )}
               </div>
 
+              {/* 30d sparkline — sm+ only */}
+              <div className="hidden sm:flex col-span-2 items-center justify-center">
+                <Sparkline
+                  values={series}
+                  width={64}
+                  height={14}
+                  strokeWidth={1.1}
+                  color={accent}
+                  fillOpacity={0.10}
+                />
+              </div>
+
               {/* Growth % */}
-              <div className="col-span-3 sm:col-span-2 text-right">
+              <div className="col-span-1 sm:col-span-2 text-right">
                 <span
                   className="text-[13px] sm:text-[14px] font-medium tabular-nums tracking-tight transition-colors duration-300"
-                  style={{
-                    color: isCooling
-                      ? "rgb(200,70,70)"
-                      : isTop
-                        ? "var(--2pt-green)"
-                        : "var(--2pt-black)",
-                  }}
+                  style={{ color: accent }}
                 >
                   {s.growth >= 0 ? "+" : ""}
                   {s.growthLive.toFixed(1)}%
                 </span>
               </div>
 
-              {/* Status tag — mobile shows just the dot; sm+ shows label */}
-              <div className="col-span-0 sm:col-span-1 flex items-center justify-end gap-1">
+              {/* 7d delta */}
+              <div className="col-span-1 flex items-center justify-end gap-0.5">
                 <span
-                  className="w-1 h-1 rounded-full"
+                  className="text-[10px] font-mono tabular-nums"
                   style={{
-                    backgroundColor: isCooling
-                      ? "rgb(200,70,70)"
-                      : isTop
-                        ? "var(--2pt-green)"
-                        : "rgba(10,10,10,0.35)",
-                  }}
-                />
-                <span
-                  className="hidden sm:inline text-[9px] font-mono tracking-wider uppercase"
-                  style={{
-                    color: isCooling
-                      ? "rgb(200,70,70)"
-                      : isTop
-                        ? "var(--2pt-green)"
-                        : "rgba(10,10,10,0.45)",
+                    color: trendUp
+                      ? "var(--2pt-green)"
+                      : "rgb(200,70,70)",
                   }}
                 >
-                  {status}
+                  {trendUp ? "▲" : "▼"} {Math.abs(s.delta7d).toFixed(1)}
                 </span>
               </div>
             </div>
@@ -476,18 +656,33 @@ function GrowthMotion({ p }: { p: number }) {
         })}
       </div>
 
-      {/* Footer */}
-      <div className="mt-3 pt-3 border-t border-[var(--2pt-black)]/10 flex items-center justify-between">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Top segment driving
-          <span className="text-[var(--2pt-green)] ml-2 tabular-nums">
-            {topShare}%
+      {/* Footer — three micro stats */}
+      <div className="mt-3 pt-3 border-t border-[var(--2pt-black)]/10 grid grid-cols-3 gap-3">
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Top segment share
           </span>
-          <span className="ml-1 text-[var(--2pt-black)]/40">of incremental growth</span>
-        </span>
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-green)]">
-          Reallocating spend
-        </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-green)] tabular-nums">
+            {topShare}<span className="text-[10px] text-[var(--2pt-black)]/40 ml-0.5">%</span>
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Cohorts scored / hr
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {(412 + Math.floor((now / 1800) % 24)).toLocaleString()}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Reallocating
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-green)] tabular-nums flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
+            Live
+          </span>
+        </div>
       </div>
     </div>
   )
@@ -496,30 +691,63 @@ function GrowthMotion({ p }: { p: number }) {
 /* ====================== Motion graphic 3 — Driving growth ====================== */
 
 function DrivingMotion({ p }: { p: number }) {
-  // Bidding auction — bars rise and fall, one wins green per cycle
   const now = useNow()
-  const bars = Array.from({ length: 8 }, (_, i) => {
-    const phase = (now / 600 + i * 0.45) % (Math.PI * 2)
-    const h = 0.3 + 0.6 * Math.abs(Math.sin(phase))
-    return { i, h }
+  void p
+
+  // 24 bars — spectrum-analyser feel
+  const N = 24
+  const bars = Array.from({ length: N }, (_, i) => {
+    const phase = (now / 380 + i * 0.32) % (Math.PI * 2)
+    const swell = 0.25 + 0.65 * Math.abs(Math.sin(phase))
+    const noise = Math.sin((now / 90 + i * 4.2)) * 0.04
+    return { i, h: Math.max(0.05, Math.min(1, swell + noise)) }
   })
-  // Winning bar = the tallest right now
+
+  // Winner — highest bar, recomputed each tick
   const winnerIdx = bars.reduce((a, b) => (b.h > a.h ? b : a)).i
-  const bidAmount = (2.40 + Math.sin(now / 800) * 0.6).toFixed(2)
+  const bidAmount = (2.40 + Math.sin(now / 800) * 0.6).toFixed(4)
   const wins = Math.floor((now / 1000) % 24) + 8
+  const latency = (18 + Math.sin(now / 1100) * 4).toFixed(1)
+  const winRate = (62 + Math.sin(now / 2400) * 5).toFixed(1)
+  const bidsPerSec = (21 + Math.sin(now / 1700) * 3).toFixed(1)
 
   return (
-    <div className="absolute inset-0 bg-[var(--2pt-white)] border border-[var(--2pt-black)]/10 p-6 md:p-8 flex flex-col">
+    <div
+      className="absolute inset-0 border border-[var(--2pt-black)]/8 rounded-[10px] p-6 md:p-8 flex flex-col overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%)",
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.8) inset, 0 14px 36px -18px rgba(10,10,10,0.20), 0 2px 6px -2px rgba(10,10,10,0.06)",
+      }}
+    >
+      <CornerCrops />
+      {/* Top gradient rule */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(74,222,128,0.55), transparent)",
+        }}
+      />
+
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[var(--2pt-black)]/10">
         <div className="flex items-center gap-2.5">
-          <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
-          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/60">
-            Bid auction · Amazon Ads
+          <span className="relative inline-flex">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+            <span className="absolute inset-0 w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-ping opacity-60" />
+          </span>
+          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/65">
+            Bid auction
+          </span>
+          <span className="text-[9px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-black)]/45 border border-[var(--2pt-black)]/15 px-1.5 py-px rounded-[3px]">
+            Amazon Ads
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[var(--2pt-black)]/40 tabular-nums">
-          24h
+        <span className="text-[10px] font-mono text-[var(--2pt-black)]/45 tabular-nums">
+          {bidsPerSec} bids/s
         </span>
       </div>
 
@@ -529,44 +757,72 @@ function DrivingMotion({ p }: { p: number }) {
           <div className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/40 mb-1">
             Winning bid
           </div>
-          <div className="text-4xl md:text-5xl font-medium text-[var(--2pt-black)] tabular-nums">
+          <div className="text-4xl md:text-5xl font-medium text-[var(--2pt-black)] tabular-nums tracking-tight">
             ${bidAmount}
+          </div>
+          <div className="mt-1 text-[10px] font-mono tabular-nums text-[var(--2pt-black)]/45">
+            <span className="text-[var(--2pt-green)]">▲</span> +{(0.04 + Math.sin(now / 2100) * 0.02).toFixed(3)} vs avg
           </div>
         </div>
         <div className="text-right">
           <div className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/40 mb-1">
             Wins this minute
           </div>
-          <div className="text-3xl font-medium text-[var(--2pt-green)] tabular-nums">{wins}</div>
+          <div className="text-3xl md:text-4xl font-medium text-[var(--2pt-green)] tabular-nums tracking-tight">
+            {wins}
+          </div>
+          <div className="mt-1 text-[10px] font-mono tabular-nums text-[var(--2pt-black)]/45">
+            Win rate <span className="text-[var(--2pt-black)]/80">{winRate}%</span>
+          </div>
         </div>
       </div>
 
-      {/* Bars */}
-      <div className="flex-1 flex items-end gap-2 md:gap-3">
+      {/* Spectrum bars */}
+      <div className="flex-1 flex items-end gap-[3px] md:gap-1">
         {bars.map((b) => {
           const isWinner = b.i === winnerIdx
           return (
-            <div key={b.i} className="flex-1 flex flex-col items-stretch justify-end h-full gap-2">
-              <div
-                className="w-full transition-all duration-200 ease-out"
-                style={{
-                  height: `${b.h * 100}%`,
-                  backgroundColor: isWinner ? "var(--2pt-green)" : "rgba(10,10,10,0.12)",
-                }}
-              />
-            </div>
+            <div
+              key={b.i}
+              className="flex-1 transition-[height,background-color] duration-150 ease-out rounded-[1px]"
+              style={{
+                height: `${b.h * 100}%`,
+                backgroundColor: isWinner
+                  ? "var(--2pt-green)"
+                  : `rgba(10,10,10,${0.10 + b.h * 0.15})`,
+              }}
+            />
           )
         })}
       </div>
 
-      {/* Footer */}
-      <div className="mt-4 pt-3 border-t border-[var(--2pt-black)]/10 flex items-center justify-between">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Continuous · 24/7 bidding
-        </span>
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-green)]">
-          System trading
-        </span>
+      {/* Footer — three micro stats */}
+      <div className="mt-4 pt-3 border-t border-[var(--2pt-black)]/10 grid grid-cols-3 gap-3">
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Auction latency
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {latency}<span className="text-[10px] text-[var(--2pt-black)]/40 ml-0.5">ms</span>
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Bids today
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {(1_847_200 + Math.floor((now / 200) % 800)).toLocaleString()}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            System status
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-green)] tabular-nums flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
+            Trading
+          </span>
+        </div>
       </div>
     </div>
   )
@@ -617,17 +873,42 @@ function CreativeMotion({ p }: { p: number }) {
   const promotedToday = 47 + Math.floor(now / 38000)
 
   return (
-    <div className="absolute inset-0 bg-[var(--2pt-white)] border border-[var(--2pt-black)]/10 p-6 md:p-8 flex flex-col">
+    <div
+      className="absolute inset-0 border border-[var(--2pt-black)]/8 rounded-[10px] p-6 md:p-8 flex flex-col overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%)",
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.8) inset, 0 14px 36px -18px rgba(10,10,10,0.20), 0 2px 6px -2px rgba(10,10,10,0.06)",
+      }}
+    >
+      <CornerCrops />
+      {/* Top gradient rule */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(74,222,128,0.55), transparent)",
+        }}
+      />
+
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-[var(--2pt-black)]/10 mb-3">
         <div className="flex items-center gap-2.5">
-          <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
-          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/60">
-            Creative scoring · live
+          <span className="relative inline-flex">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+            <span className="absolute inset-0 w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-ping opacity-60" />
+          </span>
+          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/65">
+            Creative scoring
+          </span>
+          <span className="hidden md:inline text-[9px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-green)] border border-[var(--2pt-green)]/30 px-1.5 py-px rounded-[3px]">
+            Live
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[var(--2pt-black)]/40 tabular-nums">
-          {VARIANTS.length} / {VARIANTS.length} scored
+        <span className="text-[10px] font-mono text-[var(--2pt-black)]/45 tabular-nums">
+          {(48 + Math.floor((now / 1200) % 12))}/hr · threshold 7.5
         </span>
       </div>
 
@@ -743,6 +1024,7 @@ function CreativeMotion({ p }: { p: number }) {
                       {d.label}
                     </span>
                     <div className="flex-1 h-1 bg-[var(--2pt-black)]/8 relative overflow-hidden">
+                      {/* Score fill */}
                       <div
                         className="absolute inset-y-0 left-0 transition-[width] duration-500 ease-out"
                         style={{
@@ -751,6 +1033,12 @@ function CreativeMotion({ p }: { p: number }) {
                             ? "var(--2pt-green)"
                             : "rgba(10,10,10,0.55)",
                         }}
+                      />
+                      {/* Promotion threshold tick (7.5/10 = 75%) */}
+                      <div
+                        aria-hidden
+                        className="absolute top-[-2px] bottom-[-2px] w-px bg-[var(--2pt-green)]/60"
+                        style={{ left: "75%" }}
                       />
                     </div>
                     <span className="text-[8px] font-mono tabular-nums text-[var(--2pt-black)]/55 w-6 text-right">
@@ -764,20 +1052,32 @@ function CreativeMotion({ p }: { p: number }) {
         })}
       </div>
 
-      {/* Footer */}
-      <div className="mt-3 pt-3 border-t border-[var(--2pt-black)]/10 flex items-center justify-between">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Scored today
-          <span className="text-[var(--2pt-black)]/75 ml-2 tabular-nums">
+      {/* Footer — three micro stats */}
+      <div className="mt-3 pt-3 border-t border-[var(--2pt-black)]/10 grid grid-cols-3 gap-3">
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Scored today
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
             {variantsScoredToday.toLocaleString()}
           </span>
-        </span>
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Promoted
-          <span className="text-[var(--2pt-green)] ml-2 tabular-nums">
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Promoted
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-green)] tabular-nums">
             {promotedToday}
           </span>
-        </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Promotion rate
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {((promotedToday / variantsScoredToday) * 100).toFixed(1)}<span className="text-[10px] text-[var(--2pt-black)]/40 ml-0.5">%</span>
+          </span>
+        </div>
       </div>
     </div>
   )
@@ -814,17 +1114,42 @@ function ComplianceMotion({ p }: { p: number }) {
   const flaggedToday = 142 + Math.floor(now / 6800)
 
   return (
-    <div className="absolute inset-0 bg-[var(--2pt-white)] border border-[var(--2pt-black)]/10 p-6 md:p-8 flex flex-col">
+    <div
+      className="absolute inset-0 border border-[var(--2pt-black)]/8 rounded-[10px] p-6 md:p-8 flex flex-col overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(248,249,250,1) 100%)",
+        boxShadow:
+          "0 1px 0 rgba(255,255,255,0.8) inset, 0 14px 36px -18px rgba(10,10,10,0.20), 0 2px 6px -2px rgba(10,10,10,0.06)",
+      }}
+    >
+      <CornerCrops />
+      {/* Top gradient rule */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(74,222,128,0.55), transparent)",
+        }}
+      />
+
       {/* Header */}
       <div className="flex items-center justify-between pb-3 border-b border-[var(--2pt-black)]/10 mb-3">
         <div className="flex items-center gap-2.5">
-          <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
-          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/60">
-            Compliance bots · running
+          <span className="relative inline-flex">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+            <span className="absolute inset-0 w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-ping opacity-60" />
+          </span>
+          <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/65">
+            Compliance bots
+          </span>
+          <span className="hidden md:inline text-[9px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-green)] border border-[var(--2pt-green)]/30 px-1.5 py-px rounded-[3px]">
+            6 / 6 online
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[var(--2pt-black)]/40 tabular-nums">
-          6 / 6 online
+        <span className="text-[10px] font-mono text-[var(--2pt-black)]/45 tabular-nums">
+          Queue {Math.max(0, 47 - Math.floor((now / 800) % 20))} · {(8.4 + Math.sin(now / 1900) * 1.2).toFixed(1)} scans/s
         </span>
       </div>
 
@@ -914,20 +1239,32 @@ function ComplianceMotion({ p }: { p: number }) {
         })}
       </div>
 
-      {/* Footer summary */}
-      <div className="mt-3 pt-3 border-t border-[var(--2pt-black)]/10 flex items-center justify-between">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Scanned today
-          <span className="text-[var(--2pt-black)]/75 ml-2 tabular-nums">
+      {/* Footer — three micro stats */}
+      <div className="mt-3 pt-3 border-t border-[var(--2pt-black)]/10 grid grid-cols-3 gap-3">
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Scanned today
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
             {scannedToday.toLocaleString()}
           </span>
-        </span>
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
-          Flagged
-          <span className="text-[var(--2pt-green)] ml-2 tabular-nums">
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Flagged
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-green)] tabular-nums">
             {flaggedToday}
           </span>
-        </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/40">
+            Avg scan time
+          </span>
+          <span className="text-[15px] font-medium text-[var(--2pt-black)] tabular-nums">
+            {(118 + Math.sin(now / 2400) * 12).toFixed(0)}<span className="text-[10px] text-[var(--2pt-black)]/40 ml-0.5">ms</span>
+          </span>
+        </div>
       </div>
     </div>
   )

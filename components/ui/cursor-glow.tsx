@@ -73,23 +73,29 @@ export function CursorGlow() {
         />
       </div>
 
-      {/* Subtle trailing halo — black, low opacity, slower follow */}
+      {/* Trailing halo — green brand glow with smooth lerp damping.
+          The dot leads sharp, the halo trails soft. Reads as a deliberate
+          brand moment, not generic cursor decoration. */}
       <div
         className="fixed pointer-events-none z-[9998]"
         style={{
           left: position.x,
           top: position.y,
           transform: "translate(-50%, -50%)",
-          opacity: isHidden ? 0 : 0.5,
+          opacity: isHidden ? 0 : isPointer ? 0.9 : 0.6,
           transition:
-            "left 0.45s cubic-bezier(0.16, 1, 0.3, 1), top 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
+            "left 0.55s cubic-bezier(0.16, 1, 0.3, 1), top 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease",
         }}
       >
         <div
-          className="w-16 h-16 rounded-full"
+          className="rounded-full"
           style={{
+            width: isPointer ? 120 : 80,
+            height: isPointer ? 120 : 80,
+            transition: "width 0.4s ease, height 0.4s ease",
             background:
-              "radial-gradient(circle, rgba(10, 10, 10, 0.12) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(74, 222, 128, 0.22) 0%, rgba(74, 222, 128, 0.08) 35%, transparent 70%)",
+            filter: "blur(2px)",
           }}
         />
       </div>

@@ -19,7 +19,7 @@ export function ContactMobile() {
         <div className="flex items-center gap-2 mb-8">
           <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
           <span className="text-[10px] tracking-[0.3em] text-[var(--2pt-black)]/50 font-mono uppercase">
-            <span className="text-[var(--2pt-black)]/30 mr-2">IV.</span>Deploy with us
+            <span className="text-[var(--2pt-black)]/30 mr-2">III.</span>Deploy with us
           </span>
         </div>
 

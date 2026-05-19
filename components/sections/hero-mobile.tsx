@@ -66,14 +66,14 @@ export function HeroMobile() {
           </span>
         </div>
 
-        {/* Headline — plain English promise. Same scale across both lines.
-            Green verdict line. */}
+        {/* Headline — service-explicit, deploy-verb forward. Same scale on
+            both lines. Green verdict line says where the systems go. */}
         <h1 className="mb-8">
-          <span className="block text-[40px] font-medium tracking-[-0.035em] leading-[0.98] text-[var(--2pt-black)]">
-            Your marketing function,
+          <span className="block text-[44px] font-bold tracking-[-0.05em] leading-[0.94] text-[var(--2pt-black)]">
+            We deploy production AI
           </span>
-          <span className="block text-[40px] font-medium tracking-[-0.035em] leading-[0.98] text-[var(--2pt-green)] mt-1">
-            built for what&rsquo;s next.
+          <span className="block text-[44px] font-bold tracking-[-0.05em] leading-[0.94] text-[var(--2pt-green)] mt-1">
+            inside marketing teams.
           </span>
         </h1>
 

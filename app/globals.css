@@ -76,8 +76,11 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --font-sans: var(--font-sans), 'Geist Fallback', system-ui, sans-serif;
+  --font-mono: var(--font-mono), 'Geist Mono Fallback', monospace;
+  /* Editorial accent face — Instrument Serif loaded in app/layout.tsx.
+     Used sparingly for italic story lines, the wordmark, and section accents. */
+  --font-serif: var(--font-serif), 'Iowan Old Style', 'Times New Roman', serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -128,31 +131,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    cursor: none;
-  }
-  
-  a, button {
-    cursor: none;
   }
 }
 
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
-}
-
-/* Hide default cursor on desktop */
-@media (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-}
-
-/* Show cursor on mobile/touch devices */
-@media (pointer: coarse) {
-  * {
-    cursor: auto !important;
-  }
 }
 
 /* Selection styling */

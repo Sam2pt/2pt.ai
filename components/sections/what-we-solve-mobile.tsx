@@ -65,8 +65,8 @@ export function WhatWeSolveMobile() {
           </span>
         </div>
         <p className="text-[15px] text-[var(--2pt-black)]/65 leading-relaxed mb-7">
-          Five recurring problems we ship systems against. Beyond that,
-          bespoke engagements across:
+          Recurring problems we ship systems against, plus bespoke
+          engagements across four service tracks:
         </p>
         <div className="flex flex-col gap-2.5 text-[13px] text-[var(--2pt-black)]/85">
           {[

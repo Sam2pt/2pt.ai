@@ -107,6 +107,16 @@ export function HeroSection() {
             "radial-gradient(ellipse 70% 55% at 78% 70%, rgba(74,222,128,0.14) 0%, rgba(74,222,128,0.05) 35%, transparent 65%)",
         }}
       />
+      {/* Corner vignette — subtle radial darkening pulls the eye toward the
+          centred headline; gives the page real edges instead of flat colour */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 90% 70% at 50% 50%, transparent 50%, rgba(10,10,10,0.045) 100%)",
+        }}
+      />
       {/* Single hairline accent — fine green rule running down the left edge
           of the content column, the only structural mark. */}
       <div
@@ -114,8 +124,12 @@ export function HeroSection() {
         className="absolute top-0 bottom-0 left-0 w-px bg-gradient-to-b from-transparent via-[var(--2pt-green)]/40 to-transparent pointer-events-none"
       />
 
-      {/* TOP MASTHEAD STRIP — editorial cover chrome */}
-      <div className="relative z-10 border-b border-[var(--2pt-black)]/12 pt-14 md:pt-16">
+      {/* TOP MASTHEAD STRIP — editorial cover chrome.
+          The border + highlight box-shadow gives a chiseled 2-line rule */}
+      <div
+        className="relative z-10 border-b border-[var(--2pt-black)]/12 pt-14 md:pt-16"
+        style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.7)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-8 md:px-12 py-3.5 flex items-center justify-between text-[10px] font-mono tracking-[0.2em] uppercase">
           <div className="flex items-center gap-5 text-[var(--2pt-black)]/50">
             <span className="flex items-center gap-1.5">
@@ -162,36 +176,38 @@ export function HeroSection() {
           </span>
         </div>
 
-        {/* Headline — left-aligned, two lines locked to the same scale. The
-            promise in plain English: we modernize the marketing function and
-            build it for the future. The verdict line reads as continuation,
-            not a different headline. Word-by-word reveal. */}
-        <h1 className="mb-12 md:mb-16">
-          <span className="block text-[44px] sm:text-[64px] md:text-[92px] lg:text-[118px] font-medium tracking-[-0.035em] leading-[0.96] text-[var(--2pt-black)]">
-            {["Your", "marketing", "function,"].map((w, i) => (
+        {/* Headline — service-explicit, deploy-verb forward. Heavier weight
+            and bigger scale than before for cover-level impact. Both lines
+            locked to the same scale. Word-by-word reveal. A subtle live
+            status chrome sits below the green verdict line. */}
+        <h1 className="mb-10 md:mb-14">
+          <span className="block text-[52px] sm:text-[80px] md:text-[112px] lg:text-[140px] font-bold tracking-[-0.05em] leading-[0.92] text-[var(--2pt-black)]">
+            {["We", "deploy", "production", "AI"].flatMap((w, i, arr) => [
               <span
-                key={i}
+                key={`w-${i}`}
                 className={`inline-block transition-all duration-[1100ms] ease-out ${
                   loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[0.6em]"
-                } ${i > 0 ? "ml-[0.25em]" : ""}`}
+                }`}
                 style={{ transitionDelay: `${180 + i * 110}ms` }}
               >
                 {w}
-              </span>
-            ))}
+              </span>,
+              i < arr.length - 1 ? " " : null,
+            ])}
           </span>
-          <span className="block text-[44px] sm:text-[64px] md:text-[92px] lg:text-[118px] font-medium tracking-[-0.035em] leading-[0.96] text-[var(--2pt-green)] mt-1">
-            {["built", "for", "what’s", "next."].map((w, i) => (
+          <span className="block text-[52px] sm:text-[80px] md:text-[112px] lg:text-[140px] font-bold tracking-[-0.05em] leading-[0.92] text-[var(--2pt-green)] mt-1">
+            {["inside", "marketing", "teams."].flatMap((w, i, arr) => [
               <span
-                key={i}
+                key={`w-${i}`}
                 className={`inline-block transition-all duration-[1100ms] ease-out ${
                   loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[0.6em]"
-                } ${i > 0 ? "ml-[0.25em]" : ""}`}
-                style={{ transitionDelay: `${570 + i * 110}ms` }}
+                }`}
+                style={{ transitionDelay: `${620 + i * 110}ms` }}
               >
                 {w}
-              </span>
-            ))}
+              </span>,
+              i < arr.length - 1 ? " " : null,
+            ])}
           </span>
         </h1>
 
@@ -200,7 +216,11 @@ export function HeroSection() {
           className={`grid grid-cols-2 md:grid-cols-4 border-y border-[var(--2pt-black)]/12 transition-opacity duration-[1400ms] ${
             loaded ? "opacity-100" : "opacity-0"
           }`}
-          style={{ transitionDelay: "1100ms" }}
+          style={{
+            transitionDelay: "1100ms",
+            boxShadow:
+              "0 1px 0 rgba(255,255,255,0.7), 0 -1px 0 rgba(255,255,255,0.7)",
+          }}
         >
           {[
             { label: "In production now",         value: systemsLive.toLocaleString(),          live: false },
@@ -264,7 +284,10 @@ export function HeroSection() {
       </div>
 
       {/* BOTTOM MASTHEAD STRIP */}
-      <div className="relative z-10 border-t border-[var(--2pt-black)]/12">
+      <div
+        className="relative z-10 border-t border-[var(--2pt-black)]/12"
+        style={{ boxShadow: "0 -1px 0 rgba(255,255,255,0.7)" }}
+      >
         <div className="max-w-[1400px] mx-auto px-8 md:px-12 py-3.5 flex items-center justify-between text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/45">
           <span className="hidden md:inline">us-east / nyc-447 · eu-west / ldn-45</span>
           <span className="md:hidden">us-east · eu-west</span>
