@@ -43,14 +43,18 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 
-  /* 2pt brand colors */
+  /* 2pt brand colors. Bumped one step brighter across the base so the
+     page no longer reads as "grey washed." Cards (--2pt-white) stay pure
+     white; page surfaces (--2pt-offwhite) sit at #FAFAFA so the hierarchy
+     between page bg and card bg is preserved, just at a brighter overall
+     level. Green + black content gets more contrast as a result. */
   --2pt-green: #4ADE80;
   --2pt-green-glow: rgba(74, 222, 128, 0.4);
   --2pt-black: #0A0A0A;
-  --2pt-white: #FAFAFA;
+  --2pt-white: #FFFFFF;
   --2pt-gray: #71717A;
   --2pt-dark-gray: #27272A;
-  --2pt-offwhite: #F5F5F5;
+  --2pt-offwhite: #FAFAFA;
 }
 
 .dark {
