@@ -2,6 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
+import { TechGrid } from "@/components/ui/tech-grid"
 
 /**
  * Hero — editorial cover.
@@ -96,9 +97,11 @@ export function HeroSection() {
     <section
       className="relative min-h-screen flex flex-col bg-[var(--2pt-offwhite)] text-[var(--2pt-black)] overflow-hidden"
     >
-      {/* Background — solid offwhite with a single soft green accent in the
-          lower-right quadrant. No mouse-tracking, no drift, no dots. The
-          accent reads as a single moment of life, not an ambient wash. */}
+      {/* Background — pure white canvas with a faint engineering dot-grid
+          for structure, plus a single soft green accent in the lower-right
+          quadrant. The grid gives the white page a "technical canvas" feel
+          without darkening it. */}
+      <TechGrid cell={32} opacity={0.6} />
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"

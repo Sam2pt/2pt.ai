@@ -16,6 +16,7 @@
  */
 
 import { useEffect, useRef, useState } from "react"
+import { TechGrid, GreenWash } from "@/components/ui/tech-grid"
 
 type Stage = {
   index: string
@@ -102,7 +103,11 @@ export function HowWeDeploy() {
       className="relative bg-[var(--2pt-offwhite)] border-t border-[var(--2pt-black)]/10"
       style={{ boxShadow: "0 1px 0 rgba(255,255,255,0.7)" }}
     >
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 py-20 md:py-28">
+      {/* Technical dot-grid + soft green wash — texture for the white canvas */}
+      <TechGrid cell={32} opacity={0.5} />
+      <GreenWash at="15% 80%" size="55% 55%" intensity={0.07} />
+
+      <div className="relative z-10 max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 py-20 md:py-28">
         {/* Section eyebrow */}
         <div className="flex items-center gap-2.5 mb-8 md:mb-10">
           <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />

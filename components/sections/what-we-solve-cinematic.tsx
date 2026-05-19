@@ -14,6 +14,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Sparkline, seededSeries } from "@/components/ui/sparkline"
 import { CornerCrops } from "@/components/ui/corner-crops"
+import { TechGrid, GreenWash } from "@/components/ui/tech-grid"
 
 const PROBLEMS = [
   {
@@ -129,6 +130,10 @@ export function WhatWeSolveCinematic() {
       style={{ height: `${N * 65}vh` }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col">
+        {/* Technical dot-grid + soft green wash — texture for the white canvas */}
+        <TechGrid cell={32} opacity={0.55} />
+        <GreenWash at="88% 24%" size="55% 50%" intensity={0.07} />
+
         {/* Top bar — eyebrow + progress dots + counter */}
         <div className="relative z-10 grid grid-cols-3 items-center max-w-[1400px] mx-auto w-full px-8 md:px-12 pt-24 md:pt-28">
           <div className="flex items-center gap-2.5">
@@ -599,7 +604,7 @@ function GrowthMotion({ p }: { p: number }) {
               </div>
 
               {/* Share bar */}
-              <div className="col-span-2 sm:col-span-3 h-2.5 relative bg-[var(--2pt-offwhite)]/60 border border-[var(--2pt-black)]/8 rounded-[2px] overflow-hidden">
+              <div className="col-span-2 sm:col-span-3 h-2.5 relative bg-[var(--2pt-black)]/[0.04] border border-[var(--2pt-black)]/8 rounded-[2px] overflow-hidden">
                 <div
                   className="absolute inset-y-0 left-0 transition-[width] duration-300 ease-out"
                   style={{
@@ -926,7 +931,7 @@ function CreativeMotion({ p }: { p: number }) {
           return (
             <div
               key={v.id}
-              className="relative border bg-[var(--2pt-offwhite)]/30 p-3 flex flex-col transition-colors duration-300"
+              className="relative border bg-[var(--2pt-black)]/[0.025] p-3 flex flex-col transition-colors duration-300"
               style={{
                 borderColor: isWinner
                   ? "rgba(74,222,128,0.65)"
@@ -1169,7 +1174,7 @@ function ComplianceMotion({ p }: { p: number }) {
           return (
             <div
               key={bot.id}
-              className="relative grid grid-cols-12 items-center gap-3 px-3 py-2 border border-[var(--2pt-black)]/8 bg-[var(--2pt-offwhite)]/40 overflow-hidden"
+              className="relative grid grid-cols-12 items-center gap-3 px-3 py-2 border border-[var(--2pt-black)]/8 bg-[var(--2pt-black)]/[0.03] overflow-hidden"
             >
               {/* Scan sweep — green hairline traveling left to right while scanning */}
               {scanning && (
