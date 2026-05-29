@@ -35,17 +35,21 @@ type Product = {
   headline: string
   body: string
   status: string
+  url: string
+  cta: string
 }
 
 const PRODUCTS: Product[] = [
   {
     id: "chedder",
     wordmark: "Chedder",
-    category: "Generative engine audit",
-    headline: "Where AI search cites you. Where it doesn't.",
+    category: "Generative engine audit · DTC",
+    headline: "The complete GEO audit for DTC brands.",
     body:
-      "Chedder runs your brand against the queries your buyers ask ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews. You see what gets cited, what gets missed, and the schema work to fix it.",
-    status: "Production · GEO + AEO",
+      "Chedder runs the exact questions shoppers ask ChatGPT, Perplexity and Google. You see whether you show up, where AI sends them instead, and the specific fixes when you don't.",
+    status: "Live · chedder.2pt.ai",
+    url: "https://chedder.2pt.ai",
+    cta: "Open Chedder",
   },
   {
     id: "lumen",
@@ -54,7 +58,9 @@ const PRODUCTS: Product[] = [
     headline: "Watch where growth is actually coming from.",
     body:
       "Lumen scores every cohort on growth, share and trend in real time. Hot segments get more spend. Cooling ones get diagnosed before they break. The board question gets a live answer.",
-    status: "Production · CDP-aware",
+    status: "Live · lumen.2pt.ai",
+    url: "https://lumen.2pt.ai",
+    cta: "Open Lumen",
   },
   {
     id: "conduit",
@@ -63,7 +69,9 @@ const PRODUCTS: Product[] = [
     headline: "Your marketing stack, finally talking to itself.",
     body:
       "Conduit links Slack, Monday, your CRM, retail media and creative pipelines. Opinionated workflows ship pre-wired. The team is faster on day one, not six months in.",
-    status: "Production · Plug & play",
+    status: "Shipping soon",
+    url: "#contact",
+    cta: "Get on the list",
   },
 ]
 
@@ -336,24 +344,6 @@ export function ProductsSuite() {
           </span>
         </div>
 
-        {/* Family lockup — three app icons side by side, the way the
-            Adobe Creative Suite lines up its apps. */}
-        <div
-          className={`flex items-center gap-3 mb-10 md:mb-14 transition-all duration-1000 ${
-            entered
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-2"
-          }`}
-          style={{ transitionDelay: "120ms" }}
-        >
-          {(Object.keys(PRODUCT_GLYPHS) as ProductId[]).map((id) => (
-            <ProductIconTile key={id} id={id} size={56} variant="dark" />
-          ))}
-          <span className="ml-3 hidden sm:inline text-[11px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/45">
-            Chedder · Lumen · Conduit
-          </span>
-        </div>
-
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <div className="max-w-[720px]">
             <h2
@@ -402,20 +392,26 @@ export function ProductsSuite() {
                 {/* App-icon lockup — icon tile + wordmark side by side, with
                     a thin metadata row underneath (product slug + status). */}
                 <div className="px-5 pt-5">
-                  <div className="flex items-start gap-3.5">
-                    <ProductIconTile id={p.id as ProductId} size={52} />
-                    <div className="flex-1 min-w-0 pt-0.5">
-                      <div className="text-[28px] font-medium tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
+                  <div className="flex items-start gap-4">
+                    <ProductIconTile
+                      id={p.id as ProductId}
+                      size={64}
+                      atomic={(i + 1).toString().padStart(2, "0")}
+                    />
+                    <div className="flex-1 min-w-0 pt-1">
+                      <div className="text-[30px] font-medium tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
                         {p.wordmark}
                         <span className="text-[var(--2pt-green)]">.</span>
                       </div>
-                      <div className="mt-2 flex items-center gap-2 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-black)]/50">
+                      <div className="mt-2.5 flex items-center gap-2 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-black)]/50">
                         <span>2pt/{p.id}</span>
                         <span className="text-[var(--2pt-black)]/20">·</span>
-                        <span className="text-[var(--2pt-black)]/45">v.{(i + 1).toString().padStart(2, "0")}</span>
+                        <span className="text-[var(--2pt-black)]/45">
+                          v.{(i + 1).toString().padStart(2, "0")}
+                        </span>
                       </div>
                     </div>
-                    <span className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-green)] shrink-0 pt-1">
+                    <span className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-green)] shrink-0 pt-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--2pt-green)] animate-pulse" />
                       Live
                     </span>
@@ -447,10 +443,16 @@ export function ProductsSuite() {
                     {p.status}
                   </span>
                   <a
-                    href={`#contact`}
+                    href={p.url}
+                    target={p.url.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      p.url.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
                     className="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/75 hover:text-[var(--2pt-green)] transition-colors duration-500"
                   >
-                    Deploy
+                    {p.cta}
                     <ArrowUpRight className="w-3 h-3 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                 </div>

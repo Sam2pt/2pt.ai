@@ -113,19 +113,36 @@ export type ProductId = keyof typeof PRODUCT_GLYPHS
  *  • "dark" — black fill, white glyph, green dot. Useful in family lockups
  *    or hover states.
  */
+/**
+ * ProductIconTile — "periodic table element" tile for each product.
+ *
+ * Layout matches the conceit:
+ *   ┌──────────────┐
+ *   │ 01           │   ← atomic number (top-left)
+ *   │     ◯        │   ← geometric glyph (centred)
+ *   │           Ch │   ← element symbol / monogram (bottom-right)
+ *   └──────────────┘
+ *
+ * The `atomic` prop carries a 2-character index (01, 02, 03) so the suite
+ * reads as Ch-01, Lu-02, Co-03 in the same way Carbon is C-6 on the table.
+ */
 export function ProductIconTile({
   id,
+  atomic,
   size = 44,
   variant = "light",
   className = "",
 }: {
   id: ProductId
+  atomic?: string
   size?: number
   variant?: "light" | "dark"
   className?: string
 }) {
   const { Glyph, mono } = PRODUCT_GLYPHS[id]
   const isDark = variant === "dark"
+  const microFont = Math.max(8, Math.round(size * 0.16))
+  const monoFont = Math.max(9, Math.round(size * 0.22))
   return (
     <div
       className={`relative inline-flex items-center justify-center shrink-0 rounded-[8px] ${className}`}
@@ -142,18 +159,36 @@ export function ProductIconTile({
           : "0 1px 0 rgba(255,255,255,0.6) inset, 0 2px 6px -2px rgba(10,10,10,0.08)",
       }}
     >
-      <Glyph className="w-[60%] h-[60%]" />
-      {/* Monogram badge — bottom-right corner */}
+      <Glyph className="w-[58%] h-[58%]" />
+      {/* Atomic number — top-left */}
+      {atomic ? (
+        <span
+          className="absolute font-mono tabular-nums leading-none"
+          style={{
+            left: 4,
+            top: 4,
+            fontSize: microFont,
+            letterSpacing: "0.08em",
+            color: isDark
+              ? "rgba(255,255,255,0.55)"
+              : "rgba(10,10,10,0.4)",
+          }}
+        >
+          {atomic}
+        </span>
+      ) : null}
+      {/* Element symbol / monogram — bottom-right */}
       <span
-        className="absolute font-mono tabular-nums leading-none"
+        className="absolute font-mono leading-none"
         style={{
-          right: 4,
-          bottom: 3,
-          fontSize: Math.max(8, Math.round(size * 0.2)),
-          letterSpacing: "0.04em",
+          right: 5,
+          bottom: 4,
+          fontSize: monoFont,
+          letterSpacing: "0.02em",
+          fontWeight: 500,
           color: isDark
-            ? "rgba(255,255,255,0.6)"
-            : "rgba(10,10,10,0.55)",
+            ? "rgba(255,255,255,0.7)"
+            : "rgba(10,10,10,0.65)",
         }}
       >
         {mono}

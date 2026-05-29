@@ -525,12 +525,14 @@ function productSchema({
   category,
   description,
   alternateNames,
+  productUrl,
 }: {
   id: string
   name: string
   category: string
   description: string
   alternateNames?: string[]
+  productUrl?: string
 }) {
   return {
     "@context": "https://schema.org",
@@ -540,7 +542,8 @@ function productSchema({
     alternateName: alternateNames,
     applicationCategory: category,
     operatingSystem: "Cross-platform",
-    url: `${SITE_URL}/#products`,
+    url: productUrl ?? `${SITE_URL}/#products`,
+    sameAs: productUrl ? [productUrl] : undefined,
     image: `${SITE_URL}/opengraph-image`,
     description,
     brand: { "@id": `${SITE_URL}#organization` },
@@ -561,14 +564,16 @@ const chedderSchema = productSchema({
   id: "chedder",
   name: "Chedder",
   category: "MarketingApplication",
+  productUrl: "https://chedder.2pt.ai",
   description:
-    "Chedder is Two Point Technologies' productised generative engine audit. It measures where AI search engines (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) cite a brand and where they don't, then returns the schema and content fixes to close the gaps.",
+    "Chedder is Two Point Technologies' complete GEO audit for DTC brands, live at chedder.2pt.ai. It runs the exact questions shoppers ask ChatGPT, Perplexity and Google for a category, then shows whether the brand shows up in the AI answer, where AI sends shoppers instead, and the specific schema and content fixes to close each gap.",
   alternateNames: [
     "GEO audit",
     "AEO audit",
     "Generative engine audit",
     "AI search audit",
     "LLM citation audit",
+    "DTC GEO audit",
   ],
 })
 
@@ -576,8 +581,9 @@ const lumenSchema = productSchema({
   id: "lumen",
   name: "Lumen",
   category: "BusinessApplication",
+  productUrl: "https://lumen.2pt.ai",
   description:
-    "Lumen is Two Point Technologies' productised customer intelligence platform. It scores every customer cohort on growth, share and trend in real time, so hot segments earn more spend and cooling segments get diagnosed before they break.",
+    "Lumen is Two Point Technologies' productised customer intelligence platform, live at lumen.2pt.ai. It scores every customer cohort on growth, share and trend in real time, so hot segments earn more spend and cooling segments get diagnosed before they break.",
   alternateNames: [
     "Customer intelligence platform",
     "Audience segment AI",

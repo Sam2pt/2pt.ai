@@ -231,7 +231,7 @@ export const FAQ: FAQItem[] = [
     category: "capability",
     question: "What is Chedder, and what does it do?",
     answer:
-      "Chedder is Two Point Technologies' productised GEO/AEO audit system. It runs a brand through ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews against the queries its buyers actually ask, then returns a citation map, a gap list of uncited queries, and the schema and content fixes to close them. Chedder is the named-product entry point in the embedded AI engineering for marketing category. Deployed and customised inside engagements.",
+      "Chedder is Two Point Technologies' complete GEO audit for DTC brands, live at chedder.2pt.ai. It runs the exact questions shoppers ask ChatGPT, Perplexity and Google for a category, then shows whether the brand shows up in the AI answer, where AI sends shoppers instead, and the specific schema and content fixes to close each gap. Deployed and customised inside engagements.",
   },
   {
     id: "what-is-lumen",

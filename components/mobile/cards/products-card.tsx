@@ -16,20 +16,26 @@ const PRODUCTS = [
   {
     id: "chedder",
     wordmark: "Chedder",
-    category: "Generative engine audit",
-    body: "Where AI search cites you. Where it doesn't.",
+    category: "Generative engine audit · DTC",
+    body: "The complete GEO audit for DTC brands.",
+    url: "https://chedder.2pt.ai",
+    status: "Live" as const,
   },
   {
     id: "lumen",
     wordmark: "Lumen",
     category: "Customer intelligence",
     body: "Watch where growth is actually coming from.",
+    url: "https://lumen.2pt.ai",
+    status: "Live" as const,
   },
   {
     id: "conduit",
     wordmark: "Conduit",
     category: "Marketing-ops plumbing",
     body: "Your marketing stack, finally talking to itself.",
+    url: "#contact",
+    status: "Soon" as const,
   },
 ]
 
@@ -75,7 +81,9 @@ export function ProductsCard({ index }: { index: number }) {
         {PRODUCTS.map((p, i) => (
           <a
             key={p.id}
-            href="#contact"
+            href={p.url}
+            target={p.url.startsWith("http") ? "_blank" : undefined}
+            rel={p.url.startsWith("http") ? "noopener noreferrer" : undefined}
             className="group relative flex-1 min-h-0 flex flex-col justify-between border border-[var(--2pt-black)]/12 rounded-[10px] px-4 py-4 bg-[var(--2pt-white)] active:scale-[0.99] transition-transform duration-150"
             style={{
               boxShadow:
@@ -84,7 +92,11 @@ export function ProductsCard({ index }: { index: number }) {
           >
             {/* Icon tile + wordmark lockup */}
             <div className="flex items-start gap-3">
-              <ProductIconTile id={p.id as ProductId} size={42} />
+              <ProductIconTile
+                id={p.id as ProductId}
+                size={46}
+                atomic={(i + 1).toString().padStart(2, "0")}
+              />
               <div className="flex-1 min-w-0 pt-0.5">
                 <div className="text-[22px] font-bold tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
                   {p.wordmark}
@@ -104,10 +116,28 @@ export function ProductsCard({ index }: { index: number }) {
 
             {/* Metadata footer */}
             <div className="flex items-center justify-between text-[8px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/35">
-              <span>2pt/{p.id} · v.{(i + 1).toString().padStart(2, "0")}</span>
-              <span className="flex items-center gap-1 text-[var(--2pt-green)]">
-                <span className="w-1 h-1 rounded-full bg-[var(--2pt-green)]" />
-                Live
+              <span>
+                2pt/{p.id} · v.{(i + 1).toString().padStart(2, "0")}
+              </span>
+              <span
+                className="flex items-center gap-1"
+                style={{
+                  color:
+                    p.status === "Live"
+                      ? "var(--2pt-green)"
+                      : "rgba(10,10,10,0.5)",
+                }}
+              >
+                <span
+                  className="w-1 h-1 rounded-full"
+                  style={{
+                    background:
+                      p.status === "Live"
+                        ? "var(--2pt-green)"
+                        : "rgba(10,10,10,0.3)",
+                  }}
+                />
+                {p.status}
               </span>
             </div>
           </a>

@@ -153,9 +153,9 @@ export const GLOSSARY: GlossaryTerm[] = [
     id: "chedder",
     term: "Chedder",
     shortDef:
-      "2PT's productised generative engine audit. Measures where AI search engines cite a brand and where they don't.",
+      "2PT's complete GEO audit for DTC brands. Live at chedder.2pt.ai. Measures where AI search engines cite a brand and where they send shoppers instead.",
     longDef:
-      "Chedder is the productised GEO/AEO audit system built by Two Point Technologies. It runs a brand through ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews against the queries its buyers actually ask, then returns a citation map, a gap list of uncited queries, and the schema and content fixes required to close those gaps. Chedder is one of the first named products in the embedded AI engineering for marketing category. Deployed and customised inside engagements; the client owns the output.",
+      "Chedder is the productised GEO/AEO audit system built by Two Point Technologies, live at chedder.2pt.ai. It runs the exact questions shoppers ask ChatGPT, Perplexity and Google for a given category, then shows whether the brand shows up in the AI answer, where AI sends shoppers instead, and the specific schema and content fixes required to close each gap. Chedder is built for DTC and consumer brands operating in the generative-search era, and is deployed and customised inside engagements.",
     alsoKnownAs: [
       "GEO audit",
       "AEO audit",
