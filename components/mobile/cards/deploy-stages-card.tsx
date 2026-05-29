@@ -1,16 +1,16 @@
 "use client"
 
 /**
- * DeployStagesCard — vertical timeline of the 4-stage engagement model.
+ * DeployStagesCard — static vertical list of the 4-stage engagement model.
  *
- * Diagnose → Build → Deploy → Transfer rendered as a vertical flow with a
- * green pulse that travels through the stages once the card is in view.
- * Each stage card scales in sequentially. The active stage gets a heavier
- * visual treatment so the eye knows where the "play head" currently is.
+ * Diagnose → Build → Deploy → Transfer. All four rendered at once, all body
+ * copy on screen, no auto-cycle, no pulsing play head. The vertical rail is
+ * a single absolute element anchored to the column of dot centres so the
+ * line and the dots can't drift out of alignment.
+ *
+ * Replaces the previous animated version that auto-played slowly and had a
+ * dynamic rail-height calculation that visually mismatched the dot column.
  */
-
-import { useEffect, useState } from "react"
-import { useInView } from "@/components/mobile/use-in-view"
 
 const STAGES = [
   {
@@ -18,14 +18,14 @@ const STAGES = [
     name: "Diagnose",
     discipline: "Strategy & diagnostics",
     body:
-      "We map the marketing function: where systems break, where AI lands.",
+      "We map the marketing function. Where systems break, where AI lands.",
   },
   {
     index: "02",
     name: "Build",
     discipline: "Custom deployment",
     body:
-      "Embedded engineers build the AI system inside your stack. Production from day one.",
+      "Embedded engineers build the system inside your stack. Production from day one.",
   },
   {
     index: "03",
@@ -38,32 +38,17 @@ const STAGES = [
     index: "04",
     name: "Transfer",
     discipline: "Adoption & transfer",
-    body:
-      "Your team takes ownership. We document, train, hand off.",
+    body: "Your team takes ownership. We document, train, hand off.",
   },
 ]
 
-const CYCLE_MS = 3200
-
 export function DeployStagesCard({ index }: { index: number }) {
-  const { ref, visible } = useInView<HTMLElement>(0.5)
-  const [active, setActive] = useState(0)
-
-  // Auto-cycle while in view.
-  useEffect(() => {
-    if (!visible) return
-    const id = setInterval(() => {
-      setActive((i) => (i + 1) % STAGES.length)
-    }, CYCLE_MS)
-    return () => clearInterval(id)
-  }, [visible])
-
   return (
     <section
-      ref={ref}
       data-card-index={index}
       className="relative h-[100dvh] w-full snap-start overflow-hidden bg-[var(--2pt-white)] text-[var(--2pt-black)] flex flex-col"
     >
+      {/* Soft green wash, top-right anchor */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -74,127 +59,85 @@ export function DeployStagesCard({ index }: { index: number }) {
       />
 
       {/* Top eyebrow */}
-      <div className="relative z-10 pt-16 px-6 flex items-center gap-2.5">
-        <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
-        <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-black)]/50">
+      <div className="relative z-10 pt-14 px-6 flex items-center gap-2.5">
+        <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+        <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-black)]/55">
           <span className="text-[var(--2pt-black)]/30 mr-2">II.</span>How we deploy
         </span>
       </div>
 
       {/* Intro */}
-      <div className="relative z-10 px-6 mt-6">
-        <h2 className="text-[28px] font-bold tracking-[-0.035em] leading-[1.05] text-[var(--2pt-black)]">
+      <div className="relative z-10 px-6 mt-5">
+        <h2 className="text-[24px] font-bold tracking-[-0.03em] leading-[1.05] text-[var(--2pt-black)]">
           Every engagement runs through the same four stages.
         </h2>
       </div>
 
-      {/* Stage timeline */}
-      <div className="relative z-10 flex-1 px-6 pt-8 pb-6 flex flex-col gap-3 min-h-0 overflow-hidden">
-        {/* Vertical connecting rail behind nodes */}
-        <div
-          aria-hidden
-          className="absolute left-[2.05rem] top-[7rem] bottom-[3.5rem] w-px bg-[var(--2pt-black)]/12"
-        />
-        <div
-          aria-hidden
-          className="absolute left-[2.05rem] top-[7rem] w-px bg-[var(--2pt-green)] transition-[height] duration-[1200ms] ease-out"
-          style={{
-            height: `calc((100% - 10.5rem) * ${(active + 1) / STAGES.length})`,
-          }}
-        />
+      {/*
+        Stage list.
 
-        {STAGES.map((s, i) => {
-          const isActive = i === active
-          const isPast = i < active
-          return (
-            <div
-              key={s.index}
-              className="relative flex items-start gap-4 py-2.5"
-              
-            >
-              {/* Node dot */}
-              <div className="relative shrink-0 z-10 w-4 h-4 ml-2 mt-1 flex items-center justify-center">
-                <span
-                  className="block rounded-full transition-all duration-500"
-                  style={{
-                    width: isActive ? 10 : 7,
-                    height: isActive ? 10 : 7,
-                    backgroundColor:
-                      isActive || isPast
-                        ? "var(--2pt-green)"
-                        : "rgba(10,10,10,0.18)",
-                    boxShadow: isActive
-                      ? "0 0 14px 3px rgba(74,222,128,0.45)"
-                      : undefined,
-                  }}
-                />
-                {isActive && (
+        The rail is a single absolutely-positioned line that sits at the
+        same x-coordinate as the dot centres. Because the dots live in a
+        w-4 (1rem) flex column at the start of each row, their centres are
+        at left = 0.5rem from the list's left edge. The rail uses the same
+        offset, so the two can't drift apart as the viewport changes height.
+      */}
+      <div className="relative z-10 flex-1 min-h-0 px-6 mt-6 pb-10">
+        <div className="relative h-full">
+          {/* Rail — base hairline */}
+          <div
+            aria-hidden
+            className="absolute left-[0.5rem] top-3 bottom-3 w-px bg-[var(--2pt-black)]/15"
+          />
+          {/* Rail — green accent on top, fades toward the bottom */}
+          <div
+            aria-hidden
+            className="absolute left-[0.5rem] top-3 w-px h-[calc(100%-1.5rem)] bg-gradient-to-b from-[var(--2pt-green)] via-[var(--2pt-green)]/40 to-transparent opacity-70"
+          />
+
+          <ol className="relative h-full flex flex-col justify-between">
+            {STAGES.map((s) => (
+              <li key={s.index} className="relative flex items-start gap-4">
+                {/* Dot — w-4 column. The 9px dot is centred inside the 1rem
+                    column, so its centre sits at 0.5rem from the list edge
+                    — exactly where the rail is drawn. */}
+                <span className="relative shrink-0 w-4 h-4 mt-1 flex items-center justify-center">
                   <span
-                    className="absolute inset-0 m-auto rounded-full animate-ping"
+                    className="block w-[9px] h-[9px] rounded-full bg-[var(--2pt-green)]"
                     style={{
-                      width: 10,
-                      height: 10,
-                      backgroundColor: "rgba(74,222,128,0.55)",
+                      boxShadow: "0 0 0 3px var(--2pt-white)",
                     }}
                   />
-                )}
-              </div>
+                </span>
 
-              {/* Stage text */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-baseline gap-2 mb-0.5">
-                  <span
-                    className="text-[10px] font-mono tracking-[0.25em] tabular-nums"
-                    style={{
-                      color: isActive
-                        ? "var(--2pt-green)"
-                        : isPast
-                          ? "rgba(74,222,128,0.55)"
-                          : "rgba(10,10,10,0.35)",
-                    }}
-                  >
-                    — {s.index}
-                  </span>
-                </div>
-                <div
-                  className="text-[22px] font-bold tracking-[-0.025em] leading-[1.05] transition-colors duration-500"
-                  style={{
-                    color: isActive
-                      ? "var(--2pt-black)"
-                      : "rgba(10,10,10,0.55)",
-                  }}
-                >
-                  {s.name}
-                </div>
-                <div
-                  className="text-[11px] italic mt-0.5 transition-colors duration-500"
-                  style={{
-                    color: isActive
-                      ? "rgba(10,10,10,0.65)"
-                      : "rgba(10,10,10,0.40)",
-                  }}
-                >
-                  {s.discipline}
-                </div>
-                {isActive && (
-                  <p
-                    className="text-[13px] text-[var(--2pt-black)]/70 leading-snug mt-2"
-                    style={{ animation: "fadeIn 500ms ease-out both" }}
-                  >
+                {/* Stage text */}
+                <div className="flex-1 min-w-0 pb-1">
+                  <div className="flex items-baseline gap-2 mb-0.5">
+                    <span className="text-[10px] font-mono tracking-[0.25em] tabular-nums text-[var(--2pt-green)]">
+                      — {s.index}
+                    </span>
+                  </div>
+                  <div className="text-[20px] font-bold tracking-[-0.025em] leading-[1.05] text-[var(--2pt-black)]">
+                    {s.name}
+                  </div>
+                  <div className="text-[11px] italic mt-0.5 text-[var(--2pt-black)]/55">
+                    {s.discipline}
+                  </div>
+                  <p className="text-[12.5px] text-[var(--2pt-black)]/70 leading-[1.45] mt-1.5 max-w-[30ch]">
                     {s.body}
                   </p>
-                )}
-              </div>
-            </div>
-          )
-        })}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
 
-      {/* Bottom — auto-cycle status */}
-      <div className="relative z-10 pb-12 px-6 flex items-center justify-between text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/45 border-t border-[var(--2pt-black)]/8 pt-4">
+      {/* Bottom — engagement model footer */}
+      <div className="relative z-10 pb-10 px-6 flex items-center justify-between text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/45 border-t border-[var(--2pt-black)]/8 pt-4">
         <span>Engagement model</span>
         <span className="text-[var(--2pt-green)] tabular-nums">
-          Stage {STAGES[active].index} active
+          {STAGES.length.toString().padStart(2, "0")} stages
         </span>
       </div>
     </section>
