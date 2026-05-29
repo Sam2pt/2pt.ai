@@ -11,7 +11,7 @@ export function FloatingNav() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed top-0 left-0 right-0 z-50"
+      className="hidden md:block fixed top-0 left-0 right-0 z-50"
     >
       {/* Bar — frosted glass that sits as a clear layer above the page,
           subtle drop shadow below so it reads as an elevated surface */}

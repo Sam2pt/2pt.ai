@@ -3,10 +3,7 @@ import { ClientStrip } from "@/components/sections/client-strip"
 import { WhatWeSolveCinematic } from "@/components/sections/what-we-solve-cinematic"
 import { HowWeDeploy } from "@/components/sections/how-we-deploy"
 import { ContactSection } from "@/components/sections/contact-section"
-import { HeroMobile } from "@/components/sections/hero-mobile"
-import { ClientStripMobile } from "@/components/sections/client-strip-mobile"
-import { WhatWeSolveMobile } from "@/components/sections/what-we-solve-mobile"
-import { ContactMobile } from "@/components/sections/contact-mobile"
+import { DeployConsole } from "@/components/mobile/deploy-console"
 import { NoiseBackground } from "@/components/ui/noise-background"
 import { FloatingNav } from "@/components/ui/floating-nav"
 
@@ -35,11 +32,7 @@ export default function Home() {
           <ContactSection />
         </div>
         <div className="md:hidden">
-          <HeroMobile />
-          <ClientStripMobile />
-          <WhatWeSolveMobile />
-          <HowWeDeploy />
-          <ContactMobile />
+          <DeployConsole />
         </div>
       </main>
     </>

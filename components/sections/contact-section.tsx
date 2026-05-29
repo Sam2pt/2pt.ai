@@ -262,8 +262,33 @@ export function ContactSection() {
             </div>
           </div>
 
+          {/* Reference strip — cross-links to evergreen pages */}
+          <nav
+            aria-label="Reference"
+            className="pt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-[10px] tracking-[0.28em] font-mono uppercase text-[var(--2pt-white)]/45"
+          >
+            <a
+              href="/faq"
+              className="hover:text-[var(--2pt-green)] transition-colors duration-500"
+            >
+              FAQ
+            </a>
+            <a
+              href="/glossary"
+              className="hover:text-[var(--2pt-green)] transition-colors duration-500"
+            >
+              Glossary
+            </a>
+            <a
+              href="/llms.txt"
+              className="hover:text-[var(--2pt-green)] transition-colors duration-500"
+            >
+              llms.txt
+            </a>
+          </nav>
+
           {/* Colophon strip — print-style detail bar */}
-          <div className="pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+          <div className="pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
             <div className="flex items-center gap-5">
               <span className="text-xl font-semibold italic text-[var(--2pt-white)] tracking-tight">
                 2pt

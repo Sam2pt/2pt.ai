@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Grain } from "@/components/ui/grain"
+import { FAQ } from "@/lib/faq"
+import { GLOSSARY } from "@/lib/glossary"
 import "./globals.css"
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -154,14 +156,22 @@ export const viewport: Viewport = {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Structured data — multi-schema JSON-LD.
+// Structured data — multi-schema JSON-LD combined into a single @graph.
 //
-// 1. Organization — who we are, where we are, what we do.
-// 2. ProfessionalService — purchasable services + areaServed.
-// 3. Person — Sam Gormley founder/CEO.
-// 4. WebSite — site search metadata for AI search engines.
-// 5. FAQ — common buyer questions, answered. Boosts FAQ rich results
-//    and citation rate in Claude / ChatGPT / Perplexity.
+// 1. Organization        — who we are, addresses, knowsAbout, services catalog.
+// 2. ProfessionalService — purchasable service + areaServed (US / UK / EU).
+// 3. WebSite             — site identity for AI search engines.
+// 4. Person              — Sam Gormley standalone entity (founder/CEO).
+// 5. ProfessionalService — New York office (LocalBusiness shape).
+// 6. ProfessionalService — London office (LocalBusiness shape).
+// 7. HowTo               — Diagnose → Build → Deploy → Transfer engagement.
+// 8. Article             — homepage explainer on embedded AI engineering.
+// 9. FAQPage             — entire FAQ corpus from lib/faq.ts.
+// 10. DefinedTermSet     — entire glossary from lib/glossary.ts.
+//
+// Coverage is deliberately wide so the page is citable across SEO rich
+// results, FAQ rich results, knowledge-panel entity surfaces, AI search
+// (Claude / ChatGPT / Perplexity / Gemini), and "what is X" GEO queries.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const organizationSchema = {
@@ -300,65 +310,233 @@ const websiteSchema = {
   inLanguage: "en-US",
 }
 
+// FAQPage — derived from the canonical FAQ corpus in lib/faq.ts.
+// Emitting the entire 29-question corpus (rather than a hand-picked 6) widens
+// the surface area for FAQ rich results and AI-search citations.
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
+  "@id": `${SITE_URL}#faq`,
+  url: `${SITE_URL}/faq`,
+  mainEntity: FAQ.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.answer,
+    },
+  })),
+}
+
+// HowTo — codifies the 4-stage engagement model as a discoverable how-to.
+// Targets "how to deploy AI inside a marketing team" queries on AI search.
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": `${SITE_URL}#how-to-deploy`,
+  name: "How to deploy production AI inside an enterprise marketing function",
+  description:
+    "The four-stage embedded engagement model 2PT uses to deploy production AI inside enterprise marketing functions.",
+  totalTime: "P9M",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "USD",
+    value: "Six- to seven-figure fixed-fee engagement",
+  },
+  supply: [
+    { "@type": "HowToSupply", name: "Client marketing stack access" },
+    { "@type": "HowToSupply", name: "Retail media, CRM and brand workflow APIs" },
+    { "@type": "HowToSupply", name: "Foundation model access (Anthropic Claude)" },
+  ],
+  tool: [
+    { "@type": "HowToTool", name: "Claude foundation models" },
+    { "@type": "HowToTool", name: "Embedded engineering pod" },
+  ],
+  step: [
     {
-      "@type": "Question",
-      name: "What does Two Point Technologies do?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text:
-          "Two Point Technologies (2PT) is an embedded AI engineering firm for marketing, advertising and communications. We deploy production AI systems inside enterprise marketing teams through forward-deployed pods of AI engineers, marketing strategists and data engineers. The system is the product the client buys, runs and owns.",
-      },
+      "@type": "HowToStep",
+      position: 1,
+      name: "Diagnose — strategy & diagnostics",
+      text:
+        "Map the marketing function: where systems break, where AI lands, what to ship first. Output is a roadmap the CFO can read. Typical duration 2–4 weeks.",
+      url: `${SITE_URL}/#deploy`,
     },
     {
-      "@type": "Question",
-      name: "How does 2PT deploy AI inside a marketing function?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text:
-          "Every engagement runs through four stages: Diagnose (strategy & diagnostics — we map the marketing function and write a roadmap), Build (custom deployment — embedded engineers build the AI system inside your stack), Deploy (enterprise integration — wired into retail media, CRM, brand and creative workflows), and Transfer (adoption & transfer — your team takes ownership and we hand the system off).",
-      },
+      "@type": "HowToStep",
+      position: 2,
+      name: "Build — custom deployment",
+      text:
+        "Embedded engineers build the AI system inside the client's stack. Production-grade from day one. No demos. No pilots. Typical duration 6–12 weeks.",
+      url: `${SITE_URL}/#deploy`,
     },
     {
-      "@type": "Question",
-      name: "What problems does 2PT solve for marketing teams?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text:
-          "Five recurring problems every enterprise marketing function has: monitoring efficiency (catching spend waste), monitoring growth (which audience segments are driving it), driving growth (24/7 retail media bidding across Amazon, Walmart, Instacart), creative optimisation (scoring every variant against brand fit, hook and CTR before it ships), and consistency & compliance (six bots running brand voice, sentiment, intent, claims, PII and image safety checks on every asset).",
-      },
+      "@type": "HowToStep",
+      position: 3,
+      name: "Deploy — enterprise integration",
+      text:
+        "System is wired into retail media, CRM, brand and creative workflows. Runs alongside the team and starts moving the metric. Typical duration 2–4 weeks.",
+      url: `${SITE_URL}/#deploy`,
     },
     {
-      "@type": "Question",
-      name: "Is 2PT a Claude / Anthropic partner?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text:
-          "Yes. 2PT is a member of the Anthropic Claude Partner Network. Engagements use Claude as the foundation model layer for production agentic systems deployed inside enterprise marketing organisations.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Where is 2PT located?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text:
-          "Two Point Technologies has offices in New York (447 Broadway, NY 10013) and London (45 Fitzroy Street, Fitzrovia W1D 3BW). The firm was founded in 2017 by Sam Gormley.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Who owns the systems 2PT builds?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text:
-          "The client. Every system 2PT deploys is built bespoke inside the client's stack, and the IP belongs to the client. 2PT documents, trains the in-house team and hands the system off at the end of the engagement. There is no subscription lock-in.",
-      },
+      "@type": "HowToStep",
+      position: 4,
+      name: "Transfer — adoption & transfer",
+      text:
+        "The client's team takes ownership. We document, train, hand off. No subscription lock-in. The IP belongs to the client.",
+      url: `${SITE_URL}/#deploy`,
     },
   ],
+}
+
+// LocalBusiness × 2 — discoverable for "AI agency New York" / "AI agency London".
+const nyOfficeSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${SITE_URL}#office-ny`,
+  name: `${ORG_NAME} — New York`,
+  parentOrganization: { "@id": `${SITE_URL}#organization` },
+  url: `${SITE_URL}#offices`,
+  image: `${SITE_URL}/opengraph-image`,
+  telephone: "+1-212-000-0000",
+  priceRange: "$$$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "447 Broadway",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    postalCode: "10013",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 40.7211,
+    longitude: -74.0009,
+  },
+  areaServed: [
+    { "@type": "Country", name: "United States" },
+    { "@type": "Country", name: "Canada" },
+  ],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+}
+
+const londonOfficeSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${SITE_URL}#office-london`,
+  name: `${ORG_NAME} — London`,
+  parentOrganization: { "@id": `${SITE_URL}#organization` },
+  url: `${SITE_URL}#offices`,
+  image: `${SITE_URL}/opengraph-image`,
+  telephone: "+44-20-0000-0000",
+  priceRange: "$$$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "45 Fitzroy Street",
+    addressLocality: "London",
+    postalCode: "W1D 3BW",
+    addressCountry: "GB",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.5223,
+    longitude: -0.1399,
+  },
+  areaServed: [
+    { "@type": "Country", name: "United Kingdom" },
+    { "@type": "Place", name: "European Union" },
+  ],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
+}
+
+// Person — standalone Sam Gormley node for entity disambiguation.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}#sam-gormley`,
+  name: "Sam Gormley",
+  givenName: "Sam",
+  familyName: "Gormley",
+  jobTitle: "Founder & CEO",
+  worksFor: { "@id": `${SITE_URL}#organization` },
+  affiliation: { "@id": `${SITE_URL}#organization` },
+  url: SITE_URL,
+  sameAs: ["https://www.linkedin.com/in/samgormley"],
+  knowsAbout: [
+    "Embedded AI engineering",
+    "Production AI deployment",
+    "Marketing function modernization",
+    "Forward-deployed engineering",
+    "Retail media optimisation",
+    "Agentic AI for marketing",
+  ],
+}
+
+// Article — frames the homepage as a citable explainer on embedded AI
+// engineering for marketing. Helps Claude / ChatGPT / Perplexity treat the
+// page as an authoritative source on the category itself.
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${SITE_URL}#homepage-article`,
+  headline:
+    "Embedded AI engineering for marketing: how Two Point Technologies deploys production AI inside enterprise marketing teams",
+  description: SUMMARY,
+  url: SITE_URL,
+  mainEntityOfPage: SITE_URL,
+  image: `${SITE_URL}/opengraph-image`,
+  author: { "@id": `${SITE_URL}#sam-gormley` },
+  publisher: { "@id": `${SITE_URL}#organization` },
+  inLanguage: "en-US",
+  datePublished: "2026-01-15",
+  dateModified: new Date().toISOString().split("T")[0],
+  articleSection: "AI engineering for marketing",
+  keywords: [
+    "embedded AI engineering",
+    "production AI",
+    "marketing function modernization",
+    "agentic AI for marketing",
+    "retail media AI",
+    "GEO",
+    "forward-deployed engineering",
+    "Claude Partner Network",
+  ].join(", "),
+  about: [
+    { "@id": `${SITE_URL}#organization` },
+    { "@id": `${SITE_URL}#service` },
+  ],
+}
+
+// DefinedTermSet — emits the glossary corpus as a navigable set of terms.
+// Each DefinedTerm is structured so LLMs can cite an authoritative definition
+// of the underlying concept (embedded AI engineering, GEO, agentic AI, etc.).
+const definedTermSetSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": `${SITE_URL}#glossary`,
+  name: "Two Point Technologies — Glossary",
+  description:
+    "A glossary of terms used by Two Point Technologies and the embedded AI engineering category — embedded AI engineering, GEO, production AI, retail media AI, agentic AI for marketing.",
+  url: `${SITE_URL}/glossary`,
+  inDefinedTermSet: { "@id": `${SITE_URL}#glossary` },
+  hasDefinedTerm: GLOSSARY.map((t) => ({
+    "@type": "DefinedTerm",
+    "@id": `${SITE_URL}/glossary#${t.id}`,
+    name: t.term,
+    alternateName: t.alsoKnownAs,
+    description: t.shortDef,
+    url: `${SITE_URL}/glossary#${t.id}`,
+    inDefinedTermSet: `${SITE_URL}#glossary`,
+  })),
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -388,7 +566,13 @@ export default function RootLayout({
                 organizationSchema,
                 professionalServiceSchema,
                 websiteSchema,
+                personSchema,
+                nyOfficeSchema,
+                londonOfficeSchema,
+                howToSchema,
+                articleSchema,
                 faqSchema,
+                definedTermSetSchema,
               ],
             }),
           }}
