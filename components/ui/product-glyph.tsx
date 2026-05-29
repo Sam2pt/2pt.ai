@@ -1,99 +1,200 @@
+"use client"
+
 /**
- * ProductGlyph — geometric mark for each product in the 2PT Suite.
+ * ProductGlyph — official marks for the 2pt Suite.
  *
- * Visual language is shared so the three glyphs read as a family:
- *  • 24×24 viewBox, 1.5px stroke, currentColor outlines, single green accent.
- *  • Each glyph encodes the product's function in one geometric idea —
- *    Chedder = concentric citation radar, Lumen = stacked cohort signal,
- *    Conduit = connected nodes / relay path.
+ *  • ChedderGlyph — the gold cheddar-wedge mark from chedder.2pt.ai.
+ *  • LumenGlyph   — the radial-glow + petal-starburst mark from lumen.2pt.ai.
+ *  • ConduitGlyph — sister mark designed to live alongside Lumen: a
+ *    halo wrapper, a central diamond hub, four satellite nodes connected
+ *    by glowing wires. Iridescent green-to-cyan to read as "future-appy".
  *
- * Rendered inside an "app icon" tile by callers (ProductIconTile below)
- * so the family lockup feels like Adobe Creative Suite app icons.
+ * All three render inside ProductIconTile (periodic-table element style:
+ * atomic number top-left, glyph centre, monogram bottom-right).
+ *
+ * Gradient ids are scoped with React.useId() so multiple instances of the
+ * same glyph on a page don't collide.
  */
 
 import React from "react"
 
-const STROKE = "currentColor"
-const SW = 1.6
+// ──────────────────────────────────────────────────────────────────────
+// 01 · Chedder — official mark from chedder.2pt.ai
+// ──────────────────────────────────────────────────────────────────────
 
 export function ChedderGlyph({ className = "" }: { className?: string }) {
-  // Concentric radar circles with one cited "hit" dot at the top-right.
+  const uid = React.useId().replace(/:/g, "")
+  const gradTop = `chedder-top-${uid}`
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 100 100"
       className={className}
       aria-hidden
-      fill="none"
-      stroke={STROKE}
-      strokeWidth={SW}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="12" cy="12" r="9" opacity="0.35" />
-      <circle cx="12" cy="12" r="6" opacity="0.6" />
-      <circle cx="12" cy="12" r="3" />
-      {/* hit dot — the "cited" signal */}
-      <circle cx="18.3" cy="5.7" r="1.6" fill="var(--2pt-green)" stroke="none" />
+      <defs>
+        <linearGradient id={gradTop} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#f0c46e" />
+          <stop offset="55%" stopColor="#e0a740" />
+          <stop offset="100%" stopColor="#a87a25" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M 50 50 L 91.6 32.8 A 45 45 0 1 1 67.2 8.4 Z"
+        fill={`url(#${gradTop})`}
+        stroke="#0f172a"
+        strokeOpacity="0.08"
+        strokeWidth="1.2"
+      />
+      <circle cx="32" cy="48" r="4.2" fill="#0f172a" opacity="0.2" />
+      <circle cx="45" cy="68" r="2.8" fill="#0f172a" opacity="0.2" />
     </svg>
   )
 }
+
+// ──────────────────────────────────────────────────────────────────────
+// 02 · Lumen — official mark from lumen.2pt.ai
+// ──────────────────────────────────────────────────────────────────────
 
 export function LumenGlyph({ className = "" }: { className?: string }) {
-  // Four stacked horizontal bars at varying lengths — cohort meter.
-  // Active bar is green to signal "live scoring".
+  const uid = React.useId().replace(/:/g, "")
+  const cGrad = `lumen-core-${uid}`
+  const gGrad = `lumen-glow-${uid}`
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 32 32"
       className={className}
       aria-hidden
-      fill="none"
-      stroke={STROKE}
-      strokeWidth={SW}
-      strokeLinecap="round"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <line x1="4" y1="6" x2="14" y2="6" opacity="0.45" />
-      <line
-        x1="4"
-        y1="10"
-        x2="20"
-        y2="10"
-        stroke="var(--2pt-green)"
-        strokeWidth={SW + 0.4}
+      <defs>
+        <radialGradient id={cGrad} cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="34%" stopColor="#9bf7c6" />
+          <stop offset="100%" stopColor="#15e07a" />
+        </radialGradient>
+        <radialGradient id={gGrad} cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#15e07a" stopOpacity="0.6" />
+          <stop offset="68%" stopColor="#15e07a" stopOpacity="0.13" />
+          <stop offset="100%" stopColor="#15e07a" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="16" cy="16" r="15" fill={`url(#${gGrad})`} />
+      <g fill="#15e07a" opacity="0.55">
+        <path
+          d="M16 13.6 L14.85 8 L16 4.5 L17.15 8 Z"
+          transform="rotate(45 16 16)"
+        />
+        <path
+          d="M16 13.6 L14.85 8 L16 4.5 L17.15 8 Z"
+          transform="rotate(135 16 16)"
+        />
+        <path
+          d="M16 13.6 L14.85 8 L16 4.5 L17.15 8 Z"
+          transform="rotate(225 16 16)"
+        />
+        <path
+          d="M16 13.6 L14.85 8 L16 4.5 L17.15 8 Z"
+          transform="rotate(315 16 16)"
+        />
+      </g>
+      <path
+        transform="translate(4 4)"
+        d="M12 0c1.15 7.6 3.25 9.7 12 11-8.75 1.3-10.85 3.4-12 12-1.15-8.6-3.25-10.7-12-12 8.75-1.3 10.85-3.4 12-11z"
+        fill={`url(#${cGrad})`}
       />
-      <line x1="4" y1="14" x2="11" y2="14" opacity="0.45" />
-      <line x1="4" y1="18" x2="17" y2="18" opacity="0.55" />
+      <circle cx="16" cy="16" r="1.7" fill="#ffffff" />
     </svg>
   )
 }
 
+// ──────────────────────────────────────────────────────────────────────
+// 03 · Conduit — sister mark to Lumen. Halo wrapper + diamond hub +
+// four satellite nodes connected by glowing wires. Iridescent cyan-to-
+// green gradient for the "future-appy" feel.
+// ──────────────────────────────────────────────────────────────────────
+
 export function ConduitGlyph({ className = "" }: { className?: string }) {
-  // Four nodes wired together with a routing path. Active node is green.
+  const uid = React.useId().replace(/:/g, "")
+  const haloId = `conduit-halo-${uid}`
+  const hubId = `conduit-hub-${uid}`
+  const wireId = `conduit-wire-${uid}`
   return (
     <svg
-      viewBox="0 0 24 24"
+      viewBox="0 0 32 32"
       className={className}
       aria-hidden
-      fill="none"
-      stroke={STROKE}
-      strokeWidth={SW}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Routing path */}
-      <path d="M5 6 L5 12 L12 12 L12 18 L19 18" opacity="0.7" />
-      {/* Nodes */}
-      <circle cx="5" cy="6" r="1.6" fill="currentColor" stroke="none" />
-      <circle
-        cx="12"
-        cy="12"
-        r="2"
-        fill="var(--2pt-green)"
-        stroke="none"
-      />
-      <circle cx="19" cy="18" r="1.6" fill="currentColor" stroke="none" />
+      <defs>
+        {/* Outer halo — matches Lumen's halo wrapper */}
+        <radialGradient id={haloId} cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.55" />
+          <stop offset="55%" stopColor="#15e07a" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#15e07a" stopOpacity="0" />
+        </radialGradient>
+        {/* Hub core — iridescent diamond gradient */}
+        <linearGradient id={hubId} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="40%" stopColor="#9bf7c6" />
+          <stop offset="100%" stopColor="#22d3ee" />
+        </linearGradient>
+        {/* Wire — soft glowing line */}
+        <linearGradient id={wireId} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#15e07a" stopOpacity="0.85" />
+          <stop offset="100%" stopColor="#22d3ee" stopOpacity="0.85" />
+        </linearGradient>
+      </defs>
+
+      {/* Halo */}
+      <circle cx="16" cy="16" r="15" fill={`url(#${haloId})`} />
+
+      {/* Wires — four glowing lines from hub to satellites */}
+      <g
+        stroke={`url(#${wireId})`}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        opacity="0.85"
+        fill="none"
+      >
+        <line x1="16" y1="16" x2="16" y2="5" />
+        <line x1="16" y1="16" x2="27" y2="16" />
+        <line x1="16" y1="16" x2="16" y2="27" />
+        <line x1="16" y1="16" x2="5" y2="16" />
+      </g>
+
+      {/* Satellite nodes */}
+      <g>
+        <circle cx="16" cy="5" r="2" fill="#15e07a" opacity="0.9" />
+        <circle cx="27" cy="16" r="2" fill="#22d3ee" opacity="0.9" />
+        <circle cx="16" cy="27" r="2" fill="#15e07a" opacity="0.9" />
+        <circle cx="5" cy="16" r="2" fill="#22d3ee" opacity="0.9" />
+      </g>
+
+      {/* Central diamond hub */}
+      <g>
+        <rect
+          x="11.5"
+          y="11.5"
+          width="9"
+          height="9"
+          rx="1.2"
+          transform="rotate(45 16 16)"
+          fill={`url(#${hubId})`}
+          stroke="#ffffff"
+          strokeOpacity="0.6"
+          strokeWidth="0.6"
+        />
+        {/* Inner spark — keeps parity with Lumen's central white dot */}
+        <circle cx="16" cy="16" r="1.6" fill="#ffffff" />
+      </g>
     </svg>
   )
 }
+
+// ──────────────────────────────────────────────────────────────────────
+// Registry
+// ──────────────────────────────────────────────────────────────────────
 
 export const PRODUCT_GLYPHS = {
   chedder: { Glyph: ChedderGlyph, mono: "Ch" },
@@ -104,27 +205,16 @@ export const PRODUCT_GLYPHS = {
 export type ProductId = keyof typeof PRODUCT_GLYPHS
 
 /**
- * ProductIconTile — square "app icon" tile combining the geometric glyph
- * with a 2-letter monogram in the corner. The Adobe Creative Suite move.
- *
- * Variants:
- *  • "light" (default) — white fill, black glyph, green dot. The face used
- *    inside light cards.
- *  • "dark" — black fill, white glyph, green dot. Useful in family lockups
- *    or hover states.
- */
-/**
  * ProductIconTile — "periodic table element" tile for each product.
  *
- * Layout matches the conceit:
  *   ┌──────────────┐
  *   │ 01           │   ← atomic number (top-left)
- *   │     ◯        │   ← geometric glyph (centred)
+ *   │     ◯        │   ← product glyph (centred)
  *   │           Ch │   ← element symbol / monogram (bottom-right)
  *   └──────────────┘
  *
- * The `atomic` prop carries a 2-character index (01, 02, 03) so the suite
- * reads as Ch-01, Lu-02, Co-03 in the same way Carbon is C-6 on the table.
+ * The `atomic` prop carries a 2-character index (01, 02, 03) so the
+ * suite reads as Ch-01, Lu-02, Co-03.
  */
 export function ProductIconTile({
   id,
@@ -159,7 +249,7 @@ export function ProductIconTile({
           : "0 1px 0 rgba(255,255,255,0.6) inset, 0 2px 6px -2px rgba(10,10,10,0.08)",
       }}
     >
-      <Glyph className="w-[58%] h-[58%]" />
+      <Glyph className="w-[64%] h-[64%]" />
       {/* Atomic number — top-left */}
       {atomic ? (
         <span
