@@ -336,7 +336,7 @@ export function ProductsSuite() {
               }`}
               style={{ transitionDelay: "120ms" }}
             >
-              Three things we&rsquo;ve already built.
+              Three systems we&rsquo;ve shipped this quarter.
             </h2>
           </div>
 

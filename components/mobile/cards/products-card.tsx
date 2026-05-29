@@ -62,7 +62,7 @@ export function ProductsCard({ index }: { index: number }) {
         <h2 className="text-[24px] font-bold tracking-[-0.03em] leading-[1.05] text-[var(--2pt-black)]">
           Three systems
           <br />
-          we&rsquo;ve already shipped.
+          we&rsquo;ve shipped this quarter.
         </h2>
         <p className="mt-3 text-[12.5px] text-[var(--2pt-black)]/60 leading-[1.5] max-w-[34ch]">
           Productised patterns we deploy and customise inside engagements.
