@@ -108,7 +108,7 @@ export function HeroCard({ index }: { index: number }) {
         >
           <span className="w-1 h-1 rounded-full bg-[var(--2pt-green)]" />
           <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-white)]/75">
-            Anthropic Claude Partner
+            Anthropic Partner
           </span>
         </a>
       </div>
