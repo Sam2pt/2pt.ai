@@ -19,35 +19,73 @@
 import React from "react"
 
 // ──────────────────────────────────────────────────────────────────────
-// 01 · Chedder — official mark from chedder.2pt.ai
+// 01 · Chedder — scan-ring mark.
+//
+// Same family vocabulary as Lumen + Conduit: outer halo wrapper, central
+// iridescent green-to-cyan element. The mark expresses what Chedder does:
+// concentric scan rings probe AI search, a bright "citation hit" dot
+// lights up at the perimeter. Sister to Lumen's halo + petal mark.
 // ──────────────────────────────────────────────────────────────────────
 
 export function ChedderGlyph({ className = "" }: { className?: string }) {
   const uid = React.useId().replace(/:/g, "")
-  const gradTop = `chedder-top-${uid}`
+  const haloId = `chedder-halo-${uid}`
+  const ringId = `chedder-ring-${uid}`
   return (
     <svg
-      viewBox="0 0 100 100"
+      viewBox="0 0 32 32"
       className={className}
       aria-hidden
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id={gradTop} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#f0c46e" />
-          <stop offset="55%" stopColor="#e0a740" />
-          <stop offset="100%" stopColor="#a87a25" />
+        {/* Halo wrapper — matches Lumen + Conduit */}
+        <radialGradient id={haloId} cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stopColor="#9bf7c6" stopOpacity="0.45" />
+          <stop offset="55%" stopColor="#15e07a" stopOpacity="0.16" />
+          <stop offset="100%" stopColor="#15e07a" stopOpacity="0" />
+        </radialGradient>
+        {/* Ring stroke gradient */}
+        <linearGradient id={ringId} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#22d3ee" />
+          <stop offset="100%" stopColor="#15e07a" />
         </linearGradient>
       </defs>
-      <path
-        d="M 50 50 L 91.6 32.8 A 45 45 0 1 1 67.2 8.4 Z"
-        fill={`url(#${gradTop})`}
-        stroke="#0f172a"
-        strokeOpacity="0.08"
-        strokeWidth="1.2"
+
+      {/* Halo */}
+      <circle cx="16" cy="16" r="15" fill={`url(#${haloId})`} />
+
+      {/* Concentric scan rings — three thin arcs around the centre */}
+      <g
+        fill="none"
+        stroke={`url(#${ringId})`}
+        strokeLinecap="round"
+      >
+        <circle cx="16" cy="16" r="10.5" strokeWidth="1" opacity="0.45" />
+        <circle cx="16" cy="16" r="7.2" strokeWidth="1.1" opacity="0.7" />
+        <circle cx="16" cy="16" r="4" strokeWidth="1.3" opacity="0.9" />
+      </g>
+
+      {/* Citation "hit" dot — a green ping sitting on the outer ring,
+          top-right of centre. Reads as "we found a citation here". */}
+      <circle
+        cx="23.4"
+        cy="8.6"
+        r="2.2"
+        fill="#15e07a"
+        opacity="0.95"
       />
-      <circle cx="32" cy="48" r="4.2" fill="#0f172a" opacity="0.2" />
-      <circle cx="45" cy="68" r="2.8" fill="#0f172a" opacity="0.2" />
+      <circle
+        cx="23.4"
+        cy="8.6"
+        r="3.6"
+        fill="#15e07a"
+        opacity="0.2"
+      />
+
+      {/* Central bright core — keeps parity with Lumen + Conduit's
+          central white spark. */}
+      <circle cx="16" cy="16" r="1.6" fill="#ffffff" />
     </svg>
   )
 }
@@ -205,34 +243,31 @@ export const PRODUCT_GLYPHS = {
 export type ProductId = keyof typeof PRODUCT_GLYPHS
 
 /**
- * ProductIconTile — "periodic table element" tile for each product.
+ * ProductIconTile — square tile that displays only the product glyph.
  *
- *   ┌──────────────┐
- *   │ 01           │   ← atomic number (top-left)
- *   │     ◯        │   ← product glyph (centred)
- *   │           Ch │   ← element symbol / monogram (bottom-right)
- *   └──────────────┘
+ * Earlier versions carried an atomic-number badge in the top-left and a
+ * monogram badge in the bottom-right (periodic-table element style). Both
+ * have been stripped so the glyph reads on its own — the surrounding
+ * card chrome already carries the index, name, and slug.
  *
- * The `atomic` prop carries a 2-character index (01, 02, 03) so the
- * suite reads as Ch-01, Lu-02, Co-03.
+ * The `atomic` prop is kept on the type for backward compatibility but
+ * is not rendered.
  */
 export function ProductIconTile({
   id,
-  atomic,
   size = 44,
   variant = "light",
   className = "",
 }: {
   id: ProductId
+  /** Deprecated. Kept for prop compatibility; no longer rendered. */
   atomic?: string
   size?: number
   variant?: "light" | "dark"
   className?: string
 }) {
-  const { Glyph, mono } = PRODUCT_GLYPHS[id]
+  const { Glyph } = PRODUCT_GLYPHS[id]
   const isDark = variant === "dark"
-  const microFont = Math.max(8, Math.round(size * 0.16))
-  const monoFont = Math.max(9, Math.round(size * 0.22))
   return (
     <div
       className={`relative inline-flex items-center justify-center shrink-0 rounded-[8px] ${className}`}
@@ -249,40 +284,7 @@ export function ProductIconTile({
           : "0 1px 0 rgba(255,255,255,0.6) inset, 0 2px 6px -2px rgba(10,10,10,0.08)",
       }}
     >
-      <Glyph className="w-[64%] h-[64%]" />
-      {/* Atomic number — top-left */}
-      {atomic ? (
-        <span
-          className="absolute font-mono tabular-nums leading-none"
-          style={{
-            left: 4,
-            top: 4,
-            fontSize: microFont,
-            letterSpacing: "0.08em",
-            color: isDark
-              ? "rgba(255,255,255,0.55)"
-              : "rgba(10,10,10,0.4)",
-          }}
-        >
-          {atomic}
-        </span>
-      ) : null}
-      {/* Element symbol / monogram — bottom-right */}
-      <span
-        className="absolute font-mono leading-none"
-        style={{
-          right: 5,
-          bottom: 4,
-          fontSize: monoFont,
-          letterSpacing: "0.02em",
-          fontWeight: 500,
-          color: isDark
-            ? "rgba(255,255,255,0.7)"
-            : "rgba(10,10,10,0.65)",
-        }}
-      >
-        {mono}
-      </span>
+      <Glyph className="w-[72%] h-[72%]" />
     </div>
   )
 }
