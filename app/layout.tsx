@@ -516,6 +516,88 @@ const articleSchema = {
   ],
 }
 
+// Product suite — three SoftwareApplication entities. Each gets its own
+// citable @id so AI search engines can return them as named products when
+// asked things like "what is Chedder" or "what tools exist for GEO".
+function productSchema({
+  id,
+  name,
+  category,
+  description,
+  alternateNames,
+}: {
+  id: string
+  name: string
+  category: string
+  description: string
+  alternateNames?: string[]
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${SITE_URL}#${id}`,
+    name,
+    alternateName: alternateNames,
+    applicationCategory: category,
+    operatingSystem: "Cross-platform",
+    url: `${SITE_URL}/#products`,
+    image: `${SITE_URL}/opengraph-image`,
+    description,
+    brand: { "@id": `${SITE_URL}#organization` },
+    manufacturer: { "@id": `${SITE_URL}#organization` },
+    provider: { "@id": `${SITE_URL}#organization` },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        description: "Deployed inside engagement; price scoped per client",
+      },
+    },
+  }
+}
+
+const chedderSchema = productSchema({
+  id: "chedder",
+  name: "Chedder",
+  category: "MarketingApplication",
+  description:
+    "Chedder is Two Point Technologies' productised generative engine audit. It measures where AI search engines (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) cite a brand and where they don't, then returns the schema and content fixes to close the gaps.",
+  alternateNames: [
+    "GEO audit",
+    "AEO audit",
+    "Generative engine audit",
+    "AI search audit",
+    "LLM citation audit",
+  ],
+})
+
+const lumenSchema = productSchema({
+  id: "lumen",
+  name: "Lumen",
+  category: "BusinessApplication",
+  description:
+    "Lumen is Two Point Technologies' productised customer intelligence platform. It scores every customer cohort on growth, share and trend in real time, so hot segments earn more spend and cooling segments get diagnosed before they break.",
+  alternateNames: [
+    "Customer intelligence platform",
+    "Audience segment AI",
+    "Cohort scoring platform",
+  ],
+})
+
+const conduitSchema = productSchema({
+  id: "conduit",
+  name: "Conduit",
+  category: "BusinessApplication",
+  description:
+    "Conduit is Two Point Technologies' productised marketing-ops plumbing. It links Slack, Monday, CRM, retail-media platforms and creative pipelines into one curated, opinionated workflow stack — pre-wired and plug-and-play.",
+  alternateNames: [
+    "Marketing-ops plumbing",
+    "Cross-stack alerts",
+    "Slack Monday integration",
+  ],
+})
+
 // DefinedTermSet — emits the glossary corpus as a navigable set of terms.
 // Each DefinedTerm is structured so LLMs can cite an authoritative definition
 // of the underlying concept (embedded AI engineering, GEO, agentic AI, etc.).
@@ -571,6 +653,9 @@ export default function RootLayout({
                 londonOfficeSchema,
                 howToSchema,
                 articleSchema,
+                chedderSchema,
+                lumenSchema,
+                conduitSchema,
                 faqSchema,
                 definedTermSetSchema,
               ],

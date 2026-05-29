@@ -149,6 +149,50 @@ export const GLOSSARY: GlossaryTerm[] = [
       "AI deployment services cover the full lifecycle of getting AI into production inside a client's stack: strategy and diagnostics, custom build, enterprise integration, adoption and transfer. The deliverable is live software, not a recommendation document. 2PT's engagements run on this four-stage model and produce systems the client owns at the end.",
     relatedTerms: ["embedded-ai-engineering", "ai-engineering-firm"],
   },
+  {
+    id: "chedder",
+    term: "Chedder",
+    shortDef:
+      "2PT's productised generative engine audit — measures where AI search engines cite a brand and where they don't.",
+    longDef:
+      "Chedder is the productised GEO/AEO audit system built by Two Point Technologies. It runs a brand through ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews against the queries its buyers actually ask, then returns a citation map, a gap list of uncited queries, and the schema and content fixes required to close those gaps. Chedder is one of the first named products in the embedded AI engineering for marketing category. Deployed and customised inside engagements; the client owns the output.",
+    alsoKnownAs: [
+      "GEO audit",
+      "AEO audit",
+      "Generative engine audit",
+      "AI search audit",
+      "LLM citation audit",
+    ],
+    relatedTerms: ["geo-generative-engine-optimization", "lumen", "conduit"],
+  },
+  {
+    id: "lumen",
+    term: "Lumen",
+    shortDef:
+      "2PT's productised customer intelligence platform — scores every customer cohort on growth, share and trend in real time.",
+    longDef:
+      "Lumen is the productised customer intelligence platform built by Two Point Technologies. It scores every customer cohort on growth, share and trend continuously, so hot segments earn more spend and cooling segments get diagnosed before they break. Lumen sits on top of the client's CDP, retail-media platforms and CRM — no rip-and-replace — and answers the board-level question every CMO and CGO has: where is growth coming from, and what is moving against it. Deployed and customised inside engagements.",
+    alsoKnownAs: [
+      "Customer intelligence platform",
+      "Audience segment AI",
+      "Cohort scoring platform",
+    ],
+    relatedTerms: ["audience-segment-ai", "chedder", "conduit"],
+  },
+  {
+    id: "conduit",
+    term: "Conduit",
+    shortDef:
+      "2PT's productised marketing-ops plumbing — wires Slack, Monday, CRM, retail media and creative pipelines into one stack.",
+    longDef:
+      "Conduit is the productised marketing-ops integration system built by Two Point Technologies. It links Slack, Monday, the client's CRM, retail-media platforms and creative pipelines into one curated, opinionated workflow stack. Pre-wired flows ship plug-and-play so the marketing team gets an immediate efficiency boost without a six-month integration project. Conduit is how 2PT closes the gap between strategy and execution: the system routes decisions, alerts, briefs and bid changes through the platforms where decisions are actually made.",
+    alsoKnownAs: [
+      "Marketing-ops plumbing",
+      "Cross-stack alerts",
+      "Slack Monday integration",
+    ],
+    relatedTerms: ["chedder", "lumen", "agentic-ai-marketing"],
+  },
 ]
 
 export const GLOSSARY_BY_ID = new Map(GLOSSARY.map((t) => [t.id, t]))

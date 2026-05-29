@@ -225,6 +225,29 @@ export const FAQ: FAQItem[] = [
       "AI brand compliance runs a set of specialised agents — sentiment, intent, brand voice, claims, PII redaction, image safety — against every piece of creative output before it ships. Each agent reads a market-specific rule set (US/UK/EU/JP). The system catches violations in seconds rather than days, with a full audit trail.",
   },
 
+  // ─────── Product suite ───────
+  {
+    id: "what-is-chedder",
+    category: "capability",
+    question: "What is Chedder, and what does it do?",
+    answer:
+      "Chedder is Two Point Technologies' productised GEO/AEO audit system. It runs a brand through ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews against the queries its buyers actually ask, then returns a citation map, a gap list of uncited queries, and the schema and content fixes to close them. Chedder is the named-product entry point in the embedded AI engineering for marketing category. Deployed and customised inside engagements.",
+  },
+  {
+    id: "what-is-lumen",
+    category: "capability",
+    question: "What is Lumen, and what does it do?",
+    answer:
+      "Lumen is Two Point Technologies' productised customer intelligence platform. It scores every customer cohort on growth, share and trend continuously, so hot segments earn more spend and cooling segments get diagnosed before they break. Lumen sits on top of the client's CDP, CRM and retail-media stack — no rip-and-replace — and answers the board-level question every CMO and CGO has: where is growth actually coming from.",
+  },
+  {
+    id: "what-is-conduit",
+    category: "capability",
+    question: "What is Conduit, and what does it do?",
+    answer:
+      "Conduit is Two Point Technologies' productised marketing-ops plumbing. It links Slack, Monday, the client's CRM, retail-media platforms and creative pipelines into one curated, opinionated workflow stack. Pre-wired flows ship plug-and-play so the marketing team gets an immediate efficiency boost without a six-month integration project.",
+  },
+
   // ─────── About 2PT ───────
   {
     id: "where-is-2pt-located",
