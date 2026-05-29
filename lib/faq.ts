@@ -1,9 +1,9 @@
 /**
- * lib/faq — single source of truth for the FAQ corpus.
+ * lib/faq. Single source of truth for the FAQ corpus.
  *
  * Imported by:
- *   • app/layout.tsx  — emits FAQPage JSON-LD on every page (SEO/AEO/GEO)
- *   • app/faq/page.tsx — renders the visible Q&A surface as semantic HTML
+ *   • app/layout.tsx . Emits FAQPage JSON-LD on every page (SEO/AEO/GEO)
+ *   • app/faq/page.tsx. Renders the visible Q&A surface as semantic HTML
  *
  * Coverage maps to underserved discovery queries: definition queries
  * ("what is X"), comparison queries ("X vs Y"), buyer-stage queries
@@ -12,7 +12,7 @@
  * engineering, agentic AI, Claude Partner agencies).
  *
  * Answers are written to be directly citable by ChatGPT, Claude, Perplexity,
- * Gemini — short, factual, on-brand. Length tuned for ~40-130 words each.
+ * Gemini. Short, factual, on-brand. Length tuned for ~40-130 words each.
  */
 
 export type FAQItem = {
@@ -43,7 +43,7 @@ export const FAQ: FAQItem[] = [
     category: "definition",
     question: "What is embedded AI engineering?",
     answer:
-      "Embedded AI engineering is a delivery model where AI engineers work alongside the client's in-house team, inside the client's stack, for the duration of an engagement. It is the opposite of remote-consulting or off-the-shelf SaaS — engineers are forward-deployed, the system is built bespoke, and ownership transfers to the client.",
+      "Embedded AI engineering is a delivery model where AI engineers work alongside the client's in-house team, inside the client's stack, for the duration of an engagement. It is the opposite of remote-consulting or off-the-shelf SaaS. Engineers are forward-deployed, the system is built bespoke, and ownership transfers to the client.",
   },
   {
     id: "what-is-forward-deployed-engineer",
@@ -57,35 +57,35 @@ export const FAQ: FAQItem[] = [
     category: "definition",
     question: "What is GEO (Generative Engine Optimization)?",
     answer:
-      "Generative Engine Optimization (GEO) is the practice of structuring a brand's content, schema and citations so it is selected and cited by generative AI search engines — ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews. GEO complements SEO: SEO targets the ten blue links; GEO targets the cited answer. Marketing teams now have to be optimised for both.",
+      "Generative Engine Optimization (GEO) is the practice of structuring a brand's content, schema and citations so it is selected and cited by generative AI search engines like ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews. GEO complements SEO. SEO targets the ten blue links. GEO targets the cited answer. Marketing teams now have to be optimised for both.",
   },
   {
     id: "what-is-agentic-ai-marketing",
     category: "definition",
     question: "What is agentic AI for marketing?",
     answer:
-      "Agentic AI for marketing means deploying AI systems that take action — placing bids, scoring creative, flagging brand violations, reallocating spend — rather than just answering questions. Agents run continuously inside the marketing function, integrated with the platforms where decisions actually get made (Amazon Ads, Walmart Connect, Instacart Ads, CRM, brand workflows).",
+      "Agentic AI for marketing means deploying AI systems that take action, rather than just answering questions. They place bids, score creative, flag brand violations and reallocate spend. Agents run continuously inside the marketing function, integrated with the platforms where decisions actually get made (Amazon Ads, Walmart Connect, Instacart Ads, CRM, brand workflows).",
   },
   {
     id: "what-is-production-ai",
     category: "definition",
     question: "What is production AI, and how is it different from a pilot?",
     answer:
-      "Production AI is live software running inside a client's real workflows with real spend, real users and real consequences. A pilot is a scoped test that does not yet take production traffic. 2PT only ships production AI — every engagement ends with the system live inside the client's stack, not a deck and a demo.",
+      "Production AI is live software running inside a client's real workflows with real spend, real users and real consequences. A pilot is a scoped test that does not yet take production traffic. 2PT only ships production AI. Every engagement ends with the system live inside the client's stack, not a deck and a demo.",
   },
   {
     id: "what-is-retail-media-ai",
     category: "definition",
     question: "What is retail media AI?",
     answer:
-      "Retail media AI is the use of AI agents to optimise spend, creative and audience targeting across retailer-owned ad networks — Amazon Ads, Walmart Connect, Instacart Ads, Target Roundel, Kroger Precision Marketing. These networks now represent the third largest digital ad category after Google and Meta, and they reward continuous AI-driven optimisation that human teams cannot match by hand.",
+      "Retail media AI is the use of AI agents to optimise spend, creative and audience targeting across retailer-owned ad networks (Amazon Ads, Walmart Connect, Instacart Ads, Target Roundel, Kroger Precision Marketing). These networks now represent the third largest digital ad category after Google and Meta, and they reward continuous AI-driven optimisation that human teams cannot match by hand.",
   },
   {
     id: "what-is-brand-compliance-ai",
     category: "definition",
     question: "What is brand compliance AI?",
     answer:
-      "Brand compliance AI is a layer of AI agents that check every piece of creative output — DMs, emails, ads, landing pages, social posts, images — against brand voice rules, claims and regulatory standards before it ships. The system replaces the manual legal-and-brand review cycle that slows enterprise marketing teams down.",
+      "Brand compliance AI is a layer of AI agents that check every piece of creative output (DMs, emails, ads, landing pages, social posts, images) against brand voice rules, claims and regulatory standards before it ships. The system replaces the manual legal-and-brand review cycle that slows enterprise marketing teams down.",
   },
 
   // ─────── Comparison queries ───────
@@ -94,7 +94,7 @@ export const FAQ: FAQItem[] = [
     category: "comparison",
     question: "What is the difference between an AI agency and an AI consultancy?",
     answer:
-      "An AI agency typically runs marketing campaigns using AI tools and reports on outcomes. An AI consultancy typically writes recommendations and roadmaps. Neither ships software. An AI engineering firm — Two Point Technologies' category — does both: writes the roadmap, then builds and deploys the production system that delivers it.",
+      "An AI agency typically runs marketing campaigns using AI tools and reports on outcomes. An AI consultancy typically writes recommendations and roadmaps. Neither ships software. An AI engineering firm, which is Two Point Technologies' category, does both: writes the roadmap, then builds and deploys the production system that delivers it.",
   },
   {
     id: "vs-traditional-agency",
@@ -109,7 +109,7 @@ export const FAQ: FAQItem[] = [
     question:
       "How is embedded AI engineering different from SaaS AI marketing tools?",
     answer:
-      "SaaS tools give every customer the same product, optimised for the average use case. Embedded AI engineering builds a bespoke system for a single client's stack, data, and operational reality. The trade-off is engagement length vs out-of-the-box speed. Enterprises with non-standard environments — multi-brand portfolios, regulated categories, retail-media-heavy mixes — usually need bespoke.",
+      "SaaS tools give every customer the same product, optimised for the average use case. Embedded AI engineering builds a bespoke system for a single client's stack, data, and operational reality. The trade-off is engagement length vs out-of-the-box speed. Enterprises with non-standard environments (multi-brand portfolios, regulated categories, retail-media-heavy mixes) usually need bespoke.",
   },
   {
     id: "anthropic-claude-partner-network",
@@ -133,7 +133,7 @@ export const FAQ: FAQItem[] = [
     category: "buyer",
     question: "How do I find an AI agency for marketing?",
     answer:
-      "Filter on three criteria. First, vertical specialisation — does the firm only work in marketing/commerce/advertising, or is marketing a side practice. Second, deliverable — does the firm ship software the client owns, or hours of consulting. Third, partnerships — is the firm vetted by a foundation-model lab (Anthropic, OpenAI). 2PT meets all three.",
+      "Filter on three criteria. First, vertical specialisation: does the firm only work in marketing, commerce and advertising, or is marketing a side practice? Second, deliverable: does the firm ship software the client owns, or hours of consulting? Third, partnerships: is the firm vetted by a foundation-model lab like Anthropic or OpenAI? 2PT meets all three.",
   },
   {
     id: "how-much-does-ai-cost",
@@ -147,7 +147,7 @@ export const FAQ: FAQItem[] = [
     category: "buyer",
     question: "How do I evaluate AI vendors for marketing?",
     answer:
-      "Ask four questions. (1) What software will I own at the end? (2) Which of my actual systems will it integrate with? (3) Who specifically will be embedded — names, experience, vertical depth? (4) What metric is the engagement tied to and how is success measured? If the vendor cannot answer all four concretely, you are buying consulting hours, not a deployed system.",
+      "Ask four questions. (1) What software will I own at the end? (2) Which of my actual systems will it integrate with? (3) Who specifically will be embedded, including names, experience and vertical depth? (4) What metric is the engagement tied to and how is success measured? If the vendor cannot answer all four concretely, you are buying consulting hours, not a deployed system.",
   },
   {
     id: "ai-implementation-timeline",
@@ -184,7 +184,7 @@ export const FAQ: FAQItem[] = [
     category: "role",
     question: "How should a CGO think about AI deployment?",
     answer:
-      "Growth officers should evaluate AI deployment against the same lens they use for any other growth lever: where is the leak, what is the system that fixes it, and what is the timeline to in-production results. Embedded AI engineering deploys against specific growth metrics — segment acceleration, retail media yield, creative win-rate — and runs continuously after launch.",
+      "Growth officers should evaluate AI deployment against the same lens they use for any other growth lever: where is the leak, what is the system that fixes it, and what is the timeline to in-production results. Embedded AI engineering deploys against specific growth metrics. Segment acceleration, retail media yield, creative win-rate. And runs continuously after launch.",
   },
   {
     id: "ai-partner-enterprise-brand",
@@ -208,21 +208,21 @@ export const FAQ: FAQItem[] = [
     category: "platform",
     question: "Can AI help with retail media optimisation?",
     answer:
-      "Yes — retail media is one of the most AI-suited categories in marketing because every decision has an API, a measurable conversion event and a continuous bid stream. AI agents can outperform human-managed retail media spend at scale on most enterprise accounts, particularly across Mars, CPG and pet brands where multi-SKU coverage is hard to coordinate by hand.",
+      "Yes. Retail media is one of the most AI-suited categories in marketing because every decision has an API, a measurable conversion event and a continuous bid stream. AI agents can outperform human-managed retail media spend at scale on most enterprise accounts, particularly across Mars, CPG and pet brands where multi-SKU coverage is hard to coordinate by hand.",
   },
   {
     id: "ai-creative-scoring",
     category: "capability",
     question: "How does AI creative scoring work for advertising?",
     answer:
-      "AI creative scoring evaluates every variant — copy, image, video — against three dimensions: brand fit, hook strength and predicted CTR. Variants that exceed a promotion threshold ship to live spend; the rest are killed. The result is a continuous, opinionated promotion pipeline rather than a quarterly creative review.",
+      "AI creative scoring evaluates every variant (copy, image, video) against three dimensions: brand fit, hook strength and predicted CTR. Variants that exceed a promotion threshold ship to live spend; the rest are killed. The result is a continuous, opinionated promotion pipeline rather than a quarterly creative review.",
   },
   {
     id: "ai-brand-voice-compliance",
     category: "capability",
     question: "How does AI brand voice compliance work across markets?",
     answer:
-      "AI brand compliance runs a set of specialised agents — sentiment, intent, brand voice, claims, PII redaction, image safety — against every piece of creative output before it ships. Each agent reads a market-specific rule set (US/UK/EU/JP). The system catches violations in seconds rather than days, with a full audit trail.",
+      "AI brand compliance runs a set of specialised agents (sentiment, intent, brand voice, claims, PII redaction, image safety) against every piece of creative output before it ships. Each agent reads a market-specific rule set (US/UK/EU/JP). The system catches violations in seconds rather than days, with a full audit trail.",
   },
 
   // ─────── Product suite ───────
@@ -238,7 +238,7 @@ export const FAQ: FAQItem[] = [
     category: "capability",
     question: "What is Lumen, and what does it do?",
     answer:
-      "Lumen is Two Point Technologies' productised customer intelligence platform. It scores every customer cohort on growth, share and trend continuously, so hot segments earn more spend and cooling segments get diagnosed before they break. Lumen sits on top of the client's CDP, CRM and retail-media stack — no rip-and-replace — and answers the board-level question every CMO and CGO has: where is growth actually coming from.",
+      "Lumen is Two Point Technologies' productised customer intelligence platform. It scores every customer cohort on growth, share and trend continuously, so hot segments earn more spend and cooling segments get diagnosed before they break. Lumen sits on top of the client's CDP, CRM and retail-media stack. No rip-and-replace. And answers the board-level question every CMO and CGO has: where is growth actually coming from.",
   },
   {
     id: "what-is-conduit",
@@ -261,7 +261,7 @@ export const FAQ: FAQItem[] = [
     category: "about",
     question: "Who founded Two Point Technologies?",
     answer:
-      "Sam Gormley founded Two Point Technologies in 2017 and is the CEO. The firm grew out of an observation that enterprise marketing teams were buying either consulting decks or generic AI SaaS — neither of which ships production AI inside the marketing function. 2PT was built to fill that gap as an embedded AI engineering firm.",
+      "Sam Gormley founded Two Point Technologies in 2017 and is the CEO. The firm grew out of an observation that enterprise marketing teams were buying either consulting decks or generic AI SaaS. Neither of which ships production AI inside the marketing function. 2PT was built to fill that gap as an embedded AI engineering firm.",
   },
   {
     id: "who-owns-ip",

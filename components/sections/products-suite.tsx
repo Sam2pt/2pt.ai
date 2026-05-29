@@ -1,14 +1,14 @@
 "use client"
 
 /**
- * ProductsSuite — desktop section. Three productised systems we ship
+ * ProductsSuite. Desktop section. Three productised systems we ship
  * inside engagements: Chedder (GEO/AEO audit), Lumen (customer
  * intelligence), Conduit (cross-stack marketing-ops plumbing).
  *
  * Visual language matches the cinematic widgets in WhatWeSolveCinematic:
  * light canvas, dot-grid texture, corner crop marks, a tiny live data
  * vignette per card, single green accent. All three cards visible at
- * once as a triptych — no auto-cycle.
+ * once as a triptych. No auto-cycle.
  *
  * The frame: these are productised patterns we deploy and customise
  * inside engagements. The system is still the product the client owns.
@@ -37,33 +37,33 @@ const PRODUCTS: Product[] = [
     id: "chedder",
     wordmark: "Chedder",
     category: "Generative engine audit",
-    headline: "See where AI search cites your brand. And where it doesn't.",
+    headline: "Where AI search cites you. Where it doesn't.",
     body:
-      "Chedder runs your brand through ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews against the queries your buyers actually ask. You leave with a citation map, a gap list, and the schema fixes to close them.",
+      "Chedder runs your brand against the queries your buyers ask ChatGPT, Claude, Perplexity, Gemini and Google AI Overviews. You see what gets cited, what gets missed, and the schema work to fix it.",
     status: "Production · GEO + AEO",
   },
   {
     id: "lumen",
     wordmark: "Lumen",
     category: "Customer intelligence",
-    headline: "Score every segment in real time. Watch growth move.",
+    headline: "Watch where growth is actually coming from.",
     body:
-      "Lumen scores every customer cohort on growth, share and trend, continuously. Hot segments get more spend. Cooling segments get diagnosed before they break. The board question — where is growth coming from — gets a live answer.",
+      "Lumen scores every cohort on growth, share and trend in real time. Hot segments get more spend. Cooling ones get diagnosed before they break. The board question gets a live answer.",
     status: "Production · CDP-aware",
   },
   {
     id: "conduit",
     wordmark: "Conduit",
     category: "Marketing-ops plumbing",
-    headline: "Wire your stack. Plug-and-play marketing ops.",
+    headline: "Your marketing stack, finally talking to itself.",
     body:
-      "Conduit links Slack, Monday, your CRM, your retail-media platforms and your creative pipelines. Curated, opinionated workflows ship pre-wired so the team gets an immediate efficiency boost without a 6-month integration project.",
+      "Conduit links Slack, Monday, your CRM, retail media and creative pipelines. Opinionated workflows ship pre-wired. The team is faster on day one, not six months in.",
     status: "Production · Plug & play",
   },
 ]
 
 // ──────────────────────────────────────────────────────────────────────
-// Per-product live vignettes — small, deliberately quiet animations
+// Per-product live vignettes. Small, deliberately quiet animations
 // that signal "this is a real running system" without becoming busy.
 // ──────────────────────────────────────────────────────────────────────
 
@@ -190,50 +190,77 @@ function ConduitVignette() {
         </span>
       </div>
 
-      <div className="relative">
-        {/* Rail */}
-        <div className="absolute left-2 right-2 top-[7px] h-px bg-[var(--2pt-black)]/15" />
+      {/*
+        Rail row. Each node owns a grid column. The dot for that node
+        sits at the column centre and is absolutely positioned within the
+        column so its size can change without pushing siblings. The rail
+        is a single absolute element spanning column-centre 0 to
+        column-centre (n-1), so it always lines up with the dot centres.
+      */}
+      <div
+        className="relative grid grid-cols-4 h-3 mb-2"
+        style={{ ["--cols" as string]: nodes.length }}
+      >
+        {/* Base rail — inset to start at the centre of col 0 and end at
+            the centre of col (n-1). That inset is exactly half a column. */}
         <div
-          className="absolute left-2 top-[7px] h-px bg-[var(--2pt-green)] transition-[width] duration-700 ease-out"
-          style={{ width: `${(active / (nodes.length - 1)) * 100}%` }}
+          aria-hidden
+          className="absolute top-1/2 -translate-y-1/2 h-px bg-[var(--2pt-black)]/15"
+          style={{
+            left: `calc(100% / (var(--cols) * 2))`,
+            right: `calc(100% / (var(--cols) * 2))`,
+          }}
         />
-        <div className="relative grid grid-cols-4 gap-1">
-          {nodes.map((n, i) => {
-            const isPast = i <= active
-            return (
-              <div
-                key={n}
-                className="flex flex-col items-center gap-2"
-              >
-                <span
-                  className="block rounded-full transition-all duration-500"
-                  style={{
-                    width: i === active ? 12 : 8,
-                    height: i === active ? 12 : 8,
-                    background: isPast
-                      ? "var(--2pt-green)"
-                      : "rgba(10,10,10,0.18)",
-                    boxShadow:
-                      i === active
-                        ? "0 0 10px 2px rgba(74,222,128,0.45)"
-                        : undefined,
-                  }}
-                />
-                <span
-                  className="tracking-[0.16em] text-[9px] normal-case font-mono"
-                  style={{
-                    color:
-                      i === active
-                        ? "var(--2pt-black)"
-                        : "rgba(10,10,10,0.5)",
-                  }}
-                >
-                  {n}
-                </span>
-              </div>
-            )
-          })}
-        </div>
+        {/* Active progress overlay — same left anchor, width grows in
+            steps of (column width) to land exactly on each dot centre. */}
+        <div
+          aria-hidden
+          className="absolute top-1/2 -translate-y-1/2 h-px bg-[var(--2pt-green)] transition-[width] duration-700 ease-out"
+          style={{
+            left: `calc(100% / (var(--cols) * 2))`,
+            width: `calc((100% / var(--cols)) * ${active})`,
+          }}
+        />
+        {nodes.map((n, i) => {
+          const isPast = i <= active
+          const isActive = i === active
+          return (
+            <div key={n} className="relative">
+              <span
+                className="absolute left-1/2 top-1/2 rounded-full transition-all duration-500"
+                style={{
+                  width: isActive ? 12 : 8,
+                  height: isActive ? 12 : 8,
+                  transform: "translate(-50%, -50%)",
+                  background: isPast
+                    ? "var(--2pt-green)"
+                    : "rgba(10,10,10,0.18)",
+                  boxShadow: isActive
+                    ? "0 0 10px 2px rgba(74,222,128,0.45)"
+                    : undefined,
+                }}
+              />
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Labels — same 4-col grid, each label centred under its dot */}
+      <div className="grid grid-cols-4">
+        {nodes.map((n, i) => (
+          <span
+            key={n}
+            className="tracking-[0.16em] text-[9px] normal-case font-mono text-center"
+            style={{
+              color:
+                i === active
+                  ? "var(--2pt-black)"
+                  : "rgba(10,10,10,0.5)",
+            }}
+          >
+            {n}
+          </span>
+        ))}
       </div>
 
       <div className="mt-4 space-y-1 text-[10px] text-[var(--2pt-black)]/55 normal-case tracking-normal font-sans">
@@ -286,7 +313,7 @@ export function ProductsSuite() {
       <GreenWash at="80% 25%" size="55% 45%" intensity={0.09} />
 
       <div className="relative max-w-[1400px] mx-auto">
-        {/* Header — compact: eyebrow + single-line headline + tucked subhead */}
+        {/* Header. Compact: eyebrow + single-line headline + tucked subhead */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
           <div className="max-w-[720px]">
             <div
@@ -309,7 +336,7 @@ export function ProductsSuite() {
               }`}
               style={{ transitionDelay: "120ms" }}
             >
-              Three systems we&rsquo;ve already shipped.
+              Three things we&rsquo;ve already built.
             </h2>
           </div>
 
@@ -319,8 +346,8 @@ export function ProductsSuite() {
             }`}
             style={{ transitionDelay: "320ms" }}
           >
-            Productised patterns we deploy and customise inside engagements.
-            The system you own is still bespoke.
+            Patterns we hit in every engagement. We turned them into
+            systems. You get them on day one, then we tailor.
           </p>
         </div>
 
@@ -344,7 +371,7 @@ export function ProductsSuite() {
               >
                 <CornerCrops />
 
-                {/* Header bar — compact */}
+                {/* Header bar. Compact */}
                 <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[var(--2pt-black)]/8">
                   <span className="text-[9px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/35">
                     {(i + 1).toString().padStart(2, "0")} /

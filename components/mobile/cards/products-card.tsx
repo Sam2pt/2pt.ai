@@ -1,7 +1,7 @@
 "use client"
 
 /**
- * ProductsCard — mobile Deploy Console card.
+ * ProductsCard. Mobile Deploy Console card.
  *
  * Three productised systems we've already shipped: Chedder, Lumen, Conduit.
  * Stacked vertically as three tap-targets. Each tile has wordmark + one-
@@ -81,7 +81,7 @@ export function ProductsCard({ index }: { index: number }) {
                 "0 1px 0 rgba(255,255,255,0.5) inset, 0 1px 2px rgba(10,10,10,0.03)",
             }}
           >
-            {/* Top — index + status */}
+            {/* Top. Index + status */}
             <div className="flex items-center justify-between">
               <span className="text-[9px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/35 tabular-nums">
                 {(i + 1).toString().padStart(2, "0")} /
@@ -115,7 +115,7 @@ export function ProductsCard({ index }: { index: number }) {
         ))}
       </div>
 
-      {/* Bottom — footer line */}
+      {/* Bottom. Footer line */}
       <div className="relative z-10 pb-10 px-6 flex items-center justify-between text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/45 border-t border-[var(--2pt-black)]/8 pt-4">
         <span>Productised systems</span>
         <span className="text-[var(--2pt-green)] tabular-nums">
