@@ -85,7 +85,7 @@ export function HeroCard({ index }: { index: number }) {
         ))}
       </div>
 
-      {/* Top chrome — LIVE + edition + clock */}
+      {/* Top chrome — LIVE + edition */}
       <div className="relative z-10 pt-14 px-6 flex items-center justify-between text-[10px] font-mono tracking-[0.28em] uppercase">
         <span className="flex items-center gap-1.5 text-[var(--2pt-green)]">
           <span className="relative inline-flex">
@@ -97,8 +97,24 @@ export function HeroCard({ index }: { index: number }) {
         <span className="text-[var(--2pt-white)]/45">2pt · vol I</span>
       </div>
 
+      {/* Anthropic partner credibility chip — sits just under the masthead
+          strip so it lands in the first viewport beat. */}
+      <div className="relative z-10 mt-5 px-6">
+        <a
+          href="https://www.anthropic.com/partners"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--2pt-white)]/15 bg-[var(--2pt-white)]/[0.04] backdrop-blur-sm"
+        >
+          <span className="w-1 h-1 rounded-full bg-[var(--2pt-green)]" />
+          <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-white)]/75">
+            Anthropic Claude Partner
+          </span>
+        </a>
+      </div>
+
       {/* Headline */}
-      <div className="relative z-10 mt-20 px-6">
+      <div className="relative z-10 mt-14 px-6">
         <div className="text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-white)]/45 mb-7">
           Runtime report
         </div>

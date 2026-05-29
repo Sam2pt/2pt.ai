@@ -40,15 +40,16 @@ export function ClientsCard({ index }: { index: number }) {
         </span>
       </div>
 
-      {/* Roll of names */}
-      <div className="flex-1 flex flex-col justify-center px-6 -mt-12">
+      {/* Roll of names — flex-1 fills the space between eyebrow and footer
+          with safe top/bottom padding so the first row never collides with
+          the "Deployed inside" eyebrow on smaller phones. */}
+      <div className="flex-1 min-h-0 flex flex-col justify-center px-6 pt-10 pb-6 overflow-hidden">
         {CLIENTS.map((name, i) => (
           <div
             key={name}
-            className="flex items-center justify-between py-3 border-b border-[var(--2pt-white)]/8 last:border-b-0"
-            
+            className="flex items-center justify-between py-[10px] border-b border-[var(--2pt-white)]/8 last:border-b-0"
           >
-            <span className="text-[24px] font-bold tracking-[-0.025em] text-[var(--2pt-white)]">
+            <span className="text-[22px] font-bold tracking-[-0.025em] text-[var(--2pt-white)] leading-none">
               {name}
             </span>
             <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-white)]/35 tabular-nums">
