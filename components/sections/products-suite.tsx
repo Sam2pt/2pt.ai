@@ -18,6 +18,11 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { TechGrid, GreenWash } from "@/components/ui/tech-grid"
 import { CornerCrops } from "@/components/ui/corner-crops"
+import {
+  ProductIconTile,
+  PRODUCT_GLYPHS,
+  type ProductId,
+} from "@/components/ui/product-glyph"
 
 // ──────────────────────────────────────────────────────────────────────
 // Shared scaffolding for each product card
@@ -313,28 +318,51 @@ export function ProductsSuite() {
       <GreenWash at="80% 25%" size="55% 45%" intensity={0.09} />
 
       <div className="relative max-w-[1400px] mx-auto">
-        {/* Header. Compact: eyebrow + single-line headline + tucked subhead */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
-          <div className="max-w-[720px]">
-            <div
-              className={`flex items-center gap-2.5 mb-5 transition-opacity duration-1000 ${
-                entered ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
-              <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-black)]/55">
-                <span className="text-[var(--2pt-black)]/30 mr-2">III.</span>
-                The product suite
-              </span>
-            </div>
+        {/* Suite eyebrow + edition chip */}
+        <div
+          className={`flex items-center justify-between mb-6 transition-opacity duration-1000 ${
+            entered ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-black)]/55">
+              <span className="text-[var(--2pt-black)]/30 mr-2">III.</span>
+              The 2pt Suite
+            </span>
+          </div>
+          <span className="text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/40">
+            Ed. 01 · 2026 Q2
+          </span>
+        </div>
 
+        {/* Family lockup — three app icons side by side, the way the
+            Adobe Creative Suite lines up its apps. */}
+        <div
+          className={`flex items-center gap-3 mb-10 md:mb-14 transition-all duration-1000 ${
+            entered
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-2"
+          }`}
+          style={{ transitionDelay: "120ms" }}
+        >
+          {(Object.keys(PRODUCT_GLYPHS) as ProductId[]).map((id) => (
+            <ProductIconTile key={id} id={id} size={56} variant="dark" />
+          ))}
+          <span className="ml-3 hidden sm:inline text-[11px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/45">
+            Chedder · Lumen · Conduit
+          </span>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+          <div className="max-w-[720px]">
             <h2
-              className={`text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-[var(--2pt-black)] transition-all duration-1000 ${
+              className={`text-[28px] md:text-[44px] font-medium tracking-[-0.03em] leading-[1.02] text-[var(--2pt-black)] transition-all duration-1000 ${
                 entered
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-3"
               }`}
-              style={{ transitionDelay: "120ms" }}
+              style={{ transitionDelay: "220ms" }}
             >
               Three systems we&rsquo;ve shipped this quarter.
             </h2>
@@ -344,7 +372,7 @@ export function ProductsSuite() {
             className={`text-[13px] md:text-[14px] leading-[1.55] text-[var(--2pt-black)]/60 max-w-[360px] transition-opacity duration-1000 ${
               entered ? "opacity-100" : "opacity-0"
             }`}
-            style={{ transitionDelay: "320ms" }}
+            style={{ transitionDelay: "420ms" }}
           >
             Patterns we hit in every engagement. We turned them into
             systems. You get them on day one, then we tailor.
@@ -371,25 +399,29 @@ export function ProductsSuite() {
               >
                 <CornerCrops />
 
-                {/* Header bar. Compact */}
-                <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[var(--2pt-black)]/8">
-                  <span className="text-[9px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/35">
-                    {(i + 1).toString().padStart(2, "0")} /
-                    {PRODUCTS.length.toString().padStart(2, "0")}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-green)]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--2pt-green)] animate-pulse" />
-                    Live
-                  </span>
-                </div>
-
-                {/* Wordmark + category */}
+                {/* App-icon lockup — icon tile + wordmark side by side, with
+                    a thin metadata row underneath (product slug + status). */}
                 <div className="px-5 pt-5">
-                  <div className="text-[28px] font-medium tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
-                    {p.wordmark}
-                    <span className="text-[var(--2pt-green)]">.</span>
+                  <div className="flex items-start gap-3.5">
+                    <ProductIconTile id={p.id as ProductId} size={52} />
+                    <div className="flex-1 min-w-0 pt-0.5">
+                      <div className="text-[28px] font-medium tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
+                        {p.wordmark}
+                        <span className="text-[var(--2pt-green)]">.</span>
+                      </div>
+                      <div className="mt-2 flex items-center gap-2 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-black)]/50">
+                        <span>2pt/{p.id}</span>
+                        <span className="text-[var(--2pt-black)]/20">·</span>
+                        <span className="text-[var(--2pt-black)]/45">v.{(i + 1).toString().padStart(2, "0")}</span>
+                      </div>
+                    </div>
+                    <span className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-green)] shrink-0 pt-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--2pt-green)] animate-pulse" />
+                      Live
+                    </span>
                   </div>
-                  <div className="mt-2.5 text-[9px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/55">
+
+                  <div className="mt-4 pt-3 border-t border-[var(--2pt-black)]/8 text-[9px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/55">
                     {p.category}
                   </div>
                 </div>

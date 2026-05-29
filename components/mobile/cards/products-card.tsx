@@ -10,25 +10,26 @@
  */
 
 import { ArrowUpRight } from "lucide-react"
+import { ProductIconTile, type ProductId } from "@/components/ui/product-glyph"
 
 const PRODUCTS = [
   {
     id: "chedder",
     wordmark: "Chedder",
     category: "Generative engine audit",
-    body: "See where AI search cites you. And where it doesn't.",
+    body: "Where AI search cites you. Where it doesn't.",
   },
   {
     id: "lumen",
     wordmark: "Lumen",
     category: "Customer intelligence",
-    body: "Score every segment in real time. Watch growth move.",
+    body: "Watch where growth is actually coming from.",
   },
   {
     id: "conduit",
     wordmark: "Conduit",
     category: "Marketing-ops plumbing",
-    body: "Wire your stack. Plug-and-play marketing ops.",
+    body: "Your marketing stack, finally talking to itself.",
   },
 ]
 
@@ -53,7 +54,7 @@ export function ProductsCard({ index }: { index: number }) {
         <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
         <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-black)]/55">
           <span className="text-[var(--2pt-black)]/30 mr-2">III.</span>
-          The product suite
+          The 2pt Suite · Ed. 01
         </span>
       </div>
 
@@ -81,22 +82,11 @@ export function ProductsCard({ index }: { index: number }) {
                 "0 1px 0 rgba(255,255,255,0.5) inset, 0 1px 2px rgba(10,10,10,0.03)",
             }}
           >
-            {/* Top. Index + status */}
-            <div className="flex items-center justify-between">
-              <span className="text-[9px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/35 tabular-nums">
-                {(i + 1).toString().padStart(2, "0")} /
-                {PRODUCTS.length.toString().padStart(2, "0")}
-              </span>
-              <span className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-green)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--2pt-green)]" />
-                Live
-              </span>
-            </div>
-
-            {/* Wordmark */}
-            <div className="flex items-end justify-between">
-              <div>
-                <div className="text-[26px] font-bold tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
+            {/* Icon tile + wordmark lockup */}
+            <div className="flex items-start gap-3">
+              <ProductIconTile id={p.id as ProductId} size={42} />
+              <div className="flex-1 min-w-0 pt-0.5">
+                <div className="text-[22px] font-bold tracking-[-0.035em] leading-none text-[var(--2pt-black)]">
                   {p.wordmark}
                   <span className="text-[var(--2pt-green)]">.</span>
                 </div>
@@ -111,6 +101,15 @@ export function ProductsCard({ index }: { index: number }) {
             <p className="text-[12px] leading-[1.4] text-[var(--2pt-black)]/65 line-clamp-2">
               {p.body}
             </p>
+
+            {/* Metadata footer */}
+            <div className="flex items-center justify-between text-[8px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-black)]/35">
+              <span>2pt/{p.id} · v.{(i + 1).toString().padStart(2, "0")}</span>
+              <span className="flex items-center gap-1 text-[var(--2pt-green)]">
+                <span className="w-1 h-1 rounded-full bg-[var(--2pt-green)]" />
+                Live
+              </span>
+            </div>
           </a>
         ))}
       </div>
