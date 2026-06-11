@@ -136,10 +136,18 @@ export function WhatWeSolveCinematic() {
 
         {/* Top bar — eyebrow + progress dots + counter */}
         <div className="relative z-10 grid grid-cols-3 items-center max-w-[1400px] mx-auto w-full px-8 md:px-12 pt-24 md:pt-28">
-          <div className="flex items-center gap-2.5">
-            <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
-            <span className="text-[10px] tracking-[0.3em] font-mono uppercase text-[var(--2pt-black)]/50">
-              <span className="text-[var(--2pt-black)]/30 mr-2">I.</span>What we solve
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full" />
+              <span className="text-[10px] tracking-[0.3em] font-mono uppercase text-[var(--2pt-black)]/50">
+                <span className="text-[var(--2pt-black)]/30 mr-2">I.</span>
+                What we solve
+              </span>
+            </div>
+            {/* Subtle positioning line — italic serif, low opacity, sits
+                just under the eyebrow as a quiet category subtitle. */}
+            <span className="text-[12px] italic font-[var(--font-serif)] text-[var(--2pt-black)]/45 leading-snug">
+              Expert marketing services. With engineering depth.
             </span>
           </div>
 

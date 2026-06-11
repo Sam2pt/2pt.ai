@@ -229,18 +229,6 @@ export function HeroSection() {
           </span>
         </div>
 
-        {/* Kicker — positioning frame in Instrument Serif italic. Sits
-            between the chip row and the headline so the page lands both
-            beats (what we are + what we do) without crowding. */}
-        <p
-          className={`mb-6 md:mb-8 max-w-[820px] text-[20px] sm:text-[24px] md:text-[28px] leading-[1.2] tracking-[-0.01em] italic font-[var(--font-serif)] text-[var(--2pt-white)]/70 transition-all duration-1000 ${
-            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-          }`}
-          style={{ transitionDelay: "120ms" }}
-        >
-          Expert marketing services. With engineering depth.
-        </p>
-
         {/* Headline — service-explicit, deploy-verb forward */}
         <h1 className="mb-10 md:mb-14">
           <span className="block text-[52px] sm:text-[80px] md:text-[112px] lg:text-[140px] font-bold tracking-[-0.05em] leading-[0.92] text-[var(--2pt-white)]">
