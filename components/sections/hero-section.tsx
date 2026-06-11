@@ -118,23 +118,81 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col bg-[var(--2pt-black)] text-[var(--2pt-white)] overflow-hidden">
-      {/* Green wash anchor — bottom-right, mirrors the mobile hero */}
+      {/*
+        Layered depth for the dark canvas — kept in this exact stacking
+        order so each layer reads as ambient texture rather than busy:
+          1. top-down subtle lift (canvas isn't dead-flat black)
+          2. faint white engineering dot-grid (masked to fade at edges)
+          3. green wash bottom-right (mirrors mobile hero)
+          4. green halo top-left (echo)
+          5. mid-frame cyan-green halo (depth between the two greens)
+          6. corner vignette (edges feel like a real surface)
+      */}
+
+      {/* 1. Soft top-down lift — gives the canvas a barely-there horizon */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 55% at 82% 75%, rgba(74,222,128,0.20) 0%, rgba(74,222,128,0.06) 35%, transparent 65%)",
+            "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 35%, transparent 70%, rgba(0,0,0,0.35) 100%)",
         }}
       />
 
-      {/* Second wash — small green halo top-left so the canvas isn't dead-flat */}
+      {/* 2. White engineering dot-grid — masked radial so it fades at the
+            edges, keeps the centre crisp without looking like a pattern. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1.4px)",
+          backgroundSize: "30px 30px",
+          opacity: 0.7,
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 45%, #000 30%, transparent 85%)",
+          maskImage:
+            "radial-gradient(ellipse 80% 70% at 50% 45%, #000 30%, transparent 85%)",
+        }}
+      />
+
+      {/* 3. Green wash anchor — bottom-right, mirrors the mobile hero */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 40% 35% at 12% 18%, rgba(74,222,128,0.12) 0%, transparent 60%)",
+            "radial-gradient(ellipse 70% 55% at 82% 75%, rgba(74,222,128,0.22) 0%, rgba(74,222,128,0.06) 35%, transparent 65%)",
+        }}
+      />
+
+      {/* 4. Small green halo top-left */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 38% 32% at 14% 20%, rgba(74,222,128,0.14) 0%, transparent 60%)",
+        }}
+      />
+
+      {/* 5. Mid-frame cyan-green halo for depth between the two greens */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 35% 28% at 55% 45%, rgba(34,211,238,0.07) 0%, transparent 65%)",
+        }}
+      />
+
+      {/* 6. Corner vignette — edges read like a real surface */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 100% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%)",
         }}
       />
 
