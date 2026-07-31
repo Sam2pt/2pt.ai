@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { CASES } from "@/lib/cases"
 
 const SITE_URL = "https://2pt.ai"
 
@@ -36,5 +37,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      url: `${SITE_URL}/work`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    ...CASES.map((c) => ({
+      url: `${SITE_URL}/work/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ]
 }

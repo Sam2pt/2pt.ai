@@ -31,8 +31,9 @@ const ORG_NAME = "Two Point Technologies"
 const TAGLINE = "We deploy production AI inside marketing teams."
 const SUMMARY =
   "Two Point Technologies is the embedded AI engineering firm for marketing, advertising and communications. We deploy production AI inside enterprise marketing teams through forward-deployed pods of AI engineers, marketing strategists and data engineers. The system is the product; the client owns it."
+// Kept under 158 chars so it renders whole in Google snippets and social cards.
 const SHORT_SUMMARY =
-  "The embedded AI engineering firm for marketing. We deploy production AI inside enterprise marketing teams. The system is the product."
+  "Embedded AI engineering for marketing. We deploy production AI inside enterprise marketing teams. The client owns the system."
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Metadata — comprehensive, market-leading. Includes title template, OG,
@@ -127,24 +128,46 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  manifest: "/site.webmanifest",
   icons: {
     icon: [
-      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
-      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
+      // SVG first — browsers that support it use it at every size, crisp.
       { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-light-32x32.png", sizes: "32x32", type: "image/png", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark-32x32.png", sizes: "32x32", type: "image/png", media: "(prefers-color-scheme: dark)" },
+      { url: "/favicon.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: "/apple-icon.png",
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
     shortcut: "/favicon.png",
+    other: [
+      // Safari pinned-tab mono glyph
+      { rel: "mask-icon", url: "/icon.svg", color: "#4ADE80" },
+    ],
+  },
+  appleWebApp: {
+    capable: true,
+    title: SITE_NAME,
+    statusBarStyle: "black-translucent",
   },
   category: "Technology",
   classification: "AI Engineering Firm for Marketing",
   other: {
-    // Hint to AI search engines that an llms.txt exists for richer ingestion
+    // Hint to AI search engines that an llms.txt exists for richer ingestion.
     "llms-txt": `${SITE_URL}/llms.txt`,
+    // Windows tile
+    "msapplication-TileColor": "#0A0A0A",
+    "msapplication-config": "/site.webmanifest",
+    // Explicit color-scheme signal for chrome adaptations
+    "color-scheme": "dark light",
   },
 }
 
 export const viewport: Viewport = {
+  // Lock browser chrome to the 2pt palette: white on light OSes, brand
+  // black on dark OSes. Matches the actual page canvas on each surface
+  // so the OS chrome doesn't fight the design.
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
     { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
@@ -152,7 +175,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  colorScheme: "light",
+  colorScheme: "light dark",
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -306,8 +329,21 @@ const websiteSchema = {
   "@id": `${SITE_URL}#website`,
   url: SITE_URL,
   name: SITE_NAME,
+  alternateName: [ORG_NAME],
+  description: SHORT_SUMMARY,
   publisher: { "@id": `${SITE_URL}#organization` },
   inLanguage: "en-US",
+  // Sitelinks Searchbox target — Google + AI-search parses this to offer
+  // in-site search from result cards. Uses /faq as the search surface
+  // because that's where the buyer-question corpus lives.
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/faq?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 }
 
 // FAQPage — derived from the canonical FAQ corpus in lib/faq.ts.

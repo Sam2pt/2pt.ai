@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { ClientStrip } from "@/components/sections/client-strip"
 import { WhatWeSolveCinematic } from "@/components/sections/what-we-solve-cinematic"
 import { ProductsSuite } from "@/components/sections/products-suite"
+import { WorkPreview } from "@/components/sections/work-preview"
 import { HowWeDeploy } from "@/components/sections/how-we-deploy"
 import { ContactSection } from "@/components/sections/contact-section"
 import { DeployConsole } from "@/components/mobile/deploy-console"
@@ -30,6 +31,7 @@ export default function Home() {
           <ClientStrip />
           <WhatWeSolveCinematic />
           <ProductsSuite />
+          <WorkPreview />
           <HowWeDeploy />
           <ContactSection />
         </div>

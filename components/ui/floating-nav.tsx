@@ -15,21 +15,30 @@ const navItems = [
  * white type. Once the user scrolls past the hero into the white sections
  * below, the bar fades to its original light frosted treatment. The
  * transition is a single CSS variable swap so it stays cheap.
+ *
+ * `forceDark` opts a page out of the scroll-aware light flip. Use it on
+ * pages whose canvas stays dark all the way down (case studies, /work).
  */
-export function FloatingNav() {
+export function FloatingNav({
+  forceDark = false,
+}: {
+  forceDark?: boolean
+}) {
   const [dark, setDark] = useState(true)
 
   useEffect(() => {
+    if (forceDark) {
+      setDark(true)
+      return
+    }
     const onScroll = () => {
-      // Flip variant when we're past ~70% of the first viewport, i.e.
-      // when the dark hero is mostly out of frame.
       const threshold = window.innerHeight * 0.7
       setDark(window.scrollY < threshold)
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  }, [forceDark])
 
   // Palette swap per variant. Colors are wired via inline style so the
   // border, background and text crossfade together over 500ms.
