@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head><title>Netlify Forms detection</title></head>
+  <body>
+    <!--
+      This file exists solely so Netlify's build-time form parser
+      picks up the "contact" form. Next.js SSR pages are also
+      parsed but this static file guarantees detection.
+      Field names must match the ContactModal component.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="text" name="company" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>
