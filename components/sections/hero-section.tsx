@@ -289,7 +289,7 @@ export function HeroSection() {
 
         {/* Headline — service-explicit, deploy-verb forward */}
         <h1 className="mb-10 md:mb-14">
-          <span className="block text-[52px] sm:text-[80px] md:text-[112px] lg:text-[140px] font-bold tracking-[-0.05em] leading-[0.92] text-[var(--2pt-white)]">
+          <span className="block text-[44px] sm:text-[62px] md:text-[82px] lg:text-[100px] font-semibold tracking-[-0.045em] leading-[0.95] text-[var(--2pt-white)]">
             {["We", "deploy", "production", "AI"].flatMap((w, i, arr) => [
               <span
                 key={`w-${i}`}
@@ -305,7 +305,7 @@ export function HeroSection() {
               i < arr.length - 1 ? " " : null,
             ])}
           </span>
-          <span className="block text-[52px] sm:text-[80px] md:text-[112px] lg:text-[140px] font-bold tracking-[-0.05em] leading-[0.92] text-[var(--2pt-green)] mt-1">
+          <span className="block text-[44px] sm:text-[62px] md:text-[82px] lg:text-[100px] font-semibold tracking-[-0.045em] leading-[0.95] text-[var(--2pt-green)] mt-1">
             {["inside", "marketing", "teams."].flatMap((w, i, arr) => [
               <span
                 key={`w-${i}`}

@@ -412,9 +412,9 @@ export function WorkPreview() {
 
               {/* Editorial headline — fluid across breakpoints */}
               <h3
-                className="font-medium tracking-[-0.038em] leading-[0.95] text-white max-w-[16ch]"
+                className="font-semibold tracking-[-0.03em] leading-[1.02] text-white max-w-[16ch]"
                 style={{
-                  fontSize: "clamp(34px, 5.6vw, 64px)",
+                  fontSize: "clamp(28px, 4.4vw, 48px)",
                 }}
               >
                 One brain across
@@ -442,10 +442,10 @@ export function WorkPreview() {
                       {m.l}
                     </div>
                     <div
-                      className="font-medium tracking-[-0.03em] leading-[1] tabular-nums"
+                      className="font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
                       style={{
                         color: ACCENT,
-                        fontSize: "clamp(30px, 3.5vw, 44px)",
+                        fontSize: "clamp(24px, 2.8vw, 36px)",
                       }}
                     >
                       {m.v}

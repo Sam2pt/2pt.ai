@@ -117,7 +117,7 @@ export function HowWeDeploy() {
         </div>
 
         {/* Intro line — Geist sans, declarative not decorative */}
-        <p className="text-[24px] sm:text-[30px] md:text-[40px] lg:text-[48px] font-medium tracking-[-0.025em] leading-[1.08] text-[var(--2pt-black)] max-w-4xl mb-14 md:mb-20">
+        <p className="text-[22px] sm:text-[28px] md:text-[34px] lg:text-[40px] font-medium tracking-[-0.02em] leading-[1.15] text-[var(--2pt-black)] max-w-3xl mb-14 md:mb-20">
           Every engagement runs through the same four stages.{" "}
           <span className="text-[var(--2pt-black)]/45">
             Diagnose. Build. Deploy. Transfer.
@@ -245,7 +245,7 @@ export function HowWeDeploy() {
 
                 {/* Stage name */}
                 <h3
-                  className="text-[34px] md:text-[40px] lg:text-[46px] font-medium tracking-[-0.025em] leading-[1.0] mb-3 transition-colors duration-500"
+                  className="text-[26px] md:text-[30px] lg:text-[34px] font-semibold tracking-[-0.02em] leading-[1.05] mb-3 transition-colors duration-500"
                   style={{
                     color: isActive
                       ? "var(--2pt-black)"

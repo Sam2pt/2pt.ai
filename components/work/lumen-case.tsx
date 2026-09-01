@@ -125,7 +125,7 @@ function BeatHero({ c }: { c: CaseData }) {
 
       {/* HUGE title */}
       <h1
-        className={`text-[42px] sm:text-[64px] md:text-[104px] lg:text-[128px] font-medium tracking-[-0.045em] leading-[0.9] text-white transition-all duration-1000 ${
+        className={`text-[36px] sm:text-[52px] md:text-[74px] lg:text-[92px] font-semibold tracking-[-0.04em] leading-[0.95] text-white transition-all duration-1000 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
         }`}
       >
@@ -166,7 +166,7 @@ function BeatHero({ c }: { c: CaseData }) {
               {m.l}
             </div>
             <div
-              className="text-[32px] md:text-[44px] font-medium tracking-[-0.03em] leading-[1] tabular-nums"
+              className="text-[28px] md:text-[36px] font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
               style={{ color: ACCENT }}
             >
               {m.v}
@@ -190,7 +190,7 @@ function BeatSetup() {
       <BeatLabel n="02" label="Setup" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
         <h2
-          className={`md:col-span-7 text-[28px] md:text-[44px] lg:text-[52px] font-medium tracking-[-0.03em] leading-[1.05] text-white transition-all duration-1000 ${
+          className={`md:col-span-7 text-[24px] md:text-[34px] lg:text-[40px] font-semibold tracking-[-0.02em] leading-[1.15] text-white transition-all duration-1000 ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
         >
@@ -236,7 +236,7 @@ function BeatCore() {
       <BeatLabel n="03" label="Core" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
         <div className="md:col-span-5 order-2 md:order-1">
-          <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
+          <h2 className="text-[22px] md:text-[30px] font-semibold tracking-[-0.02em] leading-[1.15] text-white">
             One brain.
             <br />
             <span className="text-white/50">Every brand plugs in.</span>
@@ -466,7 +466,7 @@ function BeatSkinnable() {
       <BeatLabel n="04" label="Same brain · four faces" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
         <div className="md:col-span-4">
-          <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
+          <h2 className="text-[22px] md:text-[30px] font-semibold tracking-[-0.02em] leading-[1.15] text-white">
             One brain.
             <br />
             <span className="text-white/50">Native inside every brand.</span>
@@ -576,7 +576,7 @@ function SkinnedDashboard({ skin }: { skin: BrandSkin }) {
             {skin.metric.label}
           </div>
           <div
-            className="text-[54px] md:text-[64px] leading-[0.95] tabular-nums"
+            className="text-[42px] md:text-[52px] leading-[0.95] tabular-nums"
             style={{ fontFamily: skin.font, color: skin.primary, letterSpacing: "-0.03em" }}
           >
             {skin.metric.value}
@@ -751,7 +751,7 @@ function BeatPerRole() {
       <BeatLabel n="05" label="Same data · three lenses" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
         <div className="md:col-span-4">
-          <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
+          <h2 className="text-[22px] md:text-[30px] font-semibold tracking-[-0.02em] leading-[1.15] text-white">
             The marketer, the founder,
             <br />
             <span className="text-white/50">and the board see it differently.</span>
@@ -820,7 +820,7 @@ function BeatPerRole() {
                     {card.label}
                   </div>
                   <div
-                    className="text-[36px] md:text-[44px] font-medium tracking-[-0.03em] leading-[1] tabular-nums"
+                    className="text-[30px] md:text-[38px] font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
                     style={{ color: ACCENT }}
                   >
                     {card.value}
@@ -936,7 +936,7 @@ function BeatSymbiotic() {
       <BeatLabel n="06" label="Portfolio learning · opt in per brand" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
         <div className="md:col-span-4">
-          <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
+          <h2 className="text-[22px] md:text-[30px] font-semibold tracking-[-0.02em] leading-[1.15] text-white">
             Share the learning
             <br />
             <span className="text-white/50">or keep it in house.</span>
@@ -1187,7 +1187,7 @@ function BeatOutcomes() {
     <section ref={ref} className="relative py-20 md:py-28 border-t border-white/8">
       <BeatLabel n="07" label="Outcomes" />
       <h2
-        className={`text-[28px] md:text-[44px] lg:text-[52px] font-medium tracking-[-0.03em] leading-[1.05] text-white max-w-[900px] transition-all duration-1000 ${
+        className={`text-[24px] md:text-[34px] lg:text-[40px] font-semibold tracking-[-0.02em] leading-[1.15] text-white max-w-[820px] transition-all duration-1000 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >
@@ -1211,7 +1211,7 @@ function BeatOutcomes() {
               {m.l}
             </div>
             <div
-              className="text-[32px] md:text-[44px] font-medium tracking-[-0.03em] leading-[1] tabular-nums"
+              className="text-[28px] md:text-[36px] font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
               style={{ color: ACCENT }}
             >
               {m.v}

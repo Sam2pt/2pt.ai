@@ -54,7 +54,7 @@ export function ContactSection() {
           </div>
 
           {/* Headline — invitation to see the future state, not a transaction */}
-          <h2 className="text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] font-medium tracking-[-0.025em] leading-[1.05] max-w-5xl mb-12">
+          <h2 className="text-[30px] sm:text-[40px] md:text-[52px] lg:text-[64px] font-semibold tracking-[-0.025em] leading-[1.08] max-w-4xl mb-12">
             <span
               className={`block text-[var(--2pt-black)] transition-all duration-[1200ms] ease-out ${
                 isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"

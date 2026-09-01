@@ -204,7 +204,7 @@ export function WhatWeSolveCinematic() {
             >
               Problem {current.label}
             </div>
-            <h2 className="text-[40px] sm:text-[52px] md:text-[60px] lg:text-[68px] font-medium tracking-[-0.025em] leading-[0.98] text-[var(--2pt-black)] mb-8">
+            <h2 className="text-[32px] sm:text-[42px] md:text-[50px] lg:text-[58px] font-semibold tracking-[-0.025em] leading-[1.02] text-[var(--2pt-black)] mb-8">
               {current.title.split(" ").flatMap((w, i, arr) => [
                 <span
                   key={`w-${i}`}
