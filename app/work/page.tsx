@@ -32,13 +32,6 @@ export const metadata: Metadata = {
       "Production AI deployed inside enterprise marketing teams.",
     images: ["/opengraph-image"],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Work · Two Point Technologies",
-    description:
-      "Production AI deployed inside enterprise marketing teams.",
-    images: ["/opengraph-image"],
-  },
 }
 
 const lumen = CASES.find((c) => c.slug === LUMEN_SLUG)

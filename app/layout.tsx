@@ -38,7 +38,7 @@ const SHORT_SUMMARY =
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Metadata — comprehensive, market-leading. Includes title template, OG,
-// Twitter, robots directives, canonical, alternates, format detection.
+// robots directives, canonical, alternates, format detection.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
@@ -108,14 +108,8 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "@twopointtech",
-    creator: "@twopointtech",
-    title: `${SITE_NAME} — ${TAGLINE}`,
-    description: SHORT_SUMMARY,
-    images: ["/opengraph-image"],
-  },
+  // Twitter card omitted intentionally — 2pt doesn't run a Twitter/X account.
+  // Twitter/X falls back to the Open Graph tags above when it renders a share.
   robots: {
     index: true,
     follow: true,

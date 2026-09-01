@@ -37,13 +37,6 @@ export const metadata: Metadata = {
       "A glossary of the embedded AI engineering category, written to be citable by AI search engines.",
     images: ["/opengraph-image"],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Glossary — Two Point Technologies",
-    description:
-      "Definitions of embedded AI engineering, GEO, production AI, agentic AI for marketing.",
-    images: ["/opengraph-image"],
-  },
 }
 
 // DefinedTermSet JSON-LD scoped to /glossary (the canonical page-of-record).

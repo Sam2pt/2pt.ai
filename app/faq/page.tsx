@@ -40,13 +40,6 @@ export const metadata: Metadata = {
       "Plain-English answers on how 2PT deploys production AI inside enterprise marketing functions, what it costs, how long it takes, and who owns the IP.",
     images: ["/opengraph-image"],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "FAQ — Two Point Technologies",
-    description:
-      "Plain-English answers on embedded AI engineering for marketing.",
-    images: ["/opengraph-image"],
-  },
 }
 
 // FAQPage JSON-LD scoped to /faq itself.

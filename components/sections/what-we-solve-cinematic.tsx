@@ -238,17 +238,6 @@ export function WhatWeSolveCinematic() {
             >
               {current.body}
             </p>
-
-            {/* Narrative caption — small live-feeling headline as if from a ticker */}
-            <div className="inline-flex items-center gap-2.5 pt-5 border-t border-[var(--2pt-black)]/15 max-w-md">
-              <span className="w-1 h-1 bg-[var(--2pt-green)] rounded-full animate-pulse shrink-0" />
-              <span className="text-[10px] tracking-[0.25em] font-mono uppercase text-[var(--2pt-black)]/45 shrink-0">
-                Recent
-              </span>
-              <span className="text-[13px] text-[var(--2pt-black)]/85 italic">
-                {current.story}
-              </span>
-            </div>
           </div>
 
           {/* RIGHT — motion graphic */}

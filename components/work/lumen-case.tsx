@@ -292,8 +292,8 @@ function HubSpokeDiagram({ active }: { active: boolean }) {
       {/* Spokes */}
       {Array.from({ length: spokes }).map((_, i) => {
         const angle = (i / spokes) * Math.PI * 2 - Math.PI / 2
-        const x = 250 + Math.cos(angle) * 170
-        const y = 200 + Math.sin(angle) * 140
+        const x = Math.round((250 + Math.cos(angle) * 170) * 100) / 100
+        const y = Math.round((200 + Math.sin(angle) * 140) * 100) / 100
         return (
           <g key={i}>
             <line
@@ -928,7 +928,8 @@ function BeatSymbiotic() {
   const r = 150
   const nodePos = NODES.map((_, i) => {
     const angle = (i / NODES.length) * Math.PI * 2 - Math.PI / 2
-    return { x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r }
+    const round = (n: number) => Math.round(n * 100) / 100
+    return { x: round(cx + Math.cos(angle) * r), y: round(cy + Math.sin(angle) * r) }
   })
 
   return (

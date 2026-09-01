@@ -91,7 +91,8 @@ function MiniMesh({ active }: { active: boolean }) {
   const r = 130
   const nodePos = NODES.map((n) => {
     const rad = (n.angle * Math.PI) / 180
-    return { x: cx + Math.cos(rad) * r, y: cy + Math.sin(rad) * r }
+    const round = (n: number) => Math.round(n * 100) / 100
+    return { x: round(cx + Math.cos(rad) * r), y: round(cy + Math.sin(rad) * r) }
   })
   const sourceIdx = step
   const targetIdx = (step + 3) % NODES.length
