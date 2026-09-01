@@ -112,7 +112,7 @@ export function ContactCard({ index }: { index: number }) {
             <span className="text-[10px] font-mono tracking-[0.24em] uppercase opacity-65">
               Get in touch
             </span>
-            <span className="text-[15px] font-bold tracking-[-0.015em] leading-tight truncate max-w-full">
+            <span className="text-[15px] font-semibold tracking-[-0.01em] leading-tight truncate max-w-full">
               Send us a message
             </span>
           </span>
@@ -138,7 +138,7 @@ export function ContactCard({ index }: { index: number }) {
               <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-white)]/45 mb-2 leading-tight">
                 {c.label}
               </span>
-              <span className="text-[28px] font-bold tabular-nums tracking-[-0.025em] leading-none text-[var(--2pt-white)]">
+              <span className="text-[28px] font-semibold tabular-nums tracking-[-0.02em] leading-none text-[var(--2pt-white)]">
                 {c.pad ? String(c.value).padStart(c.pad, "0") : c.value}
               </span>
             </div>

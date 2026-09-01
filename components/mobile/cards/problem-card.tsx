@@ -167,20 +167,6 @@ export function ProblemCard({
         <Viz kind={data.kind} visible={visible} />
       </div>
 
-      {/* Bottom — story line */}
-      <div className="relative z-10 pb-12 px-6 border-t border-[var(--2pt-black)]/8 pt-4">
-        <div className="flex items-start gap-2.5">
-          <span className="w-1 h-1 bg-[var(--2pt-green)] rounded-full mt-2 shrink-0 animate-pulse" />
-          <div className="flex flex-col gap-1">
-            <span className="text-[9px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/40">
-              Recent
-            </span>
-            <span className="text-[13px] text-[var(--2pt-black)]/85 italic leading-snug">
-              {data.story}
-            </span>
-          </div>
-        </div>
-      </div>
     </section>
   )
 }
@@ -399,7 +385,7 @@ function BiddingViz({ visible }: { visible: boolean }) {
           <div className="text-[9px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/40 mb-1">
             Wins / min
           </div>
-          <div className="text-[24px] font-bold tabular-nums text-[var(--2pt-green)] leading-none">
+          <div className="text-[24px] font-semibold tabular-nums text-[var(--2pt-green)] leading-none">
             {wins}
           </div>
         </div>
@@ -407,7 +393,7 @@ function BiddingViz({ visible }: { visible: boolean }) {
           <div className="text-[9px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-black)]/40 mb-1">
             Bids / sec
           </div>
-          <div className="text-[24px] font-bold tabular-nums text-[var(--2pt-black)] leading-none">
+          <div className="text-[24px] font-semibold tabular-nums text-[var(--2pt-black)] leading-none">
             {(21 + Math.sin(now / 1700) * 3).toFixed(1)}
           </div>
         </div>
@@ -461,7 +447,7 @@ function CreativeViz({ visible }: { visible: boolean }) {
                 </span>
               )}
             </div>
-            <div className="text-[18px] font-bold tracking-[-0.025em] text-[var(--2pt-black)]">
+            <div className="text-[18px] font-semibold tracking-[-0.02em] text-[var(--2pt-black)]">
               {v.label}
             </div>
             <div className="flex items-baseline gap-1.5">

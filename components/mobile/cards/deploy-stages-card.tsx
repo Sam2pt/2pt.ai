@@ -68,7 +68,7 @@ export function DeployStagesCard({ index }: { index: number }) {
 
       {/* Intro */}
       <div className="relative z-10 px-6 mt-5">
-        <h2 className="text-[24px] font-bold tracking-[-0.03em] leading-[1.05] text-[var(--2pt-black)]">
+        <h2 className="text-[24px] font-semibold tracking-[-0.02em] leading-[1.12] text-[var(--2pt-black)]">
           Every engagement runs through the same four stages.
         </h2>
       </div>
@@ -117,7 +117,7 @@ export function DeployStagesCard({ index }: { index: number }) {
                       — {s.index}
                     </span>
                   </div>
-                  <div className="text-[20px] font-bold tracking-[-0.025em] leading-[1.05] text-[var(--2pt-black)]">
+                  <div className="text-[20px] font-semibold tracking-[-0.02em] leading-[1.1] text-[var(--2pt-black)]">
                     {s.name}
                   </div>
                   <div className="text-[11px] italic mt-0.5 text-[var(--2pt-black)]/55">

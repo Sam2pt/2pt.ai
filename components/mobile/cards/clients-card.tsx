@@ -49,7 +49,7 @@ export function ClientsCard({ index }: { index: number }) {
             key={name}
             className="flex items-center justify-between py-[10px] border-b border-[var(--2pt-white)]/8 last:border-b-0"
           >
-            <span className="text-[22px] font-bold tracking-[-0.025em] text-[var(--2pt-white)] leading-none">
+            <span className="text-[22px] font-semibold tracking-[-0.02em] text-[var(--2pt-white)] leading-none">
               {name}
             </span>
             <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-white)]/35 tabular-nums">
