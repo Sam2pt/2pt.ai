@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { CASES } from "@/lib/cases"
 import { FloatingNav } from "@/components/ui/floating-nav"
@@ -95,6 +96,23 @@ export default function WorkIndexPage() {
   return (
     <>
       <FloatingNav forceDark />
+
+      {/* Scroll-driven progress rail. Fills as the reader moves through
+          the case. Uses modern CSS animation-timeline: scroll(); degrades
+          silently in browsers that don't support it. */}
+      <div
+        aria-hidden
+        className="fixed top-12 left-0 right-0 z-40 h-[2px] bg-[var(--2pt-white)]/6"
+      >
+        <div
+          className="scroll-progress h-full origin-left"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, #22d3ee 40%, #22d3ee 60%, transparent)",
+          }}
+        />
+      </div>
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -168,7 +186,7 @@ export default function WorkIndexPage() {
               <div className="md:col-span-5 flex md:justify-end">
                 <a
                   href="mailto:info@twopointtechnologies.com"
-                  className="group inline-flex items-center gap-3 px-5 h-12 bg-white text-black hover:bg-[var(--2pt-green)] transition-colors duration-500"
+                  className="hover-plate group inline-flex items-center gap-3 px-5 h-12 bg-white text-black hover:bg-[var(--2pt-green)] transition-colors duration-500"
                 >
                   <span className="text-[11px] font-mono tracking-[0.22em] uppercase">
                     Get in touch
@@ -178,6 +196,47 @@ export default function WorkIndexPage() {
               </div>
             </div>
           </section>
+
+          {/* Colophon — quick exits back into the main site */}
+          <footer className="mt-16 md:mt-20 pt-6 border-t border-white/8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[10px] font-mono tracking-[0.22em] uppercase text-white/45">
+                <Link
+                  href="/"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  → Home
+                </Link>
+                <Link
+                  href="/#what-we-solve"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  → What we solve
+                </Link>
+                <Link
+                  href="/faq"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  → FAQ
+                </Link>
+                <Link
+                  href="/glossary"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  → Glossary
+                </Link>
+                <a
+                  href="mailto:info@twopointtechnologies.com"
+                  className="hover:text-white transition-colors duration-300"
+                >
+                  → info@twopointtechnologies.com
+                </a>
+              </div>
+              <div className="text-[10px] font-mono tracking-[0.2em] uppercase text-white/30">
+                Two Point Technologies · MMXXVI
+              </div>
+            </div>
+          </footer>
         </div>
       </main>
     </>

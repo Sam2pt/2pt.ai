@@ -135,11 +135,55 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Modern text-wrap: balance for headlines rag-balances a headline into
+     equal-width lines, avoiding a lonely last-word runt. Pretty on body
+     copy fixes orphan words. */
+  h1, h2, h3 { text-wrap: balance; }
+  p, li, dd { text-wrap: pretty; }
+  /* Numbers use tabular-nums for that ticker-clock feel where it matters. */
+  [data-numeric] { font-variant-numeric: tabular-nums; }
 }
 
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+  /* Allow height auto animations (modern CSS) */
+  interpolate-size: allow-keywords;
+}
+
+/* Cross-page view transition (SPA-like fades between routes) —
+   Next.js App Router hydrates this for free when a browser supports it. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Global reduced-motion — respect the user's OS setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus-visible ring — modern focus that doesn't fire on mouse */
+:focus-visible {
+  outline: 2px solid var(--2pt-green);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 4px;
 }
 
 /* Selection styling */
@@ -595,3 +639,33 @@ html {
 .animate-subtle-flicker {
   animation: subtle-flicker 4s ease-in-out infinite;
 }
+
+/* ─────────────────────────────────────────────────────────────────
+   Scroll-driven progress bar — pure CSS, animation-timeline: scroll()
+   Progressive enhancement: browsers without support show nothing.
+   Used on case pages via .scroll-progress class on a fixed top rule.
+   ─────────────────────────────────────────────────────────────── */
+@supports (animation-timeline: scroll()) {
+  @keyframes scroll-progress-fill {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+  .scroll-progress {
+    animation-name: scroll-progress-fill;
+    animation-timeline: scroll(root);
+    animation-fill-mode: both;
+    transform-origin: left center;
+  }
+}
+
+/* Small hover-lift for magnetic-feeling CTA plates */
+.hover-plate {
+  transition:
+    transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-plate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -12px rgba(74, 222, 128, 0.35);
+}
+
