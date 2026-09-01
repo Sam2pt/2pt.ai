@@ -60,8 +60,7 @@ export function ClientsCard({ index }: { index: number }) {
       </div>
 
       {/* Bottom — small print */}
-      <div className="pb-12 px-6 text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-white)]/40 flex items-center justify-between">
-        <span>{CLIENTS.length} active deployments</span>
+      <div className="pb-12 px-6 text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-white)]/40 flex items-center justify-end">
         <span className="text-[var(--2pt-green)]">NYC · LDN</span>
       </div>
     </section>
