@@ -297,9 +297,18 @@ function EfficiencyMotion({ p }: { p: number }) {
   const now = useNow()
   void p
 
-  // ms-precision timestamp (HH:MM:SS.mmm) — reads as a real telemetry feed
-  const t = new Date()
-  const stamp = `${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}:${String(t.getSeconds()).padStart(2, "0")}.${String(t.getMilliseconds()).padStart(3, "0")}`
+  // ms-precision timestamp (HH:MM:SS.mmm) — reads as a real telemetry feed.
+  // Placeholder on the server so SSR and first client render agree; real
+  // clock kicks in after mount to avoid a hydration mismatch.
+  const [t, setT] = useState<Date | null>(null)
+  useEffect(() => {
+    setT(new Date())
+    const id = setInterval(() => setT(new Date()), 90)
+    return () => clearInterval(id)
+  }, [])
+  const stamp = t
+    ? `${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}:${String(t.getSeconds()).padStart(2, "0")}.${String(t.getMilliseconds()).padStart(3, "0")}`
+    : "··:··:··.···"
 
   // Scan beam — soft green horizontal sweep travelling top→bottom every ~5s
   const scanCycle = (now / 5000) % 1

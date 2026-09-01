@@ -169,15 +169,36 @@ export const GLOSSARY: GlossaryTerm[] = [
     id: "lumen",
     term: "Lumen",
     shortDef:
-      "2PT's productised customer intelligence platform. Scores every customer cohort on growth, share and trend in real time.",
+      "2PT's productised customer intelligence platform. Multi-tenant, per-brand skinned, with cross-brand learning across a portfolio.",
     longDef:
-      "Lumen is the productised customer intelligence platform built by Two Point Technologies. It scores every customer cohort on growth, share and trend continuously, so hot segments earn more spend and cooling segments get diagnosed before they break. Lumen sits on top of the client's CDP, retail-media platforms and CRM, with no rip-and-replace. It answers the board-level question every CMO and CGO has: where is growth coming from, and what is moving against it. Deployed and customised inside engagements.",
+      "Lumen is the productised customer intelligence platform built by Two Point Technologies. One engine, many tenants. Each brand opens their own skin — chrome, typography, voice, colour — over the same core so it feels native inside their team, while the same underlying data model is framed differently for marketers, founders and boards. When one tenant runs an experiment and it lands, Lumen matches the audience shape against every other tenant in the portfolio and surfaces the winning play as a suggestion where it is likely to work. Sits on top of the client's CDP, commerce, retail-media and CRM stack with no rip-and-replace. Answers the question every CMO, CGO and GP has: where is growth coming from, and what has already been proved elsewhere that we can copy.",
     alsoKnownAs: [
       "Customer intelligence platform",
-      "Audience segment AI",
+      "Multi-tenant customer intelligence",
+      "Portfolio intelligence platform",
       "Cohort scoring platform",
     ],
-    relatedTerms: ["audience-segment-ai", "chedder", "conduit"],
+    relatedTerms: [
+      "audience-segment-ai",
+      "cross-brand-learning",
+      "chedder",
+      "conduit",
+    ],
+  },
+  {
+    id: "cross-brand-learning",
+    term: "Cross-brand learning",
+    shortDef:
+      "A shared learning fabric across a portfolio of brands. Winning experiments in one brand surface as suggested plays in the others where the audience shape matches.",
+    longDef:
+      "Cross-brand learning is a shared learning fabric that sits above a portfolio of brands or business units. When one brand runs an experiment and it lands — a cohort test, a price test, a creative test, a funnel change — the system matches the audience and behaviour shape against every other tenant and surfaces the winning play as a suggestion in the tenants where it is likely to work. Each brand keeps its own data private; only the plays travel. The pattern is especially valuable inside venture portfolios, holdcos and multi-brand groups where one operator is paying to learn something a sister brand already proved. 2PT builds cross-brand learning into Lumen deployments.",
+    alsoKnownAs: [
+      "Portfolio learning",
+      "Cross-tenant learning",
+      "Shared experiment mesh",
+      "Symbiotic learning",
+    ],
+    relatedTerms: ["lumen", "audience-segment-ai", "production-ai"],
   },
   {
     id: "conduit",

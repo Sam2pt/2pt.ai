@@ -3,12 +3,15 @@
 /**
  * WorkPreview — homepage "Now Playing" section.
  *
- * Single dramatic preview of the current selected work. Live status,
- * headline claim, hero outcome, mini symbiotic-learning vignette that
- * teases the case, per-case ticker of activity, click-through to /work.
+ * A single editorial case-study feature — treated like a magazine
+ * cover placed inside the homepage. Reads as a proper case study
+ * preview (label, headline, byline, lead, proof metrics, CTA) with
+ * the live mesh vignette playing as the cover art. Clicking anywhere
+ * on the feature routes to the full case at /work.
  *
- * Rebuilds when the case list grows again — currently tuned for a
- * one-case reel with room on the right for the animated mesh.
+ * Rebuilds when the case list grows again — tuned for a one-feature
+ * reel today; adding a second case means adding a second feature
+ * below this one (or converting to a two-up layout).
  */
 
 import { useEffect, useRef, useState } from "react"
@@ -83,9 +86,9 @@ function MiniMesh({ active }: { active: boolean }) {
     return () => clearInterval(id)
   }, [active])
 
-  const cx = 180
-  const cy = 180
-  const r = 110
+  const cx = 200
+  const cy = 200
+  const r = 130
   const nodePos = NODES.map((n) => {
     const rad = (n.angle * Math.PI) / 180
     return { x: cx + Math.cos(rad) * r, y: cy + Math.sin(rad) * r }
@@ -96,7 +99,7 @@ function MiniMesh({ active }: { active: boolean }) {
   const target = nodePos[targetIdx]
 
   return (
-    <svg viewBox="0 0 360 360" className="w-full h-full">
+    <svg viewBox="0 0 400 400" className="w-full h-full">
       {/* Faint inter-node lines */}
       {nodePos.map((a, i) =>
         nodePos.slice(i + 1).map((b, j) => (
@@ -124,7 +127,7 @@ function MiniMesh({ active }: { active: boolean }) {
             strokeWidth={1}
             opacity={0.4}
           />
-          <circle r="3" fill={ACCENT}>
+          <circle r="3.5" fill={ACCENT}>
             <animateMotion
               dur="1.2s"
               path={`M ${source.x} ${source.y} L ${target.x} ${target.y}`}
@@ -145,15 +148,15 @@ function MiniMesh({ active }: { active: boolean }) {
       {NODES.map((n, i) => {
         const isSource = i === sourceIdx
         const isTarget = i === targetIdx
-        const color = isSource || isTarget ? ACCENT : "rgba(255,255,255,0.35)"
-        const size = isSource ? 16 : isTarget ? 13 : 10
+        const color = isSource || isTarget ? ACCENT : "rgba(255,255,255,0.4)"
+        const size = isSource ? 18 : isTarget ? 15 : 12
         return (
           <g key={n.key}>
             {isSource && active ? (
               <circle cx={nodePos[i].x} cy={nodePos[i].y} r={size + 6} fill={ACCENT} opacity="0.15">
                 <animate
                   attributeName="r"
-                  values={`${size + 3};${size + 12};${size + 3}`}
+                  values={`${size + 3};${size + 14};${size + 3}`}
                   dur="1.4s"
                   repeatCount="indefinite"
                 />
@@ -172,7 +175,7 @@ function MiniMesh({ active }: { active: boolean }) {
               y={nodePos[i].y + 3}
               textAnchor="middle"
               fill={color}
-              fontSize={8}
+              fontSize={9}
               fontFamily="ui-monospace, monospace"
               letterSpacing="0.1em"
             >
@@ -183,13 +186,13 @@ function MiniMesh({ active }: { active: boolean }) {
       })}
 
       {/* Center */}
-      <circle cx={cx} cy={cy} r={22} fill="rgba(10,10,10,1)" stroke={ACCENT} strokeWidth={1.2} />
+      <circle cx={cx} cy={cy} r={26} fill="rgba(10,10,10,1)" stroke={ACCENT} strokeWidth={1.2} />
       <text
         x={cx}
         y={cy + 3}
         textAnchor="middle"
         fill={ACCENT}
-        fontSize={8}
+        fontSize={9}
         fontFamily="ui-monospace, monospace"
         letterSpacing="0.2em"
       >
@@ -242,7 +245,7 @@ export function WorkPreview() {
     <section
       ref={sectionRef}
       id="work"
-      className="relative bg-[var(--2pt-black)] text-[var(--2pt-white)] py-24 md:py-32 px-6 md:px-12"
+      className="relative bg-[var(--2pt-black)] text-[var(--2pt-white)] py-24 md:py-36 px-6 md:px-12"
     >
       {/* Ambient depth */}
       <div
@@ -272,53 +275,35 @@ export function WorkPreview() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 12% 18%, rgba(34,211,238,0.10) 0%, transparent 60%)",
+            "radial-gradient(ellipse 60% 50% at 12% 18%, rgba(74,222,128,0.10) 0%, transparent 60%)",
         }}
       />
 
       <div className="relative max-w-[1400px] mx-auto">
-        {/* Section header */}
-        <div className="flex items-end justify-between gap-6 mb-10 md:mb-14">
-          <div>
-            <div
-              className={`flex items-center gap-2.5 mb-5 transition-opacity duration-1000 ${
-                entered ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <span className="relative inline-flex">
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ background: ACCENT }}
-                />
-                <span
-                  className="absolute inset-0 w-1.5 h-1.5 rounded-full animate-ping opacity-60"
-                  style={{ background: ACCENT }}
-                />
-              </span>
-              <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/55">
-                <span className="text-white/30 mr-2">IV.</span>
-                Now playing
-              </span>
-              <span className="ml-3 text-[10px] font-mono tracking-[0.2em] text-white/30 tabular-nums">
-                rt {runtime}
-              </span>
-            </div>
-            <h2
-              className={`text-[28px] md:text-[44px] font-medium tracking-[-0.03em] leading-[1.02] text-white transition-all duration-1000 ${
-                entered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-              }`}
-              style={{ transitionDelay: "120ms" }}
-            >
-              Selected work.
-            </h2>
-            <p
-              className={`mt-3 text-[13px] md:text-[14px] leading-[1.55] text-white/55 max-w-[480px] transition-opacity duration-1000 ${
-                entered ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ transitionDelay: "240ms" }}
-            >
-              One engagement, running live. Read the full case at /work.
-            </p>
+        {/* Section eyebrow — a clean editorial "issue" marker */}
+        <div className="flex items-center justify-between gap-6 mb-10 md:mb-14">
+          <div
+            className={`flex items-center gap-2.5 transition-opacity duration-1000 ${
+              entered ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <span className="relative inline-flex">
+              <span
+                className="w-1.5 h-1.5 rounded-full"
+                style={{ background: ACCENT }}
+              />
+              <span
+                className="absolute inset-0 w-1.5 h-1.5 rounded-full animate-ping opacity-60"
+                style={{ background: ACCENT }}
+              />
+            </span>
+            <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/55">
+              <span className="text-white/30 mr-2">IV.</span>
+              Selected work
+            </span>
+            <span className="ml-3 text-[10px] font-mono tracking-[0.2em] text-white/30 tabular-nums hidden sm:inline">
+              rt {runtime}
+            </span>
           </div>
 
           <Link
@@ -328,28 +313,29 @@ export function WorkPreview() {
             }`}
             style={{ transitionDelay: "320ms" }}
           >
-            Read the case
+            View selected work
             <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" />
           </Link>
         </div>
 
-        {/* Single hero poster */}
+        {/* Editorial feature — the case study preview */}
         <Link
           href="/work"
-          className={`group relative block border border-white/12 overflow-hidden transition-all duration-700 ease-out hover:border-white/25 ${
+          aria-label={`Read the full case study — ${c.title}`}
+          className={`group relative block bg-[var(--2pt-black)] border border-white/12 overflow-hidden transition-all duration-700 ease-out hover:border-white/25 ${
             entered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
           style={{
             transitionDelay: "440ms",
           }}
         >
-          {/* Accent wash */}
+          {/* Accent wash top-right */}
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse 60% 70% at 85% 30%, rgba(34,211,238,0.16) 0%, rgba(34,211,238,0.04) 40%, transparent 70%)",
+                "radial-gradient(ellipse 55% 65% at 85% 25%, rgba(34,211,238,0.15) 0%, rgba(34,211,238,0.03) 40%, transparent 70%)",
             }}
           />
           {/* Dot grid */}
@@ -360,125 +346,170 @@ export function WorkPreview() {
               backgroundImage:
                 "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.4px)",
               backgroundSize: "26px 26px",
-              opacity: 0.55,
+              opacity: 0.5,
               WebkitMaskImage:
                 "radial-gradient(ellipse 100% 100% at 30% 50%, #000 30%, transparent 90%)",
               maskImage:
                 "radial-gradient(ellipse 100% 100% at 30% 50%, #000 30%, transparent 90%)",
             }}
           />
-          {/* Right rule */}
+          {/* Slow scan beam — signals live */}
           <div
             aria-hidden
-            className="absolute right-0 top-8 bottom-8 w-px"
-            style={{
-              background: `linear-gradient(to bottom, transparent, ${ACCENT}, transparent)`,
-              opacity: 0.5,
-            }}
-          />
+            className="absolute inset-0 pointer-events-none overflow-hidden"
+          >
+            <div
+              className="absolute -inset-x-10 h-[35%] animate-scan-line"
+              style={{
+                top: "-20%",
+                background:
+                  "linear-gradient(180deg, transparent 0%, rgba(34,211,238,0.06) 50%, transparent 100%)",
+                animationDuration: "9s",
+              }}
+            />
+          </div>
 
-          {/* Top strip */}
-          <div className="relative flex items-center justify-between px-5 md:px-8 pt-6 pb-3 border-b border-white/8">
-            <span className="text-[10px] font-mono tracking-[0.28em] uppercase text-white/40">
-              01 / 01
-            </span>
-            <span className="flex items-center gap-3">
-              <span className="text-[9px] font-mono tracking-[0.22em] uppercase text-white/45">
-                {c.sector.split(" · ").slice(0, 2).join(" · ")}
+          {/* Masthead — reads unmistakably as a case study cover */}
+          <div className="relative flex flex-wrap items-center justify-between gap-3 px-5 md:px-10 pt-6 md:pt-8 pb-4 md:pb-5 border-b border-white/8">
+            <div className="flex items-center gap-4 md:gap-6">
+              <span className="text-[10px] font-mono tracking-[0.32em] uppercase text-white/70">
+                Case study
               </span>
-              <span
-                className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.22em] uppercase"
-                style={{ color: ACCENT }}
-              >
-                <span className="relative inline-flex w-1.5 h-1.5">
-                  <span
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{ background: ACCENT }}
-                  />
-                  <span
-                    className="absolute inset-0 rounded-full animate-ping opacity-60"
-                    style={{ background: ACCENT }}
-                  />
-                </span>
-                Live
+              <span className="text-white/20">/</span>
+              <span className="text-[10px] font-mono tracking-[0.28em] uppercase text-white/45">
+                01 · 2026 Q3
               </span>
+              <span className="text-white/20 hidden sm:inline">/</span>
+              <span className="hidden sm:inline text-[10px] font-mono tracking-[0.28em] uppercase text-white/45">
+                {c.sector.split(" · ")[0]}
+              </span>
+            </div>
+            <span
+              className="flex items-center gap-1.5 text-[9px] font-mono tracking-[0.24em] uppercase"
+              style={{ color: ACCENT }}
+            >
+              <span className="relative inline-flex w-1.5 h-1.5">
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ background: ACCENT }}
+                />
+                <span
+                  className="absolute inset-0 rounded-full animate-ping opacity-60"
+                  style={{ background: ACCENT }}
+                />
+              </span>
+              Running in production
             </span>
           </div>
 
-          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-0">
-            {/* Left column — headline + claim + outcome + ticker */}
-            <div className="md:col-span-7 p-6 md:p-10 lg:p-14">
-              <div className="text-[10px] font-mono tracking-[0.28em] uppercase text-white/45 mb-4">
-                {c.client}
+          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-0">
+            {/* LEFT — editorial column */}
+            <div className="lg:col-span-7 p-6 md:p-10 lg:p-14 lg:pr-10">
+              {/* Byline */}
+              <div className="text-[10px] font-mono tracking-[0.28em] uppercase text-white/45 mb-6">
+                For {c.client}
               </div>
-              <h3 className="text-[30px] md:text-[46px] lg:text-[58px] font-medium tracking-[-0.035em] leading-[1] text-white max-w-[16ch]">
+
+              {/* Editorial headline — fluid across breakpoints */}
+              <h3
+                className="font-medium tracking-[-0.038em] leading-[0.95] text-white max-w-[15ch]"
+                style={{
+                  fontSize: "clamp(34px, 5.6vw, 64px)",
+                }}
+              >
                 One customer brain.
                 <br />
                 <span className="text-white/50">Seven faces.</span>
               </h3>
 
-              <div className="mt-8 md:mt-10 grid grid-cols-2 gap-6 max-w-[420px]">
-                <div>
-                  <div className="text-[9px] font-mono tracking-[0.28em] uppercase text-white/45 mb-2">
-                    Brands live
+              {/* Lead */}
+              <p className="mt-6 md:mt-8 text-[15px] md:text-[16px] leading-[1.65] text-white/70 max-w-[52ch]">
+                A New York venture firm asked us to build shared customer
+                intelligence across their D2C portfolio. Same engine, seven
+                tenants, each in its own skin. Rolled in eight weeks.
+                What one brand learns, the others get offered as a play.
+              </p>
+
+              {/* Proof strip */}
+              <div className="mt-9 md:mt-12 grid grid-cols-3 gap-5 md:gap-8 max-w-[520px]">
+                {[
+                  { l: "Brands", v: "7", u: "portfolio" },
+                  { l: "Rollout", v: "8", u: "weeks" },
+                  { l: "Learning", v: "24/7", u: "live" },
+                ].map((m) => (
+                  <div key={m.l} className="border-t border-white/15 pt-3">
+                    <div className="text-[9px] font-mono tracking-[0.24em] uppercase text-white/40 mb-1.5">
+                      {m.l}
+                    </div>
+                    <div
+                      className="font-medium tracking-[-0.03em] leading-[1] tabular-nums"
+                      style={{
+                        color: ACCENT,
+                        fontSize: "clamp(30px, 3.5vw, 44px)",
+                      }}
+                    >
+                      {m.v}
+                    </div>
+                    <div className="mt-1.5 text-[10px] font-mono tracking-[0.14em] uppercase text-white/40">
+                      {m.u}
+                    </div>
                   </div>
-                  <div
-                    className="text-[54px] md:text-[68px] font-medium tracking-[-0.04em] leading-[0.95] tabular-nums"
-                    style={{ color: ACCENT }}
-                  >
-                    7
-                  </div>
-                </div>
-                <div>
-                  <div className="text-[9px] font-mono tracking-[0.28em] uppercase text-white/45 mb-2">
-                    Rollout
-                  </div>
-                  <div
-                    className="text-[54px] md:text-[68px] font-medium tracking-[-0.04em] leading-[0.95] tabular-nums"
-                    style={{ color: ACCENT }}
-                  >
-                    8<span className="text-[28px] md:text-[36px] text-white/45 ml-1">wk</span>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div className="mt-8 md:mt-10 pt-5 border-t border-white/8">
+              {/* Read the case — obvious CTA */}
+              <div
+                className="mt-10 md:mt-14 inline-flex items-center gap-3 px-5 h-11 border border-white/30 group-hover:border-[var(--2pt-green)] group-hover:bg-[var(--2pt-green)] group-hover:text-[var(--2pt-black)] transition-colors duration-500"
+                style={{ color: "var(--2pt-white)" }}
+              >
+                <span className="text-[11px] font-mono tracking-[0.22em] uppercase">
+                  Read the case
+                </span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" />
+              </div>
+            </div>
+
+            {/* RIGHT — live mesh vignette */}
+            <div className="lg:col-span-5 relative border-t lg:border-t-0 lg:border-l border-white/8 min-h-[320px] lg:min-h-[520px] flex flex-col">
+              {/* Vignette label */}
+              <div className="px-5 md:px-6 pt-5 pb-3 flex items-center justify-between text-[9px] font-mono tracking-[0.22em] uppercase text-white/45">
+                <span>Live · symbiotic mesh</span>
+                <span>07 tenants</span>
+              </div>
+              {/* Mesh */}
+              <div className="flex-1 flex items-center justify-center p-5 md:p-6">
+                <div className="w-full max-w-[380px] aspect-square">
+                  <MiniMesh active={entered} />
+                </div>
+              </div>
+              {/* Suggestion log */}
+              <div className="px-5 md:px-6 pt-4 pb-6 border-t border-white/8">
                 <div className="text-[9px] font-mono tracking-[0.24em] uppercase text-white/40 mb-2">
-                  Mesh · live suggestions
+                  Suggestions streaming
                 </div>
                 <StatusTicker slug={c.slug} />
               </div>
             </div>
-
-            {/* Right column — mini mesh vignette */}
-            <div className="md:col-span-5 relative border-t md:border-t-0 md:border-l border-white/8 min-h-[280px] md:min-h-[420px] flex items-center justify-center p-6 md:p-8">
-              <div className="w-full max-w-[380px] aspect-square">
-                <MiniMesh active={entered} />
-              </div>
-            </div>
           </div>
 
-          {/* Footer */}
-          <div className="relative flex items-center justify-between px-5 md:px-8 py-4 border-t border-white/10">
+          {/* Colophon footer — categorical tags */}
+          <div className="relative flex flex-wrap items-center justify-between gap-3 px-5 md:px-10 py-4 border-t border-white/10">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[9px] font-mono tracking-[0.22em] uppercase text-white/45">
+              <span>{c.tools.join(" · ")}</span>
+            </div>
             <span className="text-[9px] font-mono tracking-[0.24em] uppercase text-white/55">
-              {c.tools.slice(0, 2).join(" · ")}
-            </span>
-            <span
-              className="inline-flex items-center gap-1.5 text-[10px] font-mono tracking-[0.24em] uppercase text-white/75 group-hover:text-[var(--2pt-green)] transition-colors duration-500"
-            >
-              Read the case
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              /work/vc-portfolio →
             </span>
           </div>
         </Link>
 
-        {/* Mobile footer link */}
-        <div className="mt-8 md:hidden">
+        {/* Mobile CTA row */}
+        <div className="mt-6 md:hidden flex justify-center">
           <Link
             href="/work"
             className="inline-flex items-center gap-2 text-[11px] font-mono tracking-[0.24em] uppercase text-white/75 hover:text-[var(--2pt-green)] transition-colors duration-500"
           >
-            Read the case
+            View selected work
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
