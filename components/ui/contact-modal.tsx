@@ -3,21 +3,18 @@
 /**
  * ContactModal — real contact form, replaces the fragile mailto links.
  *
- * Uses Netlify Forms (the site deploys to Netlify). At build time
- * Netlify parses the SSR HTML for `<form name="contact" data-netlify>`,
- * registers the form, and captures submissions to the account's
- * Forms dashboard (with email notifications configurable there).
+ * Delivery flows through app/api/contact/route.ts (a Next.js API route)
+ * which forwards to Formsubmit and emails info@twopointtechnologies.com.
+ * See that file for the one-time verification click Sam has to do.
  *
  * The modal listens for a global `contact:open` event so any CTA
  * anywhere on the site can open it via `openContactModal()` without
- * threading callbacks. A hidden marker form is rendered in the SSR
- * output so Netlify's parser sees it even before the modal is opened.
+ * threading callbacks.
  */
 
 import { useEffect, useState, type FormEvent } from "react"
 import { X, ArrowUpRight } from "lucide-react"
 
-const FORM_NAME = "contact"
 const OPEN_EVENT = "contact:open"
 
 export function openContactModal() {
@@ -62,26 +59,27 @@ export function ContactModal() {
     const form = e.currentTarget
     const data = new FormData(form)
 
-    // Silent honeypot — if the bot field is filled, pretend we sent it.
-    if ((data.get("bot-field") ?? "").toString().length > 0) {
-      setState("sent")
-      form.reset()
-      return
+    const payload = {
+      name: (data.get("name") ?? "").toString(),
+      company: (data.get("company") ?? "").toString(),
+      email: (data.get("email") ?? "").toString(),
+      message: (data.get("message") ?? "").toString(),
+      "bot-field": (data.get("bot-field") ?? "").toString(),
     }
 
-    const body = new URLSearchParams()
-    body.set("form-name", FORM_NAME)
-    data.forEach((value, key) => {
-      if (typeof value === "string") body.append(key, value)
-    })
-
     try {
-      const res = await fetch("/", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       })
-      if (!res.ok) throw new Error(`Server responded ${res.status}`)
+      const json = (await res.json().catch(() => ({}))) as {
+        ok?: boolean
+        error?: string
+      }
+      if (!res.ok || !json.ok) {
+        throw new Error(json.error ?? `Server responded ${res.status}`)
+      }
       setState("sent")
       form.reset()
     } catch (err) {
@@ -92,23 +90,6 @@ export function ContactModal() {
 
   return (
     <>
-      {/* Netlify build-time detection form — hidden from users. Fields must
-          match the visible form so submissions validate. Kept in a static
-          shape (no state, no dynamic values) so Netlify's parser can see it. */}
-      <form
-        name={FORM_NAME}
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        hidden
-        aria-hidden="true"
-      >
-        <input name="name" />
-        <input name="company" />
-        <input name="email" type="email" />
-        <textarea name="message" />
-        <input name="bot-field" />
-      </form>
-
       <div
         role="dialog"
         aria-modal="true"
@@ -188,14 +169,10 @@ export function ContactModal() {
               </div>
             ) : (
               <form
-                name={FORM_NAME}
                 method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="px-6 md:px-8 py-6 space-y-5"
               >
-                <input type="hidden" name="form-name" value={FORM_NAME} />
                 <p hidden aria-hidden="true">
                   <label>
                     Leave this empty:

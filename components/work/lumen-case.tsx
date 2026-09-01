@@ -591,7 +591,7 @@ function SkinnedDashboard({ skin }: { skin: BrandSkin }) {
             className="mt-8 text-[12px] leading-[1.55]"
             style={{ fontFamily: skin.font, color: "rgba(255,255,255,0.55)" }}
           >
-            Voice guide — {skin.voice}
+            Voice guide. {skin.voice}
           </div>
         </div>
 
@@ -949,7 +949,7 @@ function BeatSymbiotic() {
             it&rsquo;s likely to work.
           </p>
           <p className="mt-3 text-[13px] leading-[1.55] text-white/50 max-w-[420px]">
-            The data never travels. Only the plays do — and only the ones a
+            The data never travels. Only the plays do, and only the ones a
             brand chose to share.
           </p>
         </div>
@@ -1234,7 +1234,7 @@ function BeatOutcomes() {
         >
           &ldquo;We&rsquo;ve never had this level of detail about our
           customers. And we get to choose what travels to the rest of the
-          fund — the plays go, the data stays with us. That changed how we
+          fund. The plays go, our data stays with us. It has changed how we
           run growth.&rdquo;
         </blockquote>
         <figcaption className="mt-5 flex items-center gap-3 text-[10px] font-mono tracking-[0.24em] uppercase text-white/50">
@@ -1242,7 +1242,7 @@ function BeatOutcomes() {
             className="w-6 h-px"
             style={{ background: ACCENT }}
           />
-          Chief Marketing Officer · portfolio brand
+          Chief Marketing Officer, portfolio brand
         </figcaption>
       </figure>
     </section>

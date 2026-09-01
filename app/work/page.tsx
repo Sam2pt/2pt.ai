@@ -20,21 +20,21 @@ const LUMEN_SLUG = "vc-portfolio-customer-intelligence"
 
 export const metadata: Metadata = {
   title:
-    "Work — one customer brain, seven faces · Two Point Technologies",
+    "Work · one brain across the portfolio · Two Point Technologies",
   description:
     "Selected case study: a shared customer-intelligence engine deployed across a New York venture firm's D2C portfolio in eight weeks. Per-brand skins, per-role framings, cross-brand suggestions.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "article",
     url: PAGE_URL,
-    title: "Work — Two Point Technologies",
+    title: "Work · Two Point Technologies",
     description:
       "Production AI deployed inside enterprise marketing teams.",
     images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Work — Two Point Technologies",
+    title: "Work · Two Point Technologies",
     description:
       "Production AI deployed inside enterprise marketing teams.",
     images: ["/opengraph-image"],
@@ -48,7 +48,7 @@ const collection = {
   "@type": "CollectionPage",
   "@id": `${PAGE_URL}#collection`,
   url: PAGE_URL,
-  name: "Two Point Technologies — Selected Work",
+  name: "Two Point Technologies · Selected Work",
   description:
     "Case studies of production AI systems deployed by Two Point Technologies inside enterprise marketing functions.",
   isPartOf: { "@id": `${SITE_URL}#website` },

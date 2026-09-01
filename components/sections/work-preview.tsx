@@ -321,7 +321,7 @@ export function WorkPreview() {
         {/* Editorial feature — the case study preview */}
         <Link
           href="/work"
-          aria-label={`Read the full case study — ${c.title}`}
+          aria-label={`Read the full case study. ${c.title}`}
           className={`group relative block bg-[var(--2pt-black)] border border-white/12 overflow-hidden transition-all duration-700 ease-out hover:border-white/25 ${
             entered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
