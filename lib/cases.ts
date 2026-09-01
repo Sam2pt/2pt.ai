@@ -78,6 +78,48 @@ export type CaseStudy = {
 
 const ALL_CASES: CaseStudy[] = [
   {
+    slug: "vc-portfolio-customer-intelligence",
+    client: "A New York venture firm",
+    sector: "Venture · D2C portfolio · Customer intelligence",
+    year: "2026",
+    title: "One customer brain, seven faces.",
+    lead: "Automated customer intelligence rolled across a D2C portfolio in eight weeks.",
+    summary:
+      "A NY venture firm's D2C portfolio brands got one shared customer-intelligence system with per-brand skins, per-role framings, and cross-brand learning that surfaces as suggested experiments in every tenant.",
+    problem:
+      "A New York venture firm holds a growing D2C portfolio. Every brand has its own commerce stack, its own audience shape, its own CX language, and its own dashboards. Each portfolio company was building customer intelligence in isolation, and the fund had no way to see what one brand had already proved before another one paid to learn it. Founders got siloed views, marketers got dashboards that ignored their day-to-day, and the fund saw retrospective decks instead of a live picture. The constraint was not data. It was a shared brain that could still look and feel like each brand.",
+    approach:
+      "We deployed a single customer-intelligence engine and wrapped it in per-brand skins so every portfolio company opens their own tenant and sees their own product. Same core, different chrome, different voice. On top of that we built per-role framings so the same data lands differently for a marketer, a founder and a board member. Every tenant can also spin experiments. Cohort tests, price tests, creative tests, funnel tests. When one brand's experiment lands a result, the engine matches the audience shape against the other tenants and surfaces the winning experiment as a suggested play in the tenants where it is likely to work. The fund sees the full mesh; each brand sees only their own tenant plus the incoming suggestions. Rolled out to seven brands in eight weeks with embedded engineers alongside each brand's growth lead.",
+    system:
+      "One customer-intelligence engine, seven skinned tenants. Integrated with each brand's commerce, CDP, ad and support stack. Cross-brand suggestion layer runs continuously. Each brand owns their tenant post-handover.",
+    outcomes: [
+      { label: "Brands live", value: "7" },
+      { label: "Rollout window", value: "8 weeks" },
+      { label: "Suggested experiments / week", value: "Continuous" },
+      { label: "Cross-brand suggestion hit-rate", value: "Compounding" },
+    ],
+    stack: [
+      "Shopify · Recharge · Klaviyo",
+      "Segment · Rudderstack",
+      "Meta · TikTok · Google Ads",
+      "Zendesk · Gorgias",
+      "Foundation-model layer",
+      "Per-brand tenant fabric",
+    ],
+    tools: ["Customer intelligence", "Marketing operations"],
+    featured: true,
+    accent: "cyan",
+    tags: [
+      "portfolio-scale",
+      "multi-tenant",
+      "per-brand-skinning",
+      "per-role-framing",
+      "cross-brand-suggestions",
+      "eight-week-rollout",
+    ],
+  },
+
+  {
     slug: "amazon-generative-creative",
     client: "Amazon",
     sector: "Retail media · CPG",
@@ -157,6 +199,7 @@ const ALL_CASES: CaseStudy[] = [
       "three-markets",
       "launch-window",
     ],
+    enabled: false,
   },
 
   {
@@ -239,6 +282,7 @@ const ALL_CASES: CaseStudy[] = [
       "continuous-publish",
       "dtc-pet",
     ],
+    enabled: false,
   },
 
   {
@@ -279,6 +323,7 @@ const ALL_CASES: CaseStudy[] = [
       "roas-volatility",
       "continuous-trade",
     ],
+    enabled: false,
   },
 
   {
@@ -319,6 +364,7 @@ const ALL_CASES: CaseStudy[] = [
       "global-offices",
       "firm-wide-launch",
     ],
+    enabled: false,
   },
 ]
 

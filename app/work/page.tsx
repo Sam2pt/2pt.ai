@@ -2,36 +2,33 @@ import type { Metadata } from "next"
 import { ArrowUpRight } from "lucide-react"
 import { CASES } from "@/lib/cases"
 import { FloatingNav } from "@/components/ui/floating-nav"
-import { CaseStrip } from "@/components/work/case-strip"
-import { CaseSection } from "@/components/work/case-section"
+import { LumenCase } from "@/components/work/lumen-case"
 
 /**
- * /work — long-scroll magazine.
+ * /work — single deep case study.
  *
- * Every enabled case stacks as a self-contained chapter. The CaseStrip
- * sticky at the top doubles as a channel selector: clicking a pill
- * smooth-scrolls into that case's section and the URL hash updates via
- * IntersectionObserver as the user scrolls.
- *
- * Per-case URLs (/work/[slug]) still exist as canonical entries for
- * sharing and SEO — they render the same CaseSection in isolation.
+ * The portfolio currently shows one live piece: the NY venture firm's
+ * customer-intelligence rollout. Other engagements sit soft-deleted in
+ * lib/cases.ts (enabled: false) awaiting client permission. When more
+ * come back on, this page needs to route between them again.
  */
 
 const SITE_URL = "https://2pt.ai"
 const PAGE_URL = `${SITE_URL}/work`
+const LUMEN_SLUG = "vc-portfolio-customer-intelligence"
 
 export const metadata: Metadata = {
   title:
-    "Work — embedded AI engineering inside Yamaha, Mars, Harken, Clifford Chance",
+    "Work — one customer brain, seven faces · Two Point Technologies",
   description:
-    "Selected case studies from Two Point Technologies. Production AI deployed inside enterprise marketing teams across Yamaha GEO, Mars Dreamies, Harken retail media, and Clifford Chance video production.",
+    "Selected case study: a shared customer-intelligence engine deployed across a New York venture firm's D2C portfolio in eight weeks. Per-brand skins, per-role framings, cross-brand suggestions.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "article",
     url: PAGE_URL,
     title: "Work — Two Point Technologies",
     description:
-      "Production AI deployed inside enterprise marketing teams. Selected case studies.",
+      "Production AI deployed inside enterprise marketing teams.",
     images: ["/opengraph-image"],
   },
   twitter: {
@@ -42,6 +39,8 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
 }
+
+const lumen = CASES.find((c) => c.slug === LUMEN_SLUG)
 
 const collection = {
   "@context": "https://schema.org",
@@ -66,38 +65,47 @@ const breadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Two Point Technologies",
-      item: SITE_URL,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Work",
-      item: PAGE_URL,
-    },
+    { "@type": "ListItem", position: 1, name: "Two Point Technologies", item: SITE_URL },
+    { "@type": "ListItem", position: 2, name: "Work", item: PAGE_URL },
   ],
 }
 
+const articleSchema = lumen
+  ? {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "@id": `${PAGE_URL}#article`,
+      headline: `${lumen.client}. ${lumen.title}`,
+      description: lumen.summary,
+      articleBody: [lumen.problem, lumen.approach, lumen.system].join("\n\n"),
+      url: PAGE_URL,
+      mainEntityOfPage: PAGE_URL,
+      image: `${SITE_URL}/opengraph-image`,
+      author: { "@id": `${SITE_URL}#sam-gormley` },
+      publisher: { "@id": `${SITE_URL}#organization` },
+      inLanguage: "en-US",
+      datePublished: lumen.year,
+      articleSection: lumen.sector,
+      keywords: [...lumen.tools, ...lumen.tags].join(", "),
+    }
+  : null
+
 export default function WorkIndexPage() {
+  if (!lumen) return null
   return (
     <>
       <FloatingNav forceDark />
-      <CaseStrip />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@graph": [collection, breadcrumb],
+            "@graph": [collection, breadcrumb, articleSchema].filter(Boolean),
           }),
         }}
       />
-      <main className="relative min-h-screen bg-[var(--2pt-black)] text-[var(--2pt-white)] overflow-hidden">
-        {/* Ambient layers — set once at the page level so the magazine
-            feels like one continuous canvas as you scroll between cases. */}
+      <main className="relative min-h-screen bg-[var(--2pt-black)] text-[var(--2pt-white)] [overflow-x:clip]">
+        {/* Ambient layers */}
         <div
           aria-hidden
           className="fixed inset-0 pointer-events-none"
@@ -111,7 +119,7 @@ export default function WorkIndexPage() {
           className="fixed inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.4px)",
+              "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.4px)",
             backgroundSize: "30px 30px",
             opacity: 0.4,
             WebkitMaskImage:
@@ -120,50 +128,39 @@ export default function WorkIndexPage() {
               "radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 88%)",
           }}
         />
+        <div
+          aria-hidden
+          className="fixed inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 55% 45% at 85% 18%, rgba(34,211,238,0.10) 0%, transparent 60%)",
+          }}
+        />
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 pt-12 md:pt-16 pb-32 md:pb-44">
-          {/* Editorial intro — quick set-up, no big hero. The first case
-              starts almost immediately so the reel can breathe. */}
-          <header className="mb-2 md:mb-4">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--2pt-green)]" />
-              <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-white)]/55">
-                <span className="text-[var(--2pt-white)]/30 mr-2">IV.</span>
-                Selected work · {CASES.length.toString().padStart(2, "0")} engagements live
-              </span>
-            </div>
-            <p className="sr-only">
-              <span>
-                Long-scroll catalogue of Two Point Technologies case studies.
-              </span>
-            </p>
-          </header>
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-6 md:pt-10 pb-24 md:pb-32">
+          <LumenCase
+            c={{
+              slug: lumen.slug,
+              client: lumen.client,
+              sector: lumen.sector,
+              year: lumen.year,
+              title: lumen.title,
+            }}
+          />
 
-          {/* The magazine — every case stacks as a full chapter. The last
-              one drops its bottom divider since the CTA follows. */}
-          {CASES.map((c, i) => (
-            <CaseSection
-              key={c.slug}
-              case={c}
-              caseIndex={i + 1}
-              total={CASES.length}
-              withDivider={i < CASES.length - 1}
-            />
-          ))}
-
-          {/* Final CTA — closes the reel */}
+          {/* Final CTA */}
           <section
             aria-label="Talk to us"
-            className="mt-24 md:mt-32 border-t border-[var(--2pt-white)]/12 pt-16 md:pt-24"
+            className="mt-24 md:mt-32 border-t border-white/12 pt-16 md:pt-20"
           >
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
               <div className="md:col-span-7">
-                <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-white)]/45 mb-4">
-                  See yours here next?
+                <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/45 mb-4">
+                  Portfolio you want a brain across?
                 </p>
-                <h2 className="text-[34px] md:text-[52px] font-medium tracking-[-0.03em] leading-[1.02] text-[var(--2pt-white)]">
+                <h2 className="text-[30px] md:text-[46px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
                   <span className="block">Bring us the problem.</span>
-                  <span className="block text-[var(--2pt-white)]/55">
+                  <span className="block text-white/55">
                     We&rsquo;ll bring the system.
                   </span>
                 </h2>
@@ -171,7 +168,7 @@ export default function WorkIndexPage() {
               <div className="md:col-span-5 flex md:justify-end">
                 <a
                   href="mailto:info@twopointtechnologies.com"
-                  className="group inline-flex items-center gap-3 px-5 h-12 bg-[var(--2pt-white)] text-[var(--2pt-black)] hover:bg-[var(--2pt-green)] transition-colors duration-500"
+                  className="group inline-flex items-center gap-3 px-5 h-12 bg-white text-black hover:bg-[var(--2pt-green)] transition-colors duration-500"
                 >
                   <span className="text-[11px] font-mono tracking-[0.22em] uppercase">
                     Get in touch
