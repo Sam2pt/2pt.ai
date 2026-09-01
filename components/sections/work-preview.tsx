@@ -418,17 +418,17 @@ export function WorkPreview() {
                   fontSize: "clamp(28px, 4.4vw, 48px)",
                 }}
               >
-                One brain across
+                One brain.
                 <br />
-                <span className="text-white/50">the portfolio.</span>
+                <span className="text-white/50">Seven brands.</span>
               </h3>
 
               {/* Lead */}
               <p className="mt-6 md:mt-8 text-[15px] md:text-[16px] leading-[1.65] text-white/70 max-w-[54ch]">
-                A New York venture firm asked us to build a central customer
-                brain across their D2C portfolio. Every brand plugs in, opens
-                their own skin, and gets the winning plays from the rest of
-                the portfolio the moment they land. Rolled in eight weeks.
+                Shared customer insight across a New York venture firm&rsquo;s
+                D2C portfolio. Every brand joins with the winning plays from
+                the others already in hand, and chooses per experiment whether
+                its own learning travels back. Rolled in eight weeks.
               </p>
 
               {/* Proof strip */}

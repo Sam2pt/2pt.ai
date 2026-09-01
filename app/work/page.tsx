@@ -20,9 +20,9 @@ const LUMEN_SLUG = "vc-portfolio-customer-intelligence"
 
 export const metadata: Metadata = {
   title:
-    "Work · one brain across the portfolio · Two Point Technologies",
+    "Work · one brain, seven brands · Two Point Technologies",
   description:
-    "Selected case study: a shared customer-intelligence engine deployed across a New York venture firm's D2C portfolio in eight weeks. Per-brand skins, per-role framings, cross-brand suggestions.",
+    "Selected case study: one shared customer brain deployed across a New York venture firm's seven D2C brands in eight weeks. Every brand joins with the winning plays from the others already in hand.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "article",

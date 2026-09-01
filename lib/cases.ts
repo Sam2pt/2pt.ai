@@ -82,10 +82,10 @@ const ALL_CASES: CaseStudy[] = [
     client: "A New York venture firm",
     sector: "Venture · D2C portfolio · Customer intelligence",
     year: "2026",
-    title: "One brain across the portfolio.",
-    lead: "A central customer brain for a D2C portfolio. Deeper insight than any brand had on its own, with learning that can be shared or kept private.",
+    title: "One brain. Seven brands.",
+    lead: "Shared customer insight across a D2C portfolio. Every brand joins with the winning plays from the others already in hand.",
     summary:
-      "A New York venture firm's D2C portfolio got a single central customer brain. Every brand gets the deepest view of their own customer they have ever had, opens their own skin, and chooses per experiment whether the learning travels to the rest of the fund or stays in house.",
+      "A New York venture firm's seven D2C brands run on one shared customer brain. Every brand gets deeper insight than they could build alone, opens their own skin, and chooses per experiment whether the learning travels to the rest of the fund or stays in house.",
     problem:
       "A New York venture firm holds a growing D2C portfolio. Every brand runs its own commerce stack, its own audience shape, its own CX language, its own dashboards. Each portfolio company was building customer intelligence in isolation, and none of them was going deep enough. Founders got shallow dashboards their teams didn't use. Marketers had to stitch views together from four tools. The fund saw retrospective decks instead of a live picture. And when one brand did finally crack a retention loop, there was no way for a sister brand to see it, let alone try it. The constraint was two things at once: not enough depth on each brand's own customer, and no shared brain across the fund.",
     approach:

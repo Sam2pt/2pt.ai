@@ -129,9 +129,9 @@ function BeatHero({ c }: { c: CaseData }) {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
         }`}
       >
-        One brain across
+        One brain.
         <br />
-        <span className="text-white/50">the portfolio.</span>
+        <span className="text-white/50">Seven brands.</span>
       </h1>
 
       {/* Sub-line */}
@@ -141,11 +141,11 @@ function BeatHero({ c }: { c: CaseData }) {
         }`}
         style={{ transitionDelay: "260ms" }}
       >
-        A New York venture firm asked us to build a central customer brain
-        across their D2C portfolio. Every brand gets the deepest view of their
-        own customer they&rsquo;ve ever had, and chooses per experiment whether
-        to share the learning with the rest of the portfolio or keep it in
-        house. Rolled in eight weeks.
+        A New York venture firm asked us to build one shared customer brain
+        for their D2C portfolio. Every brand gets deeper insight than they
+        could build alone, and chooses per experiment whether the learning
+        travels to the rest of the fund or stays in house. Rolled in eight
+        weeks.
       </p>
 
       {/* Live counters row */}

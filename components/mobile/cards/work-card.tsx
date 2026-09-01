@@ -207,7 +207,7 @@ export function WorkCard({ index }: { index: number }) {
             className="inline-block relative"
             style={{ color: "rgba(255,255,255,0.55)" }}
           >
-            Seven faces.
+            Seven brands.
             <span
               aria-hidden
               className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left"
@@ -220,6 +220,15 @@ export function WorkCard({ index }: { index: number }) {
             />
           </span>
         </h2>
+        <p
+          className={`mt-3 text-[13px] leading-[1.55] text-white/65 transition-opacity duration-700 ${
+            visible ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "240ms" }}
+        >
+          Shared customer insight across a D2C portfolio. Every brand joins
+          with the winning plays from the others.
+        </p>
       </div>
 
       {/* Live tenant reveal — the card that morphs through 7 brands.
