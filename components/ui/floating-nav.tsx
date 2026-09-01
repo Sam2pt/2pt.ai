@@ -4,11 +4,12 @@ import { ArrowRight, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
+import { openContactModal } from "@/components/ui/contact-modal"
 
 const NAV_ITEMS = [
   { label: "Work", href: "/work" },
   { label: "Solve", href: "/#what-we-solve" },
-  { label: "Talk", href: "/#contact" },
+  { label: "Talk", action: "contact" as const },
 ]
 
 /**
@@ -118,18 +119,13 @@ export function FloatingNav({
             <div className="hidden md:flex nav-cluster items-center justify-center gap-1">
               {NAV_ITEMS.map((item) => {
                 const isActive =
-                  item.href === "/work"
+                  "href" in item && item.href === "/work"
                     ? pathname === "/work" || pathname?.startsWith("/work/")
                     : false
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="nav-item group relative px-3 py-2 text-[11px] font-mono tracking-[0.18em] uppercase transition-[color,opacity] duration-500"
-                    style={{
-                      color: isActive ? palette.text : palette.textMuted,
-                    }}
-                  >
+                const commonClass =
+                  "nav-item group relative px-3 py-2 text-[11px] font-mono tracking-[0.18em] uppercase transition-[color,opacity] duration-500"
+                const dotAndLine = (
+                  <>
                     <span className="relative z-10 inline-flex items-center gap-1.5">
                       <span
                         className={`w-1 h-1 rounded-full bg-[var(--2pt-green)] transition-opacity duration-500 ${
@@ -142,9 +138,36 @@ export function FloatingNav({
                     </span>
                     <span
                       className={`absolute bottom-1 left-3 right-3 h-px bg-[var(--2pt-green)] origin-left transition-transform duration-500 ${
-                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        isActive
+                          ? "scale-x-100"
+                          : "scale-x-0 group-hover:scale-x-100"
                       }`}
                     />
+                  </>
+                )
+                if ("action" in item) {
+                  return (
+                    <button
+                      key={item.label}
+                      type="button"
+                      onClick={() => openContactModal()}
+                      className={commonClass}
+                      style={{ color: palette.textMuted }}
+                    >
+                      {dotAndLine}
+                    </button>
+                  )
+                }
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={commonClass}
+                    style={{
+                      color: isActive ? palette.text : palette.textMuted,
+                    }}
+                  >
+                    {dotAndLine}
                   </Link>
                 )
               })}
@@ -152,8 +175,9 @@ export function FloatingNav({
 
             {/* RIGHT — CTA (desktop) + burger (mobile) */}
             <div className="flex items-center justify-end gap-2">
-              <Link
-                href="/#contact"
+              <button
+                type="button"
+                onClick={() => openContactModal()}
                 className="hidden md:inline-flex group items-center gap-2 px-4 h-8 hover:bg-[var(--2pt-green)] hover:text-[var(--2pt-black)]! transition-colors duration-500 whitespace-nowrap"
                 style={{
                   backgroundColor: palette.ctaBg,
@@ -164,7 +188,7 @@ export function FloatingNav({
                   Deploy with us
                 </span>
                 <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-500" />
-              </Link>
+              </button>
 
               {/* Mobile burger */}
               <button
@@ -201,26 +225,50 @@ export function FloatingNav({
             }}
           >
             <div className="px-5 py-5 flex flex-col gap-1">
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="flex items-center justify-between py-3 border-b transition-colors duration-300"
-                  style={{
-                    color: palette.text,
-                    borderColor: palette.border,
-                  }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <span className="text-[13px] font-mono tracking-[0.18em] uppercase">
-                    {item.label}
-                  </span>
-                  <ArrowRight className="w-4 h-4 opacity-40" />
-                </Link>
-              ))}
-              <Link
-                href="/#contact"
-                onClick={() => setMenuOpen(false)}
+              {NAV_ITEMS.map((item) => {
+                const commonClass =
+                  "flex items-center justify-between py-3 border-b transition-colors duration-300 text-left"
+                const style = { color: palette.text, borderColor: palette.border }
+                if ("action" in item) {
+                  return (
+                    <button
+                      key={item.label}
+                      type="button"
+                      className={commonClass}
+                      style={style}
+                      onClick={() => {
+                        setMenuOpen(false)
+                        openContactModal()
+                      }}
+                    >
+                      <span className="text-[13px] font-mono tracking-[0.18em] uppercase">
+                        {item.label}
+                      </span>
+                      <ArrowRight className="w-4 h-4 opacity-40" />
+                    </button>
+                  )
+                }
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={commonClass}
+                    style={style}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <span className="text-[13px] font-mono tracking-[0.18em] uppercase">
+                      {item.label}
+                    </span>
+                    <ArrowRight className="w-4 h-4 opacity-40" />
+                  </Link>
+                )
+              })}
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false)
+                  openContactModal()
+                }}
                 className="mt-4 group inline-flex items-center justify-between gap-2 px-4 h-11 transition-colors duration-500"
                 style={{
                   backgroundColor: palette.ctaBg,
@@ -231,7 +279,7 @@ export function FloatingNav({
                   Deploy with us
                 </span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-500" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>

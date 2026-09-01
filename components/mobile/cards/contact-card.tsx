@@ -2,9 +2,11 @@
 
 /**
  * ContactCard — conversion CTA on a dark canvas with a giant tappable
- * email button. Three live counters across the bottom that animate up
- * once the card is in view.
+ * button that opens the shared ContactModal. Three live counters across
+ * the bottom that animate up once the card is in view.
  */
+
+import { openContactModal } from "@/components/ui/contact-modal"
 
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -94,10 +96,11 @@ export function ContactCard({ index }: { index: number }) {
         </p>
       </div>
 
-      {/* Tap-to-email CTA — big, satisfying, native-app-feeling */}
-      <div className="relative z-10 px-6 mt-10">
-        <a
-          href="mailto:info@twopointtechnologies.com"
+      {/* Tap CTA — opens the contact modal (real form) */}
+      <div className="relative z-10 px-6 mt-10 space-y-3">
+        <button
+          type="button"
+          onClick={() => openContactModal()}
           className="group flex items-center justify-between gap-4 w-full pl-6 pr-5 py-[22px] bg-[var(--2pt-green)] text-[var(--2pt-black)] rounded-[14px] active:scale-[0.98] transition-transform duration-150"
           style={{
             transition: "opacity 700ms ease-out 600ms, transform 700ms cubic-bezier(0.16,1,0.3,1) 600ms",
@@ -110,10 +113,16 @@ export function ContactCard({ index }: { index: number }) {
               Get in touch
             </span>
             <span className="text-[15px] font-bold tracking-[-0.015em] leading-tight truncate max-w-full">
-              info@twopointtechnologies.com
+              Send us a message
             </span>
           </span>
           <ArrowRight className="w-5 h-5 shrink-0" />
+        </button>
+        <a
+          href="mailto:info@twopointtechnologies.com"
+          className="block text-center text-[11px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-white)]/45 hover:text-[var(--2pt-white)]/85 transition-colors duration-300"
+        >
+          or email info@twopointtechnologies.com
         </a>
       </div>
 

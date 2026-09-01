@@ -412,22 +412,22 @@ export function WorkPreview() {
 
               {/* Editorial headline — fluid across breakpoints */}
               <h3
-                className="font-medium tracking-[-0.038em] leading-[0.95] text-white max-w-[15ch]"
+                className="font-medium tracking-[-0.038em] leading-[0.95] text-white max-w-[16ch]"
                 style={{
                   fontSize: "clamp(34px, 5.6vw, 64px)",
                 }}
               >
-                One customer brain.
+                One brain across
                 <br />
-                <span className="text-white/50">Seven faces.</span>
+                <span className="text-white/50">the portfolio.</span>
               </h3>
 
               {/* Lead */}
-              <p className="mt-6 md:mt-8 text-[15px] md:text-[16px] leading-[1.65] text-white/70 max-w-[52ch]">
-                A New York venture firm asked us to build shared customer
-                intelligence across their D2C portfolio. Same engine, seven
-                tenants, each in its own skin. Rolled in eight weeks.
-                What one brand learns, the others get offered as a play.
+              <p className="mt-6 md:mt-8 text-[15px] md:text-[16px] leading-[1.65] text-white/70 max-w-[54ch]">
+                A New York venture firm asked us to build a central customer
+                brain across their D2C portfolio. Every brand plugs in, opens
+                their own skin, and gets the winning plays from the rest of
+                the portfolio the moment they land. Rolled in eight weeks.
               </p>
 
               {/* Proof strip */}

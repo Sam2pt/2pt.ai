@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { openContactModal } from "@/components/ui/contact-modal"
 
 export function ContactSection() {
   const ref = useRef<HTMLElement>(null)
@@ -85,19 +86,28 @@ export function ContactSection() {
 
           {/* CTA */}
           <div
-            className={`transition-all duration-[1200ms] ease-out ${
+            className={`flex flex-wrap items-center gap-5 md:gap-8 transition-all duration-[1200ms] ease-out ${
               isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             style={{ transitionDelay: "750ms" }}
           >
+            <button
+              type="button"
+              onClick={() => openContactModal()}
+              className="hover-plate group inline-flex items-center gap-3 px-5 h-12 bg-[var(--2pt-black)] text-[var(--2pt-white)] hover:bg-[var(--2pt-green)] hover:text-[var(--2pt-black)] transition-colors duration-500"
+            >
+              <span className="text-[11px] font-mono tracking-[0.22em] uppercase">
+                Send us a message
+              </span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-500" />
+            </button>
             <a
               href="mailto:info@twopointtechnologies.com"
-              className="group inline-flex items-center gap-3 text-[11px] sm:text-sm font-mono tracking-[0.12em] sm:tracking-[0.18em] uppercase text-[var(--2pt-black)] hover:text-[var(--2pt-green)] transition-colors duration-500 break-all"
+              className="group inline-flex items-center gap-2 text-[11px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-black)]/60 hover:text-[var(--2pt-black)] transition-colors duration-500 break-all"
             >
-              <span className="border-b border-[var(--2pt-black)] group-hover:border-[var(--2pt-green)] pb-1 transition-colors duration-500">
-                info@twopointtechnologies.com
+              <span className="border-b border-[var(--2pt-black)]/25 group-hover:border-[var(--2pt-black)] pb-0.5 transition-colors duration-500">
+                or email info@twopointtechnologies.com
               </span>
-              <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform duration-500" />
             </a>
           </div>
         </div>

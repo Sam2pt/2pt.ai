@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react"
 import { FAQ, FAQ_CATEGORIES, type FAQItem } from "@/lib/faq"
 import { TechGrid, GreenWash } from "@/components/ui/tech-grid"
 import { FloatingNav } from "@/components/ui/floating-nav"
+import { ContactCTA } from "@/components/ui/contact-cta"
 
 /**
  * /faq — long-form, server-rendered Q&A surface.
@@ -236,15 +237,7 @@ export default function FAQPage() {
                 </h2>
               </div>
               <div className="md:col-span-5 flex md:justify-end">
-                <a
-                  href="mailto:info@twopointtechnologies.com"
-                  className="group inline-flex items-center gap-3 px-5 h-12 bg-[var(--2pt-black)] text-[var(--2pt-white)] hover:bg-[var(--2pt-green)] hover:text-[var(--2pt-black)] transition-colors duration-500"
-                >
-                  <span className="text-[11px] font-mono tracking-[0.22em] uppercase">
-                    Book a call
-                  </span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-500" />
-                </a>
+                <ContactCTA variant="dark" arrow="right">Book a call</ContactCTA>
               </div>
             </div>
 

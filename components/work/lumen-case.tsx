@@ -129,22 +129,23 @@ function BeatHero({ c }: { c: CaseData }) {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
         }`}
       >
-        One customer brain.
+        One brain across
         <br />
-        <span className="text-white/50">Seven faces.</span>
+        <span className="text-white/50">the portfolio.</span>
       </h1>
 
       {/* Sub-line */}
       <p
-        className={`mt-8 md:mt-12 max-w-[720px] text-[15px] md:text-[18px] leading-[1.55] text-white/70 transition-opacity duration-1000 ${
+        className={`mt-8 md:mt-12 max-w-[780px] text-[15px] md:text-[18px] leading-[1.55] text-white/70 transition-opacity duration-1000 ${
           inView ? "opacity-100" : "opacity-0"
         }`}
         style={{ transitionDelay: "260ms" }}
       >
-        A New York venture firm asked us to build shared customer intelligence
-        across their D2C portfolio. Same engine, seven tenants, each in its own
-        skin. Rolled in eight weeks. What one brand learns, the others get
-        offered as a play.
+        A New York venture firm asked us to build a central customer brain
+        across their D2C portfolio. Every brand gets the deepest view of their
+        own customer they&rsquo;ve ever had, and chooses per experiment whether
+        to share the learning with the rest of the portfolio or keep it in
+        house. Rolled in eight weeks.
       </p>
 
       {/* Live counters row */}
@@ -193,9 +194,11 @@ function BeatSetup() {
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
         >
-          Seven brands.
+          A portfolio of brands.
           <br />
-          <span className="text-white/50">Seven stacks. Zero shared learning.</span>
+          <span className="text-white/50">
+            No shared brain. No shared learning.
+          </span>
         </h2>
         <div
           className={`md:col-span-5 space-y-4 text-[14px] md:text-[15px] leading-[1.65] text-white/65 transition-opacity duration-1000 ${
@@ -206,8 +209,8 @@ function BeatSetup() {
           <p>
             Every brand in the portfolio was building its own view of the
             customer. Different tools, different definitions, different
-            dashboards. When one brand cracked a retention loop the others paid
-            to learn it again from scratch.
+            dashboards. When one brand cracked a retention loop, the others
+            paid to learn it again from scratch.
           </p>
           <p>
             Founders got siloed reports. Marketers got dashboards that ignored
@@ -215,8 +218,8 @@ function BeatSetup() {
             live picture.
           </p>
           <p className="text-white/45 text-[13px] italic">
-            The constraint was not data. It was a shared brain that could still
-            feel native inside each brand.
+            The constraint was not data. It was a central brain the whole
+            portfolio could share, that still felt native inside each brand.
           </p>
         </div>
       </div>
@@ -234,13 +237,13 @@ function BeatCore() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
         <div className="md:col-span-5 order-2 md:order-1">
           <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
-            One engine.
+            One brain.
             <br />
-            <span className="text-white/50">Seven tenants.</span>
+            <span className="text-white/50">Every brand plugs in.</span>
           </h2>
           <p className="mt-5 text-[14px] md:text-[15px] leading-[1.65] text-white/65 max-w-[440px]">
-            The intelligence sits in the middle. Every brand plugs in their own
-            stack and gets their own tenant. Same core, different chrome.
+            The intelligence sits in the middle. Every brand plugs in their
+            own stack and gets their own tenant on the same shared brain.
           </p>
           <ul className="mt-8 space-y-3 text-[12px] font-mono tracking-[0.06em] text-white/55">
             <li className="flex items-start gap-3">
@@ -460,18 +463,18 @@ function BeatSkinnable() {
 
   return (
     <section ref={ref} className="relative py-20 md:py-28 border-t border-white/8">
-      <BeatLabel n="04" label="Same engine · four skins" />
+      <BeatLabel n="04" label="Same brain · four faces" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
         <div className="md:col-span-4">
           <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
-            One dashboard.
+            One brain.
             <br />
-            <span className="text-white/50">Any brand you like.</span>
+            <span className="text-white/50">Native inside every brand.</span>
           </h2>
           <p className="mt-5 text-[14px] md:text-[15px] leading-[1.65] text-white/65 max-w-[420px]">
             Flick through the tenants. Chrome, type, tone and colour switch;
-            the underlying data model stays the same. Every brand opens what
-            feels like a product built for them.
+            the underlying brain stays the same. Every brand opens what feels
+            like a product built for them.
           </p>
           <p className="mt-4 text-[11px] font-mono tracking-[0.16em] uppercase text-white/35">
             {autoAdvance ? "auto-cycling · tap to lock" : "locked · tap another to change"}
@@ -930,22 +933,24 @@ function BeatSymbiotic() {
 
   return (
     <section ref={ref} className="relative py-20 md:py-28 border-t border-white/8">
-      <BeatLabel n="06" label="Symbiotic learning · live" />
+      <BeatLabel n="06" label="Portfolio learning · opt in per brand" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
         <div className="md:col-span-4">
           <h2 className="text-[28px] md:text-[40px] font-medium tracking-[-0.03em] leading-[1.05] text-white">
-            What one brand learns,
+            Share the learning
             <br />
-            <span className="text-white/50">the others get offered.</span>
+            <span className="text-white/50">or keep it in house.</span>
           </h2>
           <p className="mt-5 text-[14px] md:text-[15px] leading-[1.65] text-white/65 max-w-[420px]">
-            When a tenant runs an experiment and it lands, the engine matches
-            the audience shape against every other tenant and surfaces the
-            winning play as a suggestion where it&rsquo;s likely to work.
+            Every brand chooses per experiment whether the learning stays
+            private or joins the portfolio pool. When a shared experiment
+            lands, the central brain matches the audience shape against every
+            other brand and surfaces the winning play as a suggestion where
+            it&rsquo;s likely to work.
           </p>
           <p className="mt-3 text-[13px] leading-[1.55] text-white/50 max-w-[420px]">
-            Nobody sees another brand&rsquo;s data. Everyone sees the plays that
-            fit theirs.
+            The data never travels. Only the plays do — and only the ones a
+            brand chose to share.
           </p>
         </div>
 
@@ -1186,9 +1191,11 @@ function BeatOutcomes() {
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >
-        Shared brain. Native feel.
+        Central brain. Native feel.
         <br />
-        <span className="text-white/50">Learning that compounds across the fund.</span>
+        <span className="text-white/50">
+          Learning that compounds across the whole portfolio.
+        </span>
       </h2>
 
       <div className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-14">
@@ -1216,14 +1223,28 @@ function BeatOutcomes() {
         ))}
       </div>
 
-      <div className="mt-16 md:mt-20 border-l-2 pl-5 md:pl-8" style={{ borderColor: ACCENT }}>
-        <p className="text-[15px] md:text-[18px] leading-[1.6] text-white/75 max-w-[720px]">
-          The fund now sees one live picture of the portfolio&rsquo;s customer
-          intelligence. Each brand still opens what feels like their own
-          product. And when one of them wins, the others get offered the
-          playbook before they pay to learn it.
-        </p>
-      </div>
+      {/* CMO pull quote — voice of the client, anonymised */}
+      <figure
+        className="mt-16 md:mt-20 border-l-2 pl-5 md:pl-8"
+        style={{ borderColor: ACCENT }}
+      >
+        <blockquote
+          className="font-medium tracking-[-0.02em] leading-[1.2] text-white max-w-[820px]"
+          style={{ fontSize: "clamp(22px, 2.6vw, 32px)" }}
+        >
+          &ldquo;We&rsquo;ve never had this level of detail about our
+          customers. And we get to choose what travels to the rest of the
+          fund — the plays go, the data stays with us. That changed how we
+          run growth.&rdquo;
+        </blockquote>
+        <figcaption className="mt-5 flex items-center gap-3 text-[10px] font-mono tracking-[0.24em] uppercase text-white/50">
+          <span
+            className="w-6 h-px"
+            style={{ background: ACCENT }}
+          />
+          Chief Marketing Officer · portfolio brand
+        </figcaption>
+      </figure>
     </section>
   )
 }

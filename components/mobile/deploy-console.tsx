@@ -24,13 +24,12 @@ import { useEffect, useRef, useState } from "react"
 import { HeroCard } from "@/components/mobile/cards/hero-card"
 import { ClientsCard } from "@/components/mobile/cards/clients-card"
 import { ProblemCard, MOBILE_PROBLEMS } from "@/components/mobile/cards/problem-card"
-import { ProductsCard } from "@/components/mobile/cards/products-card"
 import { DeployStagesCard } from "@/components/mobile/cards/deploy-stages-card"
 import { ContactCard } from "@/components/mobile/cards/contact-card"
 import { FooterCard } from "@/components/mobile/cards/footer-card"
 import { PageIndicator } from "@/components/mobile/page-indicator"
 
-const CARD_COUNT = 1 + 1 + MOBILE_PROBLEMS.length + 1 + 1 + 1 + 1 // = 11
+const CARD_COUNT = 1 + 1 + MOBILE_PROBLEMS.length + 1 + 1 + 1 // hero + clients + problems + deploy + contact + footer
 
 export function DeployConsole() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -77,10 +76,9 @@ export function DeployConsole() {
         {MOBILE_PROBLEMS.map((p, i) => (
           <ProblemCard key={p.label} index={2 + i} data={p} />
         ))}
-        <ProductsCard index={2 + MOBILE_PROBLEMS.length} />
-        <DeployStagesCard index={3 + MOBILE_PROBLEMS.length} />
-        <ContactCard index={4 + MOBILE_PROBLEMS.length} />
-        <FooterCard index={5 + MOBILE_PROBLEMS.length} />
+        <DeployStagesCard index={2 + MOBILE_PROBLEMS.length} />
+        <ContactCard index={3 + MOBILE_PROBLEMS.length} />
+        <FooterCard index={4 + MOBILE_PROBLEMS.length} />
       </div>
 
       {/* Page indicator — right edge of viewport, fixed position */}

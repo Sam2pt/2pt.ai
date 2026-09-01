@@ -169,9 +169,9 @@ export const GLOSSARY: GlossaryTerm[] = [
     id: "lumen",
     term: "Lumen",
     shortDef:
-      "2PT's productised customer intelligence platform. Multi-tenant, per-brand skinned, with cross-brand learning across a portfolio.",
+      "2PT's central customer brain for a portfolio. Deep per-brand insight, with learning that can be shared with the fund or kept private.",
     longDef:
-      "Lumen is the productised customer intelligence platform built by Two Point Technologies. One engine, many tenants. Each brand opens their own skin — chrome, typography, voice, colour — over the same core so it feels native inside their team, while the same underlying data model is framed differently for marketers, founders and boards. When one tenant runs an experiment and it lands, Lumen matches the audience shape against every other tenant in the portfolio and surfaces the winning play as a suggestion where it is likely to work. Sits on top of the client's CDP, commerce, retail-media and CRM stack with no rip-and-replace. Answers the question every CMO, CGO and GP has: where is growth coming from, and what has already been proved elsewhere that we can copy.",
+      "Lumen is the productised customer-intelligence platform built by Two Point Technologies. One central brain, many tenants. Every brand in a portfolio plugs into the same brain and gets the deepest view of their own customer they have ever had — cohort behaviour, LTV shape, funnel drop-off, creative response, retention triggers — inside a skin that feels native to their team. The underlying data model is framed differently for marketers, founders and boards, so the same view lands right for each role. On top of that, every brand chooses per experiment whether the learning stays private or joins the portfolio pool. When a shared experiment lands, Lumen matches the audience shape against every other tenant and surfaces the winning play as a suggestion where it is likely to work. Data stays with the brand; only the plays the brand chose to share travel. Sits on top of each brand's commerce, CDP, retail-media and CRM stack with no rip-and-replace.",
     alsoKnownAs: [
       "Customer intelligence platform",
       "Multi-tenant customer intelligence",
@@ -189,9 +189,9 @@ export const GLOSSARY: GlossaryTerm[] = [
     id: "cross-brand-learning",
     term: "Cross-brand learning",
     shortDef:
-      "A shared learning fabric across a portfolio of brands. Winning experiments in one brand surface as suggested plays in the others where the audience shape matches.",
+      "Opt-in shared learning across a portfolio of brands. Winning experiments a brand chose to share surface as suggested plays in the others where the audience shape matches.",
     longDef:
-      "Cross-brand learning is a shared learning fabric that sits above a portfolio of brands or business units. When one brand runs an experiment and it lands — a cohort test, a price test, a creative test, a funnel change — the system matches the audience and behaviour shape against every other tenant and surfaces the winning play as a suggestion in the tenants where it is likely to work. Each brand keeps its own data private; only the plays travel. The pattern is especially valuable inside venture portfolios, holdcos and multi-brand groups where one operator is paying to learn something a sister brand already proved. 2PT builds cross-brand learning into Lumen deployments.",
+      "Cross-brand learning is an opt-in shared learning fabric that sits above a portfolio of brands or business units. When a brand runs an experiment and it lands — a cohort test, a price test, a creative test, a funnel change — they choose whether that learning stays private or joins the portfolio pool. When they share, the system matches the audience and behaviour shape against every other tenant and surfaces the winning play as a suggestion in the tenants where it is likely to work. Data never travels; only the plays a brand chose to share travel. The pattern is especially valuable inside venture portfolios, holdcos and multi-brand groups where one operator is paying to learn something a sister brand already proved. 2PT builds cross-brand learning into Lumen deployments.",
     alsoKnownAs: [
       "Portfolio learning",
       "Cross-tenant learning",

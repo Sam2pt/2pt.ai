@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Grain } from "@/components/ui/grain"
+import { ContactModal } from "@/components/ui/contact-modal"
 import { FAQ } from "@/lib/faq"
 import { GLOSSARY } from "@/lib/glossary"
 import "./globals.css"
@@ -708,6 +709,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-[var(--2pt-offwhite)] text-[var(--2pt-black)]">
         <Grain />
         {children}
+        <ContactModal />
         <Analytics />
       </body>
     </html>

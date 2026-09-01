@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
 import { CASES } from "@/lib/cases"
 import { FloatingNav } from "@/components/ui/floating-nav"
+import { ContactCTA } from "@/components/ui/contact-cta"
 import { LumenCase } from "@/components/work/lumen-case"
 
 /**
@@ -184,15 +184,7 @@ export default function WorkIndexPage() {
                 </h2>
               </div>
               <div className="md:col-span-5 flex md:justify-end">
-                <a
-                  href="mailto:info@twopointtechnologies.com"
-                  className="hover-plate group inline-flex items-center gap-3 px-5 h-12 bg-white text-black hover:bg-[var(--2pt-green)] transition-colors duration-500"
-                >
-                  <span className="text-[11px] font-mono tracking-[0.22em] uppercase">
-                    Get in touch
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500" />
-                </a>
+                <ContactCTA variant="light">Get in touch</ContactCTA>
               </div>
             </div>
           </section>
