@@ -64,14 +64,14 @@ export default async function Image() {
           style={{
             display: "flex",
             flexDirection: "column",
-            fontWeight: 700,
-            fontSize: 116,
-            lineHeight: 0.96,
-            letterSpacing: "-0.045em",
+            fontWeight: 600,
+            fontSize: 92,
+            lineHeight: 1.0,
+            letterSpacing: "-0.04em",
           }}
         >
           <span style={{ color: "#FAFAFA" }}>We deploy production AI</span>
-          <span style={{ color: "#4ADE80", marginTop: 6 }}>
+          <span style={{ color: "#4ADE80", marginTop: 4 }}>
             inside marketing teams.
           </span>
         </div>
