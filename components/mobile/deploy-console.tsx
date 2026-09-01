@@ -25,12 +25,13 @@ import { HeroCard } from "@/components/mobile/cards/hero-card"
 import { ClientsCard } from "@/components/mobile/cards/clients-card"
 import { ProblemCard, MOBILE_PROBLEMS } from "@/components/mobile/cards/problem-card"
 import { WorkCard } from "@/components/mobile/cards/work-card"
+import { YamahaWorkCard } from "@/components/mobile/cards/yamaha-work-card"
 import { DeployStagesCard } from "@/components/mobile/cards/deploy-stages-card"
 import { ContactCard } from "@/components/mobile/cards/contact-card"
 import { FooterCard } from "@/components/mobile/cards/footer-card"
 import { PageIndicator } from "@/components/mobile/page-indicator"
 
-const CARD_COUNT = 1 + 1 + MOBILE_PROBLEMS.length + 1 + 1 + 1 + 1 // hero + clients + problems + work + deploy + contact + footer
+const CARD_COUNT = 1 + 1 + MOBILE_PROBLEMS.length + 2 + 1 + 1 + 1 // hero + clients + problems + (lumen+yamaha work) + deploy + contact + footer
 
 export function DeployConsole() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -78,9 +79,10 @@ export function DeployConsole() {
           <ProblemCard key={p.label} index={2 + i} data={p} />
         ))}
         <WorkCard index={2 + MOBILE_PROBLEMS.length} />
-        <DeployStagesCard index={3 + MOBILE_PROBLEMS.length} />
-        <ContactCard index={4 + MOBILE_PROBLEMS.length} />
-        <FooterCard index={5 + MOBILE_PROBLEMS.length} />
+        <YamahaWorkCard index={3 + MOBILE_PROBLEMS.length} />
+        <DeployStagesCard index={4 + MOBILE_PROBLEMS.length} />
+        <ContactCard index={5 + MOBILE_PROBLEMS.length} />
+        <FooterCard index={6 + MOBILE_PROBLEMS.length} />
       </div>
 
       {/* Page indicator — right edge of viewport, fixed position */}

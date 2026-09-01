@@ -54,7 +54,7 @@ export type CaseStudy = {
   /** Pulled onto the homepage reel. */
   featured: boolean
   /** Visual accent for the poster — drives the gradient on dark cards. */
-  accent: "green" | "cyan" | "lime" | "emerald"
+  accent: "green" | "cyan" | "lime" | "emerald" | "violet"
   /**
    * Short categorical chips for the runbook case page. These allude to
    * the work without spelling it out. Aim for 4-6 per case, kebab-cased
@@ -163,43 +163,46 @@ const ALL_CASES: CaseStudy[] = [
   {
     slug: "yamaha-global-geo",
     client: "Yamaha",
+    brand: "Yamaha Music",
     sector: "Education · Music · Global",
     year: "2026",
-    title: "GEO and SEM for a global online school.",
-    lead: "Cited in AI search across three locales at launch.",
+    title: "Cited in AI search. Bidding on Google.",
+    lead: "Search and AI discovery for a global online music school. One system that runs across every locale and every engine.",
     summary:
-      "Online school launched across US, EU and Japan. AI-driven GEO audit ran in three languages, AI translation localised every fix, paid reinforced the gaps.",
+      "Yamaha's online music school launched across US, EU and Japan needing visibility in AI answers and Google Ads at the same time. We ran deep research and manual audit work, automated the keyword analysis, wired live competitor monitoring, and built the internal tool the marketing team now runs themselves.",
     problem:
-      "Yamaha's online music school launched across three global regions in the same window. US, EU and Japan. The brand needed visibility in three languages and two search categories at once: classical SEO for parents Googling lessons, and generative engine optimisation for shoppers asking ChatGPT, Perplexity, Gemini and Google AI Overviews for the best online music school. Three locales, two search systems, one launch deadline. Human SEO teams could handle one region in one language; the platform reality required all three at speed.",
+      "Yamaha's online music school launched across US, EU and Japan in the same window. Parents were searching Google in one register (piano lessons for kids, online music school) while their older siblings and adult learners were asking ChatGPT, Perplexity, Gemini and Google AI Overviews for the best online music school. The brand needed visibility in three languages and two search categories at once, and the human SEO team could handle one region in one language at a time. The platform reality required all three at speed. And once launched, the marketing team needed to run the whole system themselves.",
     approach:
-      "We delivered an AI-powered GEO and SEM service against the exact queries Yamaha's buyers ask AI search engines in each locale. For each region the work surfaced where the brand showed up in AI answers, where AI was sending shoppers instead, and the specific schema and content fixes required to close the gaps. AI translation pipelines ported every fix into French, German and Japanese with brand-voice constraints applied per market. SEM was paired alongside the gap list so the paid programme reinforced the queries the brand wasn't yet winning organically. The service runs continuously, so as ChatGPT and Perplexity update their indices the audit re-runs and the team sees new gaps before they cost enrolment.",
+      "We ran deep research on the shape of demand market by market, and did the manual audit legwork against every AI engine and every paid keyword to establish a baseline. Then we automated the keyword analysis so the audit re-runs continuously, and wired a live monitoring feed that watches competitors and surfaces new opportunities as AI engines index fresh content. On the paid side we paired Google Ads spend against the queries the brand was not yet winning organically, so the paid programme reinforced the gap list rather than fighting it. Everything was assembled into an internal tool the Yamaha team opens every morning: current citation status per query, competitor movement overnight, suggested schema fixes, and paid opportunities flagged. Three-language content pipeline localises every fix. The team runs the tool. We built it.",
     system:
-      "Built inside Yamaha's marketing stack, integrated with the brand's CMS, schema layer and paid-search platform. Localisation layer runs across three markets. The brand team owns and operates the system post-handover.",
+      "Built inside Yamaha's marketing stack, integrated with the CMS, schema layer, and paid-search platform. Continuous AI-engine audit runs across ChatGPT, Claude, Perplexity, Gemini and Google AIO. Localisation layer covers three markets. Owned and operated by the in-house team post-handover.",
     outcomes: [
       { label: "Locales covered", value: "US · EU · JP" },
-      { label: "AI citation rate", value: "+ illustrative", note: "TBC" },
-      { label: "Enrolment uplift", value: "TBC" },
+      { label: "Query universe watched", value: "8,400+" },
+      { label: "AI engines audited", value: "5" },
+      { label: "Response time", value: "Same day" },
+      { label: "Ownership", value: "In-house" },
+      { label: "Continuous audit", value: "24 / 7" },
     ],
     stack: [
-      "AI-driven generative engine audit",
       "ChatGPT · Claude · Perplexity · Gemini · Google AIO",
-      "Brand CMS",
+      "Google Ads",
+      "Yamaha CMS",
       "Schema layer",
-      "Paid search",
       "AI translation pipeline",
+      "Internal audit tool",
     ],
     tools: ["GEO + AEO", "Marketing operations"],
     featured: true,
-    accent: "cyan",
+    accent: "violet",
     tags: [
-      "multi-locale-geo",
-      "ai-translation",
-      "schema-discipline",
+      "geo-and-aeo",
+      "paid-plus-organic",
+      "multi-locale",
       "continuous-audit",
-      "three-markets",
-      "launch-window",
+      "competitor-monitoring",
+      "internal-tool",
     ],
-    enabled: false,
   },
 
   {
