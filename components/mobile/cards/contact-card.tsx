@@ -74,7 +74,7 @@ export function ContactCard({ index }: { index: number }) {
       {/* Headline */}
       <div className="relative z-10 px-6 mt-10">
         <h2
-          className="text-[36px] font-bold tracking-[-0.035em] leading-[1.0] mb-5"
+          className="text-[30px] font-semibold tracking-[-0.025em] leading-[1.08] mb-5"
           style={{
             transition: "opacity 800ms ease-out 180ms, transform 800ms cubic-bezier(0.16,1,0.3,1) 180ms",
           }}

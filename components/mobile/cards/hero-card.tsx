@@ -118,7 +118,7 @@ export function HeroCard({ index }: { index: number }) {
         <div className="text-[10px] font-mono tracking-[0.28em] uppercase text-[var(--2pt-white)]/45 mb-7">
           Runtime report
         </div>
-        <h1 className="text-[44px] font-bold tracking-[-0.05em] leading-[0.94] text-[#fff]!">
+        <h1 className="text-[36px] font-semibold tracking-[-0.04em] leading-[1.0] text-[#fff]!">
           {["We", "deploy", "production", "AI"].map((w, i) => (
             <span
               key={i}

@@ -124,7 +124,7 @@ export function ProblemCard({
       <div className="relative z-10 pt-16 px-6 flex items-baseline justify-between">
         <div className="flex items-baseline gap-3">
           <span
-            className="text-[64px] font-bold tabular-nums tracking-[-0.05em] leading-none text-[var(--2pt-green)]"
+            className="text-[52px] font-semibold tabular-nums tracking-[-0.04em] leading-none text-[var(--2pt-green)]"
             style={{
               transition:
                 "opacity 700ms cubic-bezier(0.16,1,0.3,1) 120ms, transform 700ms cubic-bezier(0.16,1,0.3,1) 120ms",
@@ -144,7 +144,7 @@ export function ProblemCard({
       {/* Title + question */}
       <div className="relative z-10 px-6 mt-4">
         <h2
-          className="text-[36px] font-bold tracking-[-0.035em] leading-[0.96] text-[var(--2pt-black)] mb-4"
+          className="text-[30px] font-semibold tracking-[-0.025em] leading-[1.05] text-[var(--2pt-black)] mb-4"
           style={{
             transition:
               "opacity 800ms cubic-bezier(0.16,1,0.3,1) 220ms, transform 800ms cubic-bezier(0.16,1,0.3,1) 220ms",
@@ -357,7 +357,7 @@ function BiddingViz({ visible }: { visible: boolean }) {
           Winning bid
         </div>
         <div
-          className="text-[72px] font-bold tabular-nums tracking-[-0.05em] leading-none text-[var(--2pt-black)] transition-colors duration-200"
+          className="text-[56px] font-semibold tabular-nums tracking-[-0.035em] leading-none text-[var(--2pt-black)] transition-colors duration-200"
           style={{
             color: winning ? "var(--2pt-green)" : undefined,
           }}
@@ -466,7 +466,7 @@ function CreativeViz({ visible }: { visible: boolean }) {
             </div>
             <div className="flex items-baseline gap-1.5">
               <span
-                className="text-[36px] font-bold tabular-nums leading-none"
+                className="text-[30px] font-semibold tabular-nums leading-none"
                 style={{
                   color: v.ship ? "var(--2pt-green)" : "var(--2pt-black)",
                 }}

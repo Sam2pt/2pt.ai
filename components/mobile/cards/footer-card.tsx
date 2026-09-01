@@ -24,7 +24,7 @@ export function FooterCard({ index }: { index: number }) {
 
       {/* Centered wordmark */}
       <div className="flex-1 flex flex-col justify-center px-6">
-        <h3 className="text-[52px] font-bold tracking-[-0.055em] leading-[0.88] text-[var(--2pt-white)] mb-10">
+        <h3 className="text-[40px] font-semibold tracking-[-0.04em] leading-[0.98] text-[var(--2pt-white)] mb-10">
           Two Point
           <br />
           Technologies
