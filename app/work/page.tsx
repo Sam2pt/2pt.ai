@@ -164,10 +164,10 @@ export default function WorkIndexPage() {
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 h-[min(720px,60vh)]"
+              className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse 65% 100% at 80% 30%, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0.03) 45%, transparent 85%)",
+                  "linear-gradient(180deg, rgba(34,211,238,0.055) 0%, rgba(34,211,238,0.02) 22%, transparent 55%)",
               }}
             />
             <span id="case-lumen-title" className="sr-only">
@@ -184,9 +184,10 @@ export default function WorkIndexPage() {
             />
           </section>
 
-          {/* Case-to-case transition — makes the shift feel deliberate */}
+          {/* Case-to-case transition — kept tight so the sticky beat-nav
+              from Case 01 finishes handing off before Case 02's begins. */}
           {yamaha ? (
-            <div className="relative mt-16 md:mt-24 mb-8 md:mb-12 flex items-center gap-4">
+            <div className="relative mt-8 md:mt-12 mb-4 md:mb-6 flex items-center gap-4">
               <span
                 className="w-1.5 h-1.5 rounded-full"
                 style={{ background: "#a78bfa" }}
@@ -210,10 +211,10 @@ export default function WorkIndexPage() {
             >
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-[min(720px,60vh)]"
+                className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(ellipse 65% 100% at 80% 30%, rgba(167,139,250,0.08) 0%, rgba(167,139,250,0.03) 45%, transparent 85%)",
+                    "linear-gradient(180deg, rgba(167,139,250,0.055) 0%, rgba(167,139,250,0.02) 22%, transparent 55%)",
                 }}
               />
               <span id="case-yamaha-title" className="sr-only">
