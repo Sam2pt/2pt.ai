@@ -152,7 +152,7 @@ export default function WorkIndexPage() {
           }}
         />
 
-        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-6 md:pt-10 pb-24 md:pb-32">
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-20 md:pt-24 pb-24 md:pb-32">
           <WorkCasePicker />
 
           {/* Case 01 — Lumen. No section-level wash: accent identity is
