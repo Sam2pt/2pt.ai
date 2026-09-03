@@ -85,15 +85,15 @@ export function YamahaWorkCard({ index }: { index: number }) {
       data-card-index={index}
       className="relative h-[100dvh] w-full snap-start overflow-hidden bg-[var(--2pt-black)] text-[var(--2pt-white)] flex flex-col"
     >
-      {/* Ambient — violet spotlight anchoring the hero */}
+      {/* Ambient — kept intentionally soft so the card reads delicate */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1.3px)",
-          backgroundSize: "22px 22px",
-          opacity: 0.45,
+            "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1.3px)",
+          backgroundSize: "26px 26px",
+          opacity: 0.4,
           WebkitMaskImage:
             "radial-gradient(ellipse 90% 80% at 50% 50%, #000 30%, transparent 88%)",
           maskImage:
@@ -105,7 +105,7 @@ export function YamahaWorkCard({ index }: { index: number }) {
         className="absolute inset-0 pointer-events-none transition-all duration-[2000ms] ease-out"
         style={{
           background:
-            "radial-gradient(ellipse 65% 45% at 20% 20%, rgba(167,139,250,0.18) 0%, rgba(167,139,250,0.04) 40%, transparent 65%)",
+            "radial-gradient(ellipse 65% 45% at 20% 20%, rgba(167,139,250,0.10) 0%, rgba(167,139,250,0.02) 40%, transparent 65%)",
         }}
       />
       <div
@@ -113,7 +113,7 @@ export function YamahaWorkCard({ index }: { index: number }) {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 55% 40% at 85% 80%, rgba(240,171,252,0.10) 0%, rgba(240,171,252,0.02) 40%, transparent 65%)",
+            "radial-gradient(ellipse 55% 40% at 85% 80%, rgba(240,171,252,0.06) 0%, rgba(240,171,252,0.01) 40%, transparent 65%)",
         }}
       />
 
@@ -159,7 +159,7 @@ export function YamahaWorkCard({ index }: { index: number }) {
           For Yamaha Music
         </div>
         <h2
-          className={`text-[38px] font-semibold tracking-[-0.03em] leading-[1.02] text-white transition-all duration-700 ${
+          className={`text-[30px] font-medium tracking-[-0.02em] leading-[1.1] text-white transition-all duration-700 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
           style={{ transitionDelay: "160ms" }}
@@ -168,14 +168,14 @@ export function YamahaWorkCard({ index }: { index: number }) {
           <br />
           <span
             className="inline-block relative"
-            style={{ color: "rgba(255,255,255,0.55)" }}
+            style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Bidding on Google.
             <span
               aria-hidden
-              className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left"
+              className="absolute -bottom-1 left-0 right-0 h-[1px] origin-left"
               style={{
-                background: `linear-gradient(90deg, ${ACCENT}, transparent)`,
+                background: `linear-gradient(90deg, ${ACCENT}80, transparent)`,
                 transform: visible ? "scaleX(1)" : "scaleX(0)",
                 transition:
                   "transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 720ms",
@@ -212,8 +212,8 @@ export function YamahaWorkCard({ index }: { index: number }) {
           key={audit.engine}
           className="relative border overflow-hidden"
           style={{
-            borderColor: `${ACCENT}55`,
-            background: `linear-gradient(180deg, rgba(167,139,250,0.10) 0%, rgba(0,0,0,0.35) 100%)`,
+            borderColor: `${ACCENT}33`,
+            background: `linear-gradient(180deg, rgba(167,139,250,0.05) 0%, rgba(0,0,0,0.25) 100%)`,
             animation: "fadeInUp 500ms cubic-bezier(0.16, 1, 0.3, 1) both",
           }}
         >
@@ -355,7 +355,7 @@ export function YamahaWorkCard({ index }: { index: number }) {
                 {m.l}
               </div>
               <div
-                className="text-[22px] font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
+                className="text-[20px] font-medium tracking-[-0.015em] leading-[1] tabular-nums"
                 style={{ color: ACCENT }}
               >
                 {m.v}

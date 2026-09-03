@@ -120,17 +120,17 @@ export function WorkCard({ index }: { index: number }) {
       data-card-index={index}
       className="relative h-[100dvh] w-full snap-start overflow-hidden bg-[var(--2pt-black)] text-[var(--2pt-white)] flex flex-col"
     >
-      {/* Layered ambient — dot grid + brand-tinted wash that follows the
-          active tenant. The wash colour shift is what makes the card feel
-          alive as the tenant cycles. */}
+      {/* Layered ambient — softer than the desktop hero. The wash colour
+          shifts with the active tenant so the card breathes, but at low
+          intensity so the card stays delicate. */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.3px)",
-          backgroundSize: "22px 22px",
-          opacity: 0.45,
+            "radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1.3px)",
+          backgroundSize: "26px 26px",
+          opacity: 0.4,
           WebkitMaskImage:
             "radial-gradient(ellipse 90% 80% at 50% 50%, #000 30%, transparent 88%)",
           maskImage:
@@ -141,16 +141,15 @@ export function WorkCard({ index }: { index: number }) {
         aria-hidden
         className="absolute inset-0 pointer-events-none transition-all duration-[2400ms] ease-out"
         style={{
-          background: `radial-gradient(ellipse 75% 55% at 50% 70%, ${tenant.color}22 0%, ${tenant.color}08 35%, transparent 65%)`,
+          background: `radial-gradient(ellipse 75% 55% at 50% 70%, ${tenant.color}14 0%, ${tenant.color}04 35%, transparent 65%)`,
         }}
       />
-      {/* Cyan spotlight anchoring the headline */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 15% 20%, rgba(34,211,238,0.14) 0%, rgba(34,211,238,0.03) 40%, transparent 65%)",
+            "radial-gradient(ellipse 60% 40% at 15% 20%, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0.02) 40%, transparent 65%)",
         }}
       />
 
@@ -196,7 +195,7 @@ export function WorkCard({ index }: { index: number }) {
           For a New York venture firm
         </div>
         <h2
-          className={`text-[44px] font-semibold tracking-[-0.035em] leading-[0.98] text-white transition-all duration-700 ${
+          className={`text-[34px] font-medium tracking-[-0.025em] leading-[1.05] text-white transition-all duration-700 ${
             visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
           style={{ transitionDelay: "160ms" }}
@@ -205,14 +204,14 @@ export function WorkCard({ index }: { index: number }) {
           <br />
           <span
             className="inline-block relative"
-            style={{ color: "rgba(255,255,255,0.55)" }}
+            style={{ color: "rgba(255,255,255,0.5)" }}
           >
             Seven brands.
             <span
               aria-hidden
-              className="absolute -bottom-1 left-0 right-0 h-[2px] origin-left"
+              className="absolute -bottom-1 left-0 right-0 h-[1px] origin-left"
               style={{
-                background: `linear-gradient(90deg, ${ACCENT}, transparent)`,
+                background: `linear-gradient(90deg, ${ACCENT}80, transparent)`,
                 transform: visible ? "scaleX(1)" : "scaleX(0)",
                 transition:
                   "transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 720ms",
@@ -250,8 +249,8 @@ export function WorkCard({ index }: { index: number }) {
           key={tenant.name}
           className="relative border overflow-hidden"
           style={{
-            borderColor: `${tenant.color}55`,
-            background: `linear-gradient(180deg, ${tenant.soft} 0%, rgba(0,0,0,0.35) 100%)`,
+            borderColor: `${tenant.color}33`,
+            background: `linear-gradient(180deg, ${tenant.color}0A 0%, rgba(0,0,0,0.25) 100%)`,
             animation: "fadeInUp 500ms cubic-bezier(0.16, 1, 0.3, 1) both",
           }}
         >
@@ -289,22 +288,22 @@ export function WorkCard({ index }: { index: number }) {
               {tenant.metricLabel}
             </div>
             <div
-              className="text-[52px] leading-[0.95] tabular-nums"
+              className="text-[40px] leading-[1] tabular-nums"
               style={{
                 fontFamily: tenant.font,
                 color: tenant.color,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.02em",
               }}
             >
               {tenant.metric}
             </div>
             {/* Progress bar echoes the metric visually */}
-            <div className="mt-4 h-[3px] w-full bg-white/6 overflow-hidden">
+            <div className="mt-4 h-[2px] w-full bg-white/6 overflow-hidden">
               <div
                 className="h-full transition-all duration-[1800ms] ease-out"
                 style={{
                   width: "72%",
-                  background: tenant.color,
+                  background: `${tenant.color}cc`,
                 }}
               />
             </div>
@@ -380,7 +379,7 @@ export function WorkCard({ index }: { index: number }) {
                 {m.l}
               </div>
               <div
-                className="text-[22px] font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
+                className="text-[20px] font-medium tracking-[-0.015em] leading-[1] tabular-nums"
                 style={{ color: ACCENT }}
               >
                 {m.v}
