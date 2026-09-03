@@ -332,7 +332,10 @@ function CasePoster({
       aria-label={`Read the ${ui.caseLabel} case`}
       aria-hidden={!isActive}
       tabIndex={isActive ? 0 : -1}
-      className={`group absolute inset-0 block bg-[var(--2pt-black)] border border-white/12 overflow-hidden transition-opacity duration-700 ease-out ${
+      // Both posters share the same grid cell so the wrapper sizes to
+      // whichever content is tallest. Inactive poster fades to 0 but
+      // still contributes to layout.
+      className={`group col-start-1 row-start-1 block bg-[var(--2pt-black)] border border-white/12 overflow-hidden transition-opacity duration-700 ease-out ${
         isActive ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -395,26 +398,26 @@ function CasePoster({
 
       <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* LEFT — editorial */}
-        <div className="lg:col-span-7 p-6 md:p-10 lg:p-14 lg:pr-10">
-          <div className="text-[10px] font-mono tracking-[0.28em] uppercase text-white/45 mb-6">
+        <div className="lg:col-span-7 p-6 md:p-9 lg:p-11 lg:pr-8">
+          <div className="text-[10px] font-mono tracking-[0.28em] uppercase text-white/45 mb-5">
             {ui.byline}
           </div>
 
           <h3
             className="font-semibold tracking-[-0.03em] leading-[1.02] text-white max-w-[16ch]"
-            style={{ fontSize: "clamp(28px, 4.4vw, 48px)" }}
+            style={{ fontSize: "clamp(26px, 3.6vw, 40px)" }}
           >
             {ui.headlineA}
             <br />
             <span className="text-white/50">{ui.headlineB}</span>
           </h3>
 
-          <p className="mt-6 md:mt-8 text-[15px] md:text-[16px] leading-[1.65] text-white/70 max-w-[54ch]">
+          <p className="mt-5 md:mt-6 text-[14px] md:text-[15px] leading-[1.6] text-white/70 max-w-[54ch]">
             {ui.lead}
           </p>
 
           {/* Proof strip */}
-          <div className="mt-9 md:mt-12 grid grid-cols-3 gap-5 md:gap-8 max-w-[520px]">
+          <div className="mt-7 md:mt-9 grid grid-cols-3 gap-5 md:gap-8 max-w-[520px]">
             {ui.metrics.map((m) => (
               <div key={m.l} className="border-t border-white/15 pt-3">
                 <div className="text-[9px] font-mono tracking-[0.24em] uppercase text-white/40 mb-1.5">
@@ -424,7 +427,7 @@ function CasePoster({
                   className="font-semibold tracking-[-0.02em] leading-[1] tabular-nums"
                   style={{
                     color: ui.accent,
-                    fontSize: "clamp(24px, 2.8vw, 36px)",
+                    fontSize: "clamp(22px, 2.4vw, 30px)",
                   }}
                 >
                   {m.v}
@@ -436,13 +439,11 @@ function CasePoster({
             ))}
           </div>
 
-          {/* CTA — subtle underline treatment, no filled hover */}
-          <div className="mt-10 md:mt-14 inline-flex items-center gap-2 group/cta">
+          {/* CTA — subtle underline, no filled hover */}
+          <div className="mt-7 md:mt-10 inline-flex items-center gap-2">
             <span
               className="text-[11px] font-mono tracking-[0.24em] uppercase text-white/70 group-hover:text-white transition-colors duration-500 border-b pb-1"
-              style={{
-                borderColor: `rgba(255,255,255,0.2)`,
-              }}
+              style={{ borderColor: "rgba(255,255,255,0.2)" }}
             >
               Read the case
             </span>
@@ -453,13 +454,13 @@ function CasePoster({
         </div>
 
         {/* RIGHT — live vignette */}
-        <div className="lg:col-span-5 relative border-t lg:border-t-0 lg:border-l border-white/8 min-h-[320px] lg:min-h-[520px] flex flex-col">
-          <div className="px-5 md:px-6 pt-5 pb-3 flex items-center justify-between text-[9px] font-mono tracking-[0.22em] uppercase text-white/45">
+        <div className="lg:col-span-5 relative border-t lg:border-t-0 lg:border-l border-white/8 min-h-[280px] lg:min-h-[400px] flex flex-col">
+          <div className="px-5 md:px-6 pt-4 pb-3 flex items-center justify-between text-[9px] font-mono tracking-[0.22em] uppercase text-white/45">
             <span>Live · {ui.vignetteKind === "mesh" ? "symbiotic mesh" : "audit engine"}</span>
             <span>{ui.vignetteKind === "mesh" ? "07 tenants" : "05 engines"}</span>
           </div>
-          <div className="flex-1 flex items-center justify-center p-5 md:p-6">
-            <div className="w-full max-w-[380px] aspect-square">
+          <div className="flex-1 flex items-center justify-center p-4 md:p-5">
+            <div className="w-full max-w-[300px] aspect-square">
               {ui.vignetteKind === "mesh" ? (
                 <MiniMesh active={isActive && entered} accent={ui.accent} />
               ) : (
@@ -467,7 +468,7 @@ function CasePoster({
               )}
             </div>
           </div>
-          <div className="px-5 md:px-6 pt-4 pb-6 border-t border-white/8">
+          <div className="px-5 md:px-6 pt-3 pb-5 border-t border-white/8">
             <div className="text-[9px] font-mono tracking-[0.24em] uppercase text-white/40 mb-2">
               {ui.tickerLabel}
             </div>
@@ -612,8 +613,9 @@ export function WorkPreview() {
             </div>
           </div>
 
-          {/* Poster stack — both posters absolutely positioned, crossfaded */}
-          <div className="relative w-full min-h-[560px] md:min-h-[600px]">
+          {/* Poster stack — both posters share the same grid cell so the
+              wrapper sizes to the taller poster's natural content. */}
+          <div className="grid grid-cols-1 w-full">
             {CASE_UI.map((ui, i) => (
               <CasePoster
                 key={ui.slug}

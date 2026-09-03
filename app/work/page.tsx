@@ -155,7 +155,8 @@ export default function WorkIndexPage() {
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-6 md:pt-10 pb-24 md:pb-32">
           <WorkCasePicker />
 
-          {/* Case 01 — Lumen (cyan accent spotlight) */}
+          {/* Case 01 — Lumen (cyan accent spotlight, softly diffused so
+              there is no visible edge as it falls off into the canvas) */}
           <section
             aria-labelledby="case-lumen-title"
             id="case-lumen"
@@ -163,10 +164,10 @@ export default function WorkIndexPage() {
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0"
+              className="pointer-events-none absolute inset-x-0 top-0 h-[min(720px,60vh)]"
               style={{
                 background:
-                  "radial-gradient(ellipse 55% 45% at 85% 8%, rgba(34,211,238,0.10) 0%, transparent 55%)",
+                  "radial-gradient(ellipse 65% 100% at 80% 30%, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0.03) 45%, transparent 85%)",
               }}
             />
             <span id="case-lumen-title" className="sr-only">
@@ -200,7 +201,7 @@ export default function WorkIndexPage() {
             </div>
           ) : null}
 
-          {/* Case 02 — Yamaha (violet accent spotlight) */}
+          {/* Case 02 — Yamaha (violet accent spotlight, same soft treatment) */}
           {yamaha ? (
             <section
               aria-labelledby="case-yamaha-title"
@@ -209,10 +210,10 @@ export default function WorkIndexPage() {
             >
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0"
+                className="pointer-events-none absolute inset-x-0 top-0 h-[min(720px,60vh)]"
                 style={{
                   background:
-                    "radial-gradient(ellipse 55% 45% at 85% 8%, rgba(167,139,250,0.10) 0%, transparent 55%)",
+                    "radial-gradient(ellipse 65% 100% at 80% 30%, rgba(167,139,250,0.08) 0%, rgba(167,139,250,0.03) 45%, transparent 85%)",
                 }}
               />
               <span id="case-yamaha-title" className="sr-only">

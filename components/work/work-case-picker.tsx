@@ -65,7 +65,7 @@ export function WorkCasePicker() {
   return (
     <nav
       aria-label="Case study selector"
-      className="mb-8 md:mb-12 flex flex-wrap items-center gap-3 border-b border-white/8 pb-4"
+      className="mb-4 md:mb-6 flex flex-wrap items-center gap-3 border-b border-white/8 pb-3"
     >
       <span className="text-[10px] font-mono tracking-[0.32em] uppercase text-white/45 mr-2">
         Read

@@ -100,7 +100,7 @@ function BeatHero({ c }: { c: CaseData }) {
     : "··:··:··Z"
 
   return (
-    <section ref={ref} className="relative pt-16 md:pt-24 pb-20 md:pb-28">
+    <section ref={ref} className="relative pt-8 md:pt-12 pb-16 md:pb-24">
       {/* Runbook strip */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-mono tracking-[0.24em] uppercase text-white/45 mb-10 md:mb-14">
         <span className="flex items-center gap-2 text-white/70">
