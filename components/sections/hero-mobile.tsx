@@ -33,7 +33,7 @@ export function HeroMobile() {
 
   // Static stats — same labels as desktop, no live tick to keep the page calm
   const stats = [
-    { label: "In production", value: "47" },
+    { label: "In production", value: "142" },
     { label: "Bid auctions / min", value: "1,284" },
     { label: "Variants shipped today", value: "1,847" },
     { label: "Anomalies caught today", value: "18" },
@@ -49,7 +49,7 @@ export function HeroMobile() {
               <span className="w-1.5 h-1.5 bg-[var(--2pt-green)] rounded-full animate-pulse" />
               <span className="text-[var(--2pt-green)]">Live</span>
             </span>
-            <span>2pt · Vol I</span>
+            <span>2pt</span>
           </div>
         </div>
       </div>

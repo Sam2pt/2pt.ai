@@ -89,7 +89,7 @@ export function HeroSection() {
   const time = useTime()
 
   // Live counters
-  const systemsLive = 47
+  const systemsLive = 142
   const variantsShippedToday = useCounter(1847, 9000, 1)
   const anomaliesCaughtToday = useCounter(18, 42000, 1)
   const bidsPerMin = useFluctuating(1284, 80, 2400)
@@ -236,10 +236,8 @@ export function HeroSection() {
               </span>
               <span className="text-[var(--2pt-green)]">Live</span>
             </span>
-            <span className="hidden md:inline">
-              Two Point Technologies · Vol I · Issue 001
-            </span>
-            <span className="md:hidden">2pt · Vol I</span>
+            <span className="hidden md:inline">Two Point Technologies</span>
+            <span className="md:hidden">2pt</span>
           </div>
           <div className="hidden md:flex items-center gap-5 text-[var(--2pt-white)]/55">
             <span>

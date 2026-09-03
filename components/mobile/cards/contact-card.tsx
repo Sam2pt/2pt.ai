@@ -34,7 +34,7 @@ export function ContactCard({ index }: { index: number }) {
       raf = requestAnimationFrame(tick)
       return () => cancelAnimationFrame(raf)
     }
-    const c1 = animate(48, setSystems, 1100)
+    const c1 = animate(142, setSystems, 1200)
     const c2 = animate(9, setYears, 900)
     const c3 = animate(2, setCities, 800)
     return () => {

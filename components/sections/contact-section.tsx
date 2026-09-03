@@ -191,7 +191,7 @@ export function ContactSection() {
                 </span>
               </div>
               <div className="text-3xl md:text-4xl font-medium text-[var(--2pt-white)] tabular-nums tracking-tight">
-                {47 + Math.floor((time?.getSeconds() ?? 0) / 14)}
+                {142 + Math.floor((time?.getSeconds() ?? 0) / 14)}
               </div>
             </div>
             <div className="bg-[var(--2pt-black)] py-7 px-6">

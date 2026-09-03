@@ -5,6 +5,7 @@ import { FloatingNav } from "@/components/ui/floating-nav"
 import { ContactCTA } from "@/components/ui/contact-cta"
 import { LumenCase } from "@/components/work/lumen-case"
 import { YamahaCase } from "@/components/work/yamaha-case"
+import { WorkCasePicker } from "@/components/work/work-case-picker"
 
 /**
  * /work — long-scroll case-study magazine.
@@ -152,6 +153,8 @@ export default function WorkIndexPage() {
         />
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-6 md:pt-10 pb-24 md:pb-32">
+          <WorkCasePicker />
+
           {/* Case 01 — Lumen (cyan accent spotlight) */}
           <section
             aria-labelledby="case-lumen-title"
