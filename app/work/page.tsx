@@ -155,21 +155,13 @@ export default function WorkIndexPage() {
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 pt-6 md:pt-10 pb-24 md:pb-32">
           <WorkCasePicker />
 
-          {/* Case 01 — Lumen (cyan accent spotlight, softly diffused so
-              there is no visible edge as it falls off into the canvas) */}
+          {/* Case 01 — Lumen. No section-level wash: accent identity is
+              carried by the beat-pill nav and the cyan metric numerals. */}
           <section
             aria-labelledby="case-lumen-title"
             id="case-lumen"
             className="relative"
           >
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(34,211,238,0.055) 0%, rgba(34,211,238,0.02) 22%, transparent 55%)",
-              }}
-            />
             <span id="case-lumen-title" className="sr-only">
               Case 01. {lumen.client}. {lumen.title}
             </span>
@@ -202,21 +194,13 @@ export default function WorkIndexPage() {
             </div>
           ) : null}
 
-          {/* Case 02 — Yamaha (violet accent spotlight, same soft treatment) */}
+          {/* Case 02 — Yamaha. Same treatment as Case 01. */}
           {yamaha ? (
             <section
               aria-labelledby="case-yamaha-title"
               id="case-yamaha"
               className="relative"
             >
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(167,139,250,0.055) 0%, rgba(167,139,250,0.02) 22%, transparent 55%)",
-                }}
-              />
               <span id="case-yamaha-title" className="sr-only">
                 Case 02. {yamaha.client}. {yamaha.title}
               </span>
