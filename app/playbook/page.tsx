@@ -39,6 +39,7 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: "how", label: "How we work" },
   { id: "stages", label: "Four stages" },
   { id: "different", label: "What is different" },
+  { id: "seeing", label: "How we see it" },
   { id: "lose", label: "Where teams lose" },
   { id: "bring", label: "What you bring" },
   { id: "stack", label: "Stack" },
@@ -194,22 +195,23 @@ export default function PlaybookPage() {
                 <P>Four things separate this from a normal consulting or SaaS engagement.</P>
                 <List>
                   <Item>
-                    <strong>We do not run pilots.</strong> Every engagement
-                    ships to production. Commercial structure fails if it
-                    does not.
+                    <strong>Pilots that ship.</strong> We run pilots. What we
+                    do not run is pilots that never make it to production.
+                    Every pilot has a named deploy path and an owner at the
+                    client, agreed before it starts.
                   </Item>
                   <Item>
-                    <strong>We do not license seats.</strong> Fixed engagement
-                    fee. Client owns the resulting IP. No per-user pricing
-                    trailing behind the work.
+                    <strong>No seat licenses.</strong> Fixed engagement fee.
+                    Client owns the resulting IP and operating knowledge.
+                    No per-user pricing trailing behind the work.
                   </Item>
                   <Item>
-                    <strong>We do not deliver decks.</strong> Decks are
-                    internal working documents. The deliverable is running
+                    <strong>Decks are working documents, not deliverables.</strong>
+                    They exist to align a room. The deliverable is running
                     software.
                   </Item>
                   <Item>
-                    <strong>We integrate rather than replace.</strong> The
+                    <strong>Integrate rather than replace.</strong> The
                     system runs inside the platforms the team already uses.
                     We do not ship another dashboard for the team to log
                     into.
@@ -217,7 +219,82 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="lose" number="05" title="Where marketing teams lose">
+              <Section id="seeing" number="05" title="How we see it">
+                <P>
+                  Some of the arguments we make out loud, so a client knows
+                  what they are signing up for.
+                </P>
+                <List>
+                  <Item>
+                    <strong>Hard is not the same word as dead.</strong> When
+                    a channel or a model gets called dead, look at the number
+                    it produced that year. DTC has been declared dead three
+                    times in six years while US e-commerce hit $1.234
+                    trillion. Most declared-dead things are declared hard
+                    with a stronger adjective.
+                  </Item>
+                  <Item>
+                    <strong>What breaks in an era is usually the money, not
+                    the model.</strong> Cheap ads, cheap capital, and
+                    &ldquo;we&rsquo;ll sort margin later&rdquo; do not
+                    survive a rate cycle. That is not a channel dying, it is
+                    a subsidy ending. The channel is now a normal business
+                    that has to be good at things.
+                  </Item>
+                  <Item>
+                    <strong>You can no longer win with one perfect ad.</strong>
+                    In 2012 the country was in four feeds and sent things to
+                    each other. That room is gone. Feeds are personalised at
+                    scale, so reach is now assembled from many small
+                    audiences. Creative volume is a structural requirement,
+                    not a fashion.
+                  </Item>
+                  <Item>
+                    <strong>Retail media is the biggest new surface with the
+                    worst creative in it.</strong> Amazon, Walmart, Instacart,
+                    Kroger. The ad, the shelf and the till are the same
+                    system, so the job is disambiguation, not persuasion.
+                    Most brands upload a product cut-out and a headline
+                    written by whoever had the file open. There is real
+                    room to move here.
+                  </Item>
+                  <Item>
+                    <strong>Targeting is a solved problem. Creative is the
+                    leverage.</strong> Advantage+, Performance Max, broad by
+                    default. Anyone can target. Not anyone can make great
+                    stories. NCSolutions and Nielsen put creative at 49% of
+                    incremental sales and targeting at 11%. Most marketing
+                    orgs invest in the reverse ratio.
+                  </Item>
+                  <Item>
+                    <strong>Forty versions of one ad is still one ad.</strong>
+                    Fatigue is not solved by cutdowns. Four reasons to buy is
+                    four experiments; forty aspect ratios is one experiment.
+                    Diversity of idea beats diversity of format.
+                  </Item>
+                  <Item>
+                    <strong>Not all your traffic is a person.</strong> Bot
+                    and crawler traffic is a meaningful share of the top of
+                    every funnel. Model it and price it out of the media
+                    plan.
+                  </Item>
+                  <Item>
+                    <strong>Attribution is overrated. Watch the P&L.</strong>
+                    Last-click, MMM, MTA, incrementality tests: all useful,
+                    none of them decide the year. Cash into the business
+                    minus cash out of it does. Trust the bank statement.
+                  </Item>
+                  <Item>
+                    <strong>Owned systems beat rented ones.</strong> A tool
+                    someone else operates for you is a tool you cannot
+                    change. A system your team runs is a system that gets
+                    better every week. This is why every engagement ends in
+                    ownership.
+                  </Item>
+                </List>
+              </Section>
+
+              <Section id="lose" number="06" title="Where marketing teams lose">
                 <P>
                   Four failure patterns we see repeatedly. If any of these look
                   familiar, that is where the work should start.
@@ -246,7 +323,7 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="bring" number="06" title="What the client needs to bring">
+              <Section id="bring" number="07" title="What the client needs to bring">
                 <P>
                   Three things must be in place before we start. These are
                   non-negotiable; without them the model does not work.
@@ -270,36 +347,84 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="stack" number="07" title="Stack">
+              <Section id="stack" number="08" title="Stack">
                 <P>
-                  Foundation model layer is Anthropic&rsquo;s Claude via the
-                  Claude Partner Network for most engagements. Other models
-                  where a workload demands it. Systems integrate with:
+                  We are model-agnostic in principle and Claude-first in
+                  practice through the Anthropic Claude Partner Network.
+                  Systems get wired into the platforms the client already
+                  runs on, not new ones.
                 </P>
-                <List>
-                  <Item>
-                    <strong>Retail media:</strong> Amazon Ads, Walmart
-                    Connect, Instacart Ads, Target Roundel, Kroger Precision
-                  </Item>
-                  <Item>
-                    <strong>Paid:</strong> Google Ads, Meta, TikTok, DV360
-                  </Item>
-                  <Item>
-                    <strong>Customer data:</strong> Segment, Rudderstack,
-                    mParticle, native CDP builds
-                  </Item>
-                  <Item>
-                    <strong>Ops:</strong> Slack, Monday, Notion, Linear,
-                    Jira, brand DAMs
-                  </Item>
-                  <Item>
-                    <strong>Search + AI discovery:</strong> ChatGPT, Claude,
-                    Perplexity, Gemini, Google AIO
-                  </Item>
-                </List>
+                <StackGroup title="Foundation models">
+                  Claude 4 / 5 family (primary via the Claude Partner Network);
+                  OpenAI GPT-5 / Sora; Google Gemini 2 / Imagen / Veo; xAI
+                  Grok; Meta Llama; open-weights (Mistral, Qwen, DeepSeek)
+                  where a workload needs local inference. Routing is per
+                  task, not per vendor.
+                </StackGroup>
+                <StackGroup title="Retail media">
+                  Amazon Ads (Sponsored Products, Brands, Display, DSP,
+                  Marketing Cloud), Walmart Connect, Instacart Ads, Target
+                  Roundel, Kroger Precision Marketing, Sam&rsquo;s Club MAP,
+                  Albertsons Media Collective, DoorDash Ads, Uber Ads.
+                </StackGroup>
+                <StackGroup title="Paid media">
+                  Google Ads (Search, Performance Max, YouTube), DV360, Meta
+                  (Advantage+, Reels, Shops), TikTok Ads, Reddit, LinkedIn,
+                  Pinterest, Apple Search Ads, Snap, The Trade Desk. Bid and
+                  budget agents integrate at API level, not via Zapier.
+                </StackGroup>
+                <StackGroup title="Search + AI discovery">
+                  ChatGPT (with SearchGPT), Claude, Perplexity, Gemini,
+                  Google AI Overviews, Bing Copilot, You.com. We audit
+                  citation coverage per market and per query intent, and
+                  route content and schema fixes through the brand CMS.
+                </StackGroup>
+                <StackGroup title="Commerce + retention">
+                  Shopify Plus, BigCommerce, Salesforce Commerce Cloud,
+                  Adobe Commerce. Klaviyo, Attentive, Iterable, Braze,
+                  Postscript, Recharge. Loyalty via Yotpo, Smile,
+                  LoyaltyLion, Talon.One.
+                </StackGroup>
+                <StackGroup title="Customer data">
+                  Segment, Rudderstack, mParticle, Snowplow. Native CDP
+                  builds on Snowflake or BigQuery when a warehouse-first
+                  approach is right. Reverse-ETL through Hightouch or Census.
+                </StackGroup>
+                <StackGroup title="Analytics + measurement">
+                  GA4, Amplitude, Mixpanel, PostHog. Warehouse-native BI on
+                  Snowflake, BigQuery, Databricks. Media mix and
+                  incrementality via Robyn, Meridian, Recast, or bespoke
+                  builds. Server-side event capture via Snowplow, Jitsu, or
+                  the platforms&rsquo; Conversions APIs.
+                </StackGroup>
+                <StackGroup title="Creative + content">
+                  Adobe Creative Cloud + Firefly, Figma, Runway, ElevenLabs,
+                  Descript. Brand DAM via Bynder, Frontify, Brandfolder or
+                  Air. Product feeds via Feedonomics or Productsup. Video
+                  captioning + localisation via bespoke pipelines on
+                  Whisper / GPT / Claude.
+                </StackGroup>
+                <StackGroup title="Brand + legal compliance">
+                  Voice, claims, regulatory and PII checks run as a scoring
+                  layer alongside creative generation. Rule sets loaded per
+                  market (US, UK, EU, APAC), audit trail retained.
+                </StackGroup>
+                <StackGroup title="Ops + collaboration">
+                  Slack, Monday, Notion, Linear, Jira, Asana. Automation
+                  through native APIs, Temporal, and n8n where a workflow
+                  needs to run outside the client stack. GitHub for source
+                  and CI.
+                </StackGroup>
+                <StackGroup title="Infrastructure">
+                  AWS-first (Bedrock, Lambda, ECS, RDS, S3), Google Cloud
+                  (Vertex, Cloud Run), Azure OpenAI where the client is
+                  standardised there. Vector search via pgvector, Pinecone,
+                  Weaviate. Observability through Datadog, Grafana, or the
+                  platform-native tooling.
+                </StackGroup>
               </Section>
 
-              <Section id="commercial" number="08" title="Commercial">
+              <Section id="commercial" number="09" title="Commercial">
                 <List>
                   <Item>
                     <strong>Engagement fee, fixed scope.</strong> Priced
@@ -321,7 +446,7 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="contact" number="09" title="Contact">
+              <Section id="contact" number="10" title="Contact">
                 <P>
                   If you want us to look at the shape of your marketing
                   function, the fastest route is the contact form on the
@@ -429,6 +554,25 @@ function Item({ children }: { children: React.ReactNode }) {
     <li className="pl-5 md:pl-6 text-[14px] md:text-[15px] leading-[1.65] text-[var(--2pt-black)]/78">
       {children}
     </li>
+  )
+}
+
+function StackGroup({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-2 md:gap-6 pt-4 md:pt-5 border-t border-[var(--2pt-black)]/10 first:border-t-0 first:pt-0">
+      <div className="text-[11px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/55 md:pt-1">
+        {title}
+      </div>
+      <p className="text-[14px] md:text-[15px] leading-[1.65] text-[var(--2pt-black)]/72">
+        {children}
+      </p>
+    </div>
   )
 }
 
