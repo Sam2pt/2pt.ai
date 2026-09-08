@@ -40,6 +40,7 @@ const SECTIONS: { id: string; label: string }[] = [
   { id: "stages", label: "Four stages" },
   { id: "different", label: "What is different" },
   { id: "seeing", label: "How we see it" },
+  { id: "usable", label: "Made usable" },
   { id: "lose", label: "Where teams lose" },
   { id: "bring", label: "What you bring" },
   { id: "stack", label: "Stack" },
@@ -294,7 +295,214 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="lose" number="06" title="Where marketing teams lose">
+              <Section id="usable" number="06" title="Made usable">
+                <P>
+                  Four operational templates from the talk. Take them, use
+                  them, edit them. They are meant to be marked up, not
+                  admired.
+                </P>
+
+                <SubHead>The concept-vs-execution test structure</SubHead>
+                <P>
+                  Ad performance drops. Team responds by making twenty
+                  cutdowns of the same idea. Two months in you have forty
+                  files and no answer to what is or is not working. The
+                  problem is not effort; it is that forty executions of one
+                  concept is one experiment.
+                </P>
+                <P>
+                  <strong>The distinction.</strong> Concept is the reason
+                  someone should buy this. Execution is the way that reason
+                  gets shown. Swap aspect ratio, model, colour, music: that
+                  is execution. Swap the reason to buy (new benefit, new
+                  pain, new audience): that is concept.
+                </P>
+                <Steps>
+                  <Item>
+                    Pick three to five concepts. Genuinely different reasons
+                    to buy. Not different tones or angles of the same
+                    reason.
+                  </Item>
+                  <Item>
+                    Cut each to the same production standard. Same duration,
+                    same format bundle, same production spend. If one is
+                    hero-shot and one is UGC, that is a production
+                    difference, not a concept test.
+                  </Item>
+                  <Item>
+                    Run them in a single campaign, budget split evenly,
+                    broad targeting. Let the platform pick.
+                  </Item>
+                  <Item>
+                    Read the winner on the outcome you actually care about.
+                    Revenue, first-order LTV, subscribes. Not CTR, not
+                    thumbstop.
+                  </Item>
+                  <Item>
+                    Kill the losers. Do not iterate them. Take the winning
+                    concept and produce five to ten executions of it. Now
+                    you can iterate.
+                  </Item>
+                </Steps>
+                <RuleOfThumb>
+                  If you cannot describe the difference between two ads
+                  without watching them, they are the same ad. If two ads
+                  pitch the same concept and one has a dog in it, that is
+                  one concept and one experiment.
+                </RuleOfThumb>
+
+                <SubHead>The traffic-quality checklist</SubHead>
+                <P>
+                  Not all your traffic is a person. Bots, crawlers,
+                  click-farm traffic, incidental clicks. Any funnel that
+                  treats every session as human overstates the top and
+                  understates the bottom.
+                </P>
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Screening
+                </P>
+                <Steps>
+                  <Item>
+                    Sessions under two seconds with zero events. Flag as
+                    automated.
+                  </Item>
+                  <Item>
+                    Sessions from datacenter ASNs (AWS, GCP, Azure,
+                    DigitalOcean, Hetzner). Flag.
+                  </Item>
+                  <Item>
+                    Headless-browser user-agent strings (HeadlessChrome,
+                    PhantomJS, Puppeteer, Playwright). Flag.
+                  </Item>
+                  <Item>
+                    Multiple sessions per second from a single IP. Flag.
+                  </Item>
+                  <Item>
+                    Traffic spikes at unusual hours in unusual geographies.
+                    Investigate before including.
+                  </Item>
+                  <Item>
+                    GA4 bot filter is on. Meta and Google Conversions API
+                    server-side firing is configured with event
+                    deduplication.
+                  </Item>
+                  <Item>
+                    Referrer-spam domain list is filtered at ingest.
+                  </Item>
+                </Steps>
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Do this once
+                </P>
+                <P>
+                  Cut a &ldquo;verified human&rdquo; segment. Re-run last
+                  quarter&rsquo;s CAC and conversion rate against that
+                  segment only. That is the number to plan against, not the
+                  gross one.
+                </P>
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Do this weekly
+                </P>
+                <P>
+                  Compare humans-only sessions to platform-reported clicks.
+                  Track the ratio. A drift in that ratio is your early signal
+                  for creative fatigue, spam-farm exposure, or platform
+                  reporting change.
+                </P>
+
+                <SubHead>The retail media creative checklist</SubHead>
+                <P>
+                  The retail media buyer is not in a persuasion job. They
+                  came for cold brew, they are choosing which cold brew.
+                  Different job, different assets. Most brands upload a
+                  product cutout and a headline written by whoever had the
+                  file open.
+                </P>
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Per SKU
+                </P>
+                <Steps>
+                  <Item>Hero image is the product in use, not a cutout on white.</Item>
+                  <Item>
+                    Above the fold reads brand, category, one
+                    differentiator. In that order.
+                  </Item>
+                  <Item>
+                    Star rating and review count are visible on the tile,
+                    not two clicks in.
+                  </Item>
+                  <Item>Bundle or multi-pack option is shown, not buried.</Item>
+                  <Item>
+                    Copy is localised per market. US, UK, CA, AU are not the
+                    same market. Write four scripts, not one.
+                  </Item>
+                  <Item>
+                    Sponsored Brands headline reads as a shelf sign, not a
+                    tagline.
+                  </Item>
+                  <Item>
+                    Sponsored Display retargets cart-abandoners, not
+                    category-browsers.
+                  </Item>
+                  <Item>DSP audience is seeded from purchase, not view.</Item>
+                  <Item>
+                    Video has an on-screen answer to &ldquo;why this
+                    one&rdquo; in the first three seconds. Sound-off.
+                  </Item>
+                  <Item>
+                    Feed is clean: correct GTIN, correct category, correct
+                    pack size, correct price.
+                  </Item>
+                </Steps>
+                <RuleOfThumb>
+                  If your retail-media ad works as a static thumbnail with
+                  the sound off and no motion, it works. If it needs the
+                  video to make sense, it does not.
+                </RuleOfThumb>
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Weekly job
+                </P>
+                <P>
+                  Pick three ASINs or item numbers. Look at the top-selling
+                  competitor for each search term you buy. Note what they
+                  show that you do not. Ship one experiment per SKU per
+                  week. That is fifty-two experiments a year off one hour on
+                  a Monday.
+                </P>
+
+                <SubHead>The reported-vs-cash reporting template</SubHead>
+                <P>
+                  Every platform reports revenue. Every platform reports it
+                  slightly differently. What decides the year is the cash in
+                  the bank, not the numbers on the dashboards.
+                </P>
+                <ReconTable />
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Read the delta, not the number
+                </P>
+                <P>
+                  A steady delta is fine. That is the platform&rsquo;s
+                  systematic overcount versus your ledger, and it is stable
+                  by design. A widening delta is a signal to look:
+                  attribution model change on the platform, fraud, a shift
+                  in refund cycle, or a real reporting bug.
+                </P>
+                <P className="text-[13px] uppercase tracking-[0.16em] text-[var(--2pt-black)]/50 font-mono">
+                  Monthly job
+                </P>
+                <P>
+                  Trend the delta as a percentage. If it moves more than
+                  five points month to month, someone finds out why before
+                  the next plan is written.
+                </P>
+                <RuleOfThumb>
+                  If the CFO&rsquo;s revenue number and the CMO&rsquo;s
+                  revenue number are more than ten percent apart, one team
+                  is planning against fiction. Fix it before either budget
+                  conversation.
+                </RuleOfThumb>
+              </Section>
+
+              <Section id="lose" number="07" title="Where marketing teams lose">
                 <P>
                   Four failure patterns we see repeatedly. If any of these look
                   familiar, that is where the work should start.
@@ -323,7 +531,7 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="bring" number="07" title="What the client needs to bring">
+              <Section id="bring" number="08" title="What the client needs to bring">
                 <P>
                   Three things must be in place before we start. These are
                   non-negotiable; without them the model does not work.
@@ -347,7 +555,7 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="stack" number="08" title="Stack">
+              <Section id="stack" number="09" title="Stack">
                 <P>
                   We are model-agnostic in principle and Claude-first in
                   practice through the Anthropic Claude Partner Network.
@@ -424,7 +632,7 @@ export default function PlaybookPage() {
                 </StackGroup>
               </Section>
 
-              <Section id="commercial" number="09" title="Commercial">
+              <Section id="commercial" number="10" title="Commercial">
                 <List>
                   <Item>
                     <strong>Engagement fee, fixed scope.</strong> Priced
@@ -446,7 +654,7 @@ export default function PlaybookPage() {
                 </List>
               </Section>
 
-              <Section id="contact" number="10" title="Contact">
+              <Section id="contact" number="11" title="Contact">
                 <P>
                   If you want us to look at the shape of your marketing
                   function, the fastest route is the contact form on the
@@ -533,11 +741,105 @@ function Section({
   )
 }
 
-function P({ children }: { children: React.ReactNode }) {
+function P({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  const base = "text-[15px] md:text-[16px] leading-[1.7] text-[var(--2pt-black)]/78"
+  return <p className={className ?? base}>{children}</p>
+}
+
+function SubHead({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[15px] md:text-[16px] leading-[1.7] text-[var(--2pt-black)]/78">
+    <h3 className="mt-8 mb-3 text-[18px] md:text-[20px] font-semibold tracking-[-0.015em] leading-[1.2] text-[var(--2pt-black)]">
       {children}
-    </p>
+    </h3>
+  )
+}
+
+function Steps({ children }: { children: React.ReactNode }) {
+  return (
+    <ol className="space-y-3 md:space-y-4 pl-0 border-l border-[var(--2pt-black)]/10 counter-reset-[step]">
+      {children}
+    </ol>
+  )
+}
+
+function RuleOfThumb({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="my-4 border-l-2 border-[var(--2pt-green)] pl-4 md:pl-5 py-1">
+      <div className="text-[10px] font-mono tracking-[0.24em] uppercase text-[var(--2pt-green)] mb-2">
+        Rule of thumb
+      </div>
+      <p className="text-[14px] md:text-[15px] leading-[1.65] text-[var(--2pt-black)]/78">
+        {children}
+      </p>
+    </div>
+  )
+}
+
+function ReconTable() {
+  const rows = [
+    "Google Ads",
+    "Meta",
+    "TikTok",
+    "Amazon Ads",
+    "Walmart Connect",
+    "Retail media DSP",
+    "Organic + direct",
+    "Total revenue",
+    "Ad spend (billed)",
+    "Net cash",
+  ]
+  return (
+    <div className="my-6 border border-[var(--2pt-black)]/12 overflow-hidden">
+      <div className="grid grid-cols-[1.4fr_1fr_1fr_0.9fr] bg-[var(--2pt-black)]/[0.04]">
+        {["Line", "Reported", "Cash", "Delta"].map((h) => (
+          <div
+            key={h}
+            className="px-3 md:px-4 py-2.5 text-[10px] font-mono tracking-[0.2em] uppercase text-[var(--2pt-black)]/55 border-r border-[var(--2pt-black)]/8 last:border-r-0"
+          >
+            {h}
+          </div>
+        ))}
+      </div>
+      {rows.map((r, i) => {
+        const isTotal = r === "Total revenue" || r === "Net cash"
+        return (
+          <div
+            key={r}
+            className={`grid grid-cols-[1.4fr_1fr_1fr_0.9fr] border-t border-[var(--2pt-black)]/8 ${
+              isTotal ? "bg-[var(--2pt-black)]/[0.02]" : ""
+            }`}
+          >
+            <div
+              className={`px-3 md:px-4 py-2.5 text-[13px] md:text-[14px] border-r border-[var(--2pt-black)]/8 ${
+                isTotal
+                  ? "font-semibold text-[var(--2pt-black)]"
+                  : "text-[var(--2pt-black)]/75"
+              }`}
+            >
+              {r}
+            </div>
+            {[0, 1, 2].map((c) => (
+              <div
+                key={c}
+                className="px-3 md:px-4 py-2.5 border-r border-[var(--2pt-black)]/8 last:border-r-0"
+              >
+                {/* left blank on purpose — this is a template to be filled in */}
+                <span className="text-[var(--2pt-black)]/25 text-[13px] font-mono">·</span>
+              </div>
+            ))}
+          </div>
+        )
+      })}
+      <div className="px-3 md:px-4 py-2 border-t border-[var(--2pt-black)]/8 bg-[var(--2pt-black)]/[0.04] text-[10px] font-mono tracking-[0.18em] uppercase text-[var(--2pt-black)]/45">
+        Reconcile weekly · trend the delta monthly
+      </div>
+    </div>
   )
 }
 
