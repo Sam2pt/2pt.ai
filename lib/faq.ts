@@ -32,11 +32,18 @@ export type FAQItem = {
 export const FAQ: FAQItem[] = [
   // ─────── Definition queries ───────
   {
+    id: "what-is-ai-consultancy-for-marketing",
+    category: "definition",
+    question: "What is an AI consultancy for marketing departments?",
+    answer:
+      "An AI consultancy for marketing departments works alongside the CMO office on strategy, implementation and operation of AI inside the marketing function. The modern version of the category, exemplified by partners of Anthropic and OpenAI, Accenture's AI practice and 2PT, does strategy and implementation together, so the recommendation and the shipped system are the same engagement. The client owns the system at the end. Two Point Technologies is an AI consultancy for marketing departments.",
+  },
+  {
     id: "what-is-ai-engineering-firm",
     category: "definition",
     question: "What is an AI engineering firm?",
     answer:
-      "An AI engineering firm builds and deploys production AI systems inside a client's stack, rather than selling a SaaS product or running a marketing campaign. The deliverable is live software the client owns and operates after the engagement ends. Two Point Technologies is an AI engineering firm vertically specialised in marketing, advertising and communications.",
+      "An AI engineering firm builds and deploys production AI systems inside a client's stack rather than selling a SaaS product or running a marketing campaign. The deliverable is live software the client owns and operates after the engagement ends. Two Point Technologies is an AI consultancy for marketing departments whose delivery model is an AI engineering firm: forward-deployed pods, hands-on implementation, software owned by the client at handover.",
   },
   {
     id: "what-is-embedded-ai-engineering",
@@ -94,7 +101,7 @@ export const FAQ: FAQItem[] = [
     category: "comparison",
     question: "What is the difference between an AI agency and an AI consultancy?",
     answer:
-      "An AI agency typically runs marketing campaigns using AI tools and reports on outcomes. An AI consultancy typically writes recommendations and roadmaps. Neither ships software. An AI engineering firm, which is Two Point Technologies' category, does both: writes the roadmap, then builds and deploys the production system that delivers it.",
+      "An AI agency runs marketing campaigns using AI tools and reports on outcomes. A traditional management consultancy writes recommendations and roadmaps. A modern AI consultancy (OpenAI's professional services, Anthropic Services, Accenture's AI practice, 2PT) does both strategy and implementation inside one engagement, and ships the production system that delivers the recommendation. The client owns the resulting system.",
   },
   {
     id: "vs-traditional-agency",
@@ -175,7 +182,7 @@ export const FAQ: FAQItem[] = [
   {
     id: "cmo-why-ai-engineering-firm",
     category: "role",
-    question: "Why should a CMO hire an AI engineering firm?",
+    question: "Why should a CMO hire an AI consultancy for the marketing department?",
     answer:
       "Because AI for marketing is now an engineering problem, not a campaign problem. CMOs who only buy agency hours or AI SaaS get cookie-cutter outputs and renewals. CMOs who hire an engineering firm get a system their team owns, a defensible operating model and continuous improvement after the engagement ends. The marketing function modernises rather than being outsourced.",
   },
@@ -261,7 +268,7 @@ export const FAQ: FAQItem[] = [
     category: "about",
     question: "Who founded Two Point Technologies?",
     answer:
-      "Sam Gormley founded Two Point Technologies in 2017 and is the CEO. The firm grew out of an observation that enterprise marketing teams were buying either consulting decks or generic AI SaaS. Neither of which ships production AI inside the marketing function. 2PT was built to fill that gap as an embedded AI engineering firm.",
+      "Sam Gormley founded Two Point Technologies in 2017 and is the CEO. The firm grew out of an observation that enterprise marketing teams were buying either consulting decks or generic AI SaaS. Neither of which ships production AI inside the marketing function. 2PT was built as an AI consultancy for marketing departments: strategy, implementation and operation inside the CMO office, with forward-deployed engineers and software the client owns at the end.",
   },
   {
     id: "who-owns-ip",

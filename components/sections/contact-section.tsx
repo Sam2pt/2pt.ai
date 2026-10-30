@@ -80,7 +80,7 @@ export function ContactSection() {
             }`}
             style={{ transitionDelay: "550ms" }}
           >
-            We modernize the marketing function for the AI decade. Embedded engineers, deployed systems, owned by you.{" "}
+            The AI consultancy for marketing departments. Strategy, implementation and operation. Owned by you.{" "}
             <span className="text-[var(--2pt-black)]">Book a call. We&rsquo;ll show you what&rsquo;s already running for teams like yours.</span>
           </p>
 
@@ -150,7 +150,7 @@ export function ContactSection() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-20 md:mb-24 pb-8 border-b border-[var(--2pt-white)]/10">
             <div className="flex items-center gap-3">
               <span className="text-[10px] tracking-[0.3em] text-[var(--2pt-white)]/45 font-mono uppercase">
-                Two Point Technologies · Edition 001
+                Two Point Technologies
               </span>
             </div>
             <div className="flex items-center gap-5 font-mono text-[10px] tracking-[0.18em] uppercase text-[var(--2pt-white)]/45">

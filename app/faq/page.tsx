@@ -27,15 +27,15 @@ const PAGE_URL = `${SITE_URL}/faq`
 
 export const metadata: Metadata = {
   title:
-    "FAQ — embedded AI engineering for marketing, retail media, GEO, agentic AI",
+    "FAQ. AI consultancy for marketing departments. Retail media, GEO, agentic AI, embedded AI engineering",
   description:
-    "Answers to the questions enterprise marketing teams ask when evaluating embedded AI engineering, production AI deployment, agentic AI for marketing, retail media AI and the Anthropic Claude Partner Network.",
+    "Answers to the questions enterprise marketing teams ask when evaluating an AI consultancy for the marketing department. Covers AI strategy, implementation, production AI deployment, agentic AI, retail media AI and the Anthropic Claude Partner Network.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "article",
     url: PAGE_URL,
     title:
-      "FAQ — embedded AI engineering, agentic AI for marketing, retail media AI",
+      "FAQ. AI consultancy for marketing departments, agentic AI, retail media AI",
     description:
       "Plain-English answers on how 2PT deploys production AI inside enterprise marketing functions, what it costs, how long it takes, and who owns the IP.",
     images: ["/opengraph-image"],
@@ -134,11 +134,11 @@ export default function FAQPage() {
             <h1 className="text-[44px] md:text-[80px] font-medium tracking-[-0.035em] leading-[0.98] text-[var(--2pt-black)]">
               <span className="block">Plain answers</span>
               <span className="block text-[var(--2pt-black)]/55">
-                on embedded AI engineering
+                on AI consultancy
               </span>
               <span className="block">
                 for{" "}
-                <span className="text-[var(--2pt-green)]">marketing.</span>
+                <span className="text-[var(--2pt-green)]">marketing departments.</span>
               </span>
             </h1>
             <p className="mt-8 text-[15px] md:text-[17px] leading-relaxed text-[var(--2pt-black)]/65 max-w-[640px]">

@@ -92,7 +92,7 @@ export function ContactCard({ index }: { index: number }) {
             transition: "opacity 800ms ease-out 420ms",
           }}
         >
-          We modernize the marketing function for the AI decade. Embedded engineers, deployed systems, owned by you.
+          The AI consultancy for marketing departments. Strategy, implementation and operation. Owned by you.
         </p>
       </div>
 

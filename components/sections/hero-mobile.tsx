@@ -70,16 +70,16 @@ export function HeroMobile() {
             both lines. Green verdict line says where the systems go. */}
         <h1 className="mb-8">
           <span className="block text-[36px] font-semibold tracking-[-0.04em] leading-[1.0] text-[var(--2pt-black)]">
-            We deploy production AI
+            The AI consultancy
           </span>
           <span className="block text-[36px] font-semibold tracking-[-0.04em] leading-[1.0] text-[var(--2pt-green)] mt-1">
-            inside marketing teams.
+            for marketing departments.
           </span>
         </h1>
 
         {/* Body */}
         <p className="text-[15px] text-[var(--2pt-black)]/75 leading-relaxed mb-2">
-          We modernize the marketing function for the AI decade.
+          AI strategy, implementation and operation inside the CMO office.
         </p>
         <p className="text-[14px] text-[var(--2pt-black)]/55 leading-relaxed mb-10">
           In partnership with <span className="text-[var(--2pt-black)]">Anthropic</span>{" "}

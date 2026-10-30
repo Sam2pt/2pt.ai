@@ -6,7 +6,7 @@
  * Behind the headline: a slowly-cycling fake deploy log streams lines as
  * if you're watching a CI/CD pipeline run inside someone's marketing
  * function. Numbers tick, system names appear, statuses flip. Very
- * brand-on: "we ship live software inside marketing teams."
+ * brand-on: "the AI consultancy for marketing departments."
  *
  * Headline animates in word-by-word once the card is in view.
  * Swipe-up cue at the bottom.
@@ -119,7 +119,7 @@ export function HeroCard({ index }: { index: number }) {
           Runtime report
         </div>
         <h1 className="text-[36px] font-semibold tracking-[-0.04em] leading-[1.0] text-[#fff]!">
-          {["We", "deploy", "production", "AI"].map((w, i) => (
+          {["The", "AI", "consultancy"].map((w, i) => (
             <span
               key={i}
               className="inline-block"
@@ -130,7 +130,7 @@ export function HeroCard({ index }: { index: number }) {
             </span>
           ))}
           <br />
-          {["inside", "marketing", "teams."].map((w, i) => (
+          {["for", "marketing", "departments."].map((w, i) => (
             <span
               key={i}
               className="inline-block text-[var(--2pt-green)]"

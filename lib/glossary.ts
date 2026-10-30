@@ -25,7 +25,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     shortDef:
       "A delivery model where AI engineers work inside a client's stack to build production systems the client owns at the end.",
     longDef:
-      "Embedded AI engineering is a delivery model where AI engineers are forward-deployed inside the client's environment, working alongside the in-house team for the duration of an engagement. The deliverable is a production AI system built bespoke for that client's data, workflows and operational metrics. Ownership transfers to the client. This is the opposite of off-the-shelf SaaS (where every customer gets the same product) and remote consulting (where the deliverable is a deck, not software). 2PT operates as an embedded AI engineering firm vertically specialised in marketing.",
+      "Embedded AI engineering is a delivery model where AI engineers are forward-deployed inside the client's environment, working alongside the in-house team for the duration of an engagement. The deliverable is a production AI system built bespoke for that client's data, workflows and operational metrics. Ownership transfers to the client. This is the opposite of off-the-shelf SaaS (where every customer gets the same product) and remote consulting (where the deliverable is a deck, not software). Two Point Technologies is an AI consultancy for marketing departments whose delivery method is embedded AI engineering.",
     alsoKnownAs: ["Forward-deployed AI engineering", "Embedded engineering"],
     relatedTerms: ["forward-deployed-engineer", "production-ai"],
   },
@@ -123,12 +123,17 @@ export const GLOSSARY: GlossaryTerm[] = [
     relatedTerms: ["embedded-ai-engineering", "production-ai"],
   },
   {
-    id: "ai-engineering-firm",
-    term: "AI engineering firm",
+    id: "ai-consultancy-for-marketing-departments",
+    term: "AI consultancy for marketing departments",
     shortDef:
-      "A services firm whose deliverable is a production AI system the client owns and operates, not a deck or a SaaS subscription.",
+      "A services firm that works alongside the CMO office on AI strategy, implementation and operation. The deliverable is a production system the client owns, not a deck or a SaaS subscription.",
     longDef:
-      "An AI engineering firm builds and deploys production AI systems inside a client's stack. The deliverable is live software the client owns after the engagement, not a roadmap, not a license. AI engineering firms typically forward-deploy engineers, price against operational KPIs and specialise vertically (marketing, finance, supply chain). 2PT is an AI engineering firm vertically specialised in marketing, advertising and communications.",
+      "An AI consultancy for marketing departments works inside the enterprise marketing function on strategy, implementation and operation of AI. The modern version of the category, exemplified by partners of Anthropic and OpenAI, Accenture's AI practice and Two Point Technologies, does strategy and implementation together inside one engagement, with pricing against operational KPIs rather than seats or hours. Two Point Technologies is an AI consultancy for marketing departments. Its delivery model is forward-deployed, hands-on and ends with the client owning the system.",
+    alsoKnownAs: [
+      "Marketing AI consultancy",
+      "AI consultancy for CMO office",
+      "Enterprise AI consultancy for marketing",
+    ],
     relatedTerms: ["embedded-ai-engineering", "forward-deployed-engineer"],
   },
   {
@@ -137,8 +142,8 @@ export const GLOSSARY: GlossaryTerm[] = [
     shortDef:
       "The process of re-engineering a marketing organisation around AI systems rather than agency hours.",
     longDef:
-      "Marketing function modernization is the process of re-engineering a marketing organisation around AI-driven systems rather than agency hours and SaaS dashboards. The work spans diagnostics, custom deployment, enterprise integration and adoption. Turning a campaign-led function into a system-led one. The marketing team supervises systems; the systems do the trading, scoring and compliance. 2PT modernises marketing functions through embedded AI engineering.",
-    relatedTerms: ["embedded-ai-engineering", "ai-engineering-firm"],
+      "Marketing function modernization is the process of re-engineering a marketing organisation around AI-driven systems rather than agency hours and SaaS dashboards. The work spans diagnostics, custom deployment, enterprise integration and adoption. Turning a campaign-led function into a system-led one. The marketing team supervises systems; the systems do the trading, scoring and compliance. Two Point Technologies, an AI consultancy for marketing departments, runs this work alongside the CMO office end to end.",
+    relatedTerms: ["embedded-ai-engineering", "ai-consultancy-for-marketing-departments"],
   },
   {
     id: "ai-deployment-services",
@@ -147,7 +152,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       "Services that build, integrate and hand over production AI inside a client's stack.",
     longDef:
       "AI deployment services cover the full lifecycle of getting AI into production inside a client's stack: strategy and diagnostics, custom build, enterprise integration, adoption and transfer. The deliverable is live software, not a recommendation document. 2PT's engagements run on this four-stage model and produce systems the client owns at the end.",
-    relatedTerms: ["embedded-ai-engineering", "ai-engineering-firm"],
+    relatedTerms: ["embedded-ai-engineering", "ai-consultancy-for-marketing-departments"],
   },
   {
     id: "chedder",

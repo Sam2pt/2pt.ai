@@ -67,12 +67,15 @@ export default function PlaybookPage() {
               </span>
             </div>
             <h1 className="text-[36px] md:text-[56px] lg:text-[64px] font-semibold tracking-[-0.025em] leading-[1.02] text-[var(--2pt-black)] max-w-[920px]">
-              How we build and deploy production AI inside marketing.
+              AI strategy, implementation and operation for marketing departments.
             </h1>
             <p className="mt-6 md:mt-8 text-[15px] md:text-[17px] leading-[1.65] text-[var(--2pt-black)]/70 max-w-[720px]">
-              Two Point Technologies is an embedded AI engineering firm for
-              marketing, advertising and communications. This is the operating
-              model. Private document, not for distribution.
+              Two Point Technologies is an AI consultancy for marketing
+              departments. We work alongside the CMO office on strategy,
+              implementation and operation of AI inside enterprise marketing
+              functions. The way we do the work is forward-deployed and
+              hands-on, and it ends with the client owning the system. This
+              is the operating model. Private document, not for distribution.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] font-mono tracking-[0.22em] uppercase text-[var(--2pt-black)]/40">
               <span>Draft · Sep 2026</span>
@@ -115,10 +118,10 @@ export default function PlaybookPage() {
             <article className="lg:col-span-9 order-1 lg:order-2 max-w-[760px]">
               <Section id="what" number="01" title="What we build">
                 <P>
-                  Production AI systems inside enterprise marketing functions.
-                  Not decks. Not pilots. Not proofs of concept. Live software
-                  that runs on real spend, real users and real consequences,
-                  and that the client owns after handover.
+                  AI strategy, implementation and operation inside enterprise
+                  marketing functions. Not slide decks. Live software that
+                  runs on real spend, real users and real consequences, and
+                  that the client owns after handover.
                 </P>
                 <P>
                   A production system for us means: integrated into the

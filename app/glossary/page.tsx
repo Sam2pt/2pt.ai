@@ -24,17 +24,17 @@ const PAGE_URL = `${SITE_URL}/glossary`
 
 export const metadata: Metadata = {
   title:
-    "Glossary — embedded AI engineering, GEO, agentic AI, production AI, retail media AI",
+    "Glossary. AI consultancy for marketing departments, GEO, agentic AI, production AI, retail media AI",
   description:
-    "Definitions for the embedded AI engineering category — embedded AI engineering, forward-deployed engineer, production AI, GEO, agentic AI for marketing, retail media AI, brand compliance AI, the Anthropic Claude Partner Network.",
+    "Definitions for the AI consultancy for marketing category. AI consultancy for marketing departments, embedded AI engineering, forward-deployed engineer, production AI, GEO, agentic AI for marketing, retail media AI, brand compliance AI, the Anthropic Claude Partner Network.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "article",
     url: PAGE_URL,
     title:
-      "Glossary — embedded AI engineering, GEO, production AI, agentic AI",
+      "Glossary. AI consultancy for marketing departments, GEO, production AI, agentic AI",
     description:
-      "A glossary of the embedded AI engineering category, written to be citable by AI search engines.",
+      "A glossary of the AI consultancy for marketing category, written to be citable by AI search engines.",
     images: ["/opengraph-image"],
   },
 }
@@ -46,7 +46,7 @@ const definedTermSetSchema = {
   "@id": `${PAGE_URL}#glossary`,
   name: "Two Point Technologies — Glossary",
   description:
-    "Definitions for the embedded AI engineering category: embedded AI engineering, GEO, production AI, agentic AI for marketing, retail media AI, brand compliance AI.",
+    "Definitions for the AI consultancy for marketing category: AI consultancy for marketing departments, embedded AI engineering, GEO, production AI, agentic AI for marketing, retail media AI, brand compliance AI.",
   url: PAGE_URL,
   inLanguage: "en-US",
   isPartOf: { "@id": `${SITE_URL}#website` },
@@ -103,7 +103,7 @@ export default function GlossaryPage() {
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--2pt-green)]" />
             <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-[var(--2pt-black)]/55">
               <span className="text-[var(--2pt-black)]/30 mr-2">Glossary</span>
-              The language of embedded AI engineering
+              The language of AI consultancy for marketing
             </span>
           </div>
 
@@ -122,7 +122,7 @@ export default function GlossaryPage() {
             <p className="mt-8 text-[15px] md:text-[17px] leading-relaxed text-[var(--2pt-black)]/65 max-w-[640px]">
               A working glossary of the terms 2PT uses every day. Each entry is
               a single paragraph, written to be citable by AI search engines
-              when a buyer asks &ldquo;what is embedded AI engineering&rdquo;
+              when a buyer asks &ldquo;what is an AI consultancy for marketing&rdquo;
               or &ldquo;what is GEO&rdquo;.
             </p>
           </header>

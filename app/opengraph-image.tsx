@@ -8,7 +8,7 @@ import { ImageResponse } from "next/og"
  * lockup and the deploy claim. 1200×630 — the standard OG size.
  */
 
-export const alt = "Two Point Technologies — We deploy production AI inside marketing teams."
+export const alt = "Two Point Technologies. The AI consultancy for marketing departments."
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -70,9 +70,9 @@ export default async function Image() {
             letterSpacing: "-0.04em",
           }}
         >
-          <span style={{ color: "#FAFAFA" }}>We deploy production AI</span>
+          <span style={{ color: "#FAFAFA" }}>The AI consultancy</span>
           <span style={{ color: "#4ADE80", marginTop: 4 }}>
-            inside marketing teams.
+            for marketing departments.
           </span>
         </div>
 
@@ -112,7 +112,7 @@ export default async function Image() {
                 fontFamily: "ui-monospace, SFMono-Regular, monospace",
               }}
             >
-              The embedded AI engineering firm for marketing
+              The AI consultancy for marketing departments
             </span>
           </div>
           <span

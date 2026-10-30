@@ -29,7 +29,7 @@ export function ContactMobile() {
         </h2>
 
         <p className="text-[15px] text-[var(--2pt-black)]/65 leading-relaxed mb-8">
-          We modernize the marketing function for the AI decade. Embedded engineers,
+          AI strategy, implementation and operation for the CMO office. Embedded engineers,
           deployed systems, owned by you.{" "}
           <span className="text-[var(--2pt-black)]">
             Book a call. We&rsquo;ll show you what&rsquo;s already running for teams like

@@ -15,7 +15,7 @@ import { useEffect, useState } from "react"
  *
  * Top strip: LIVE indicator · masthead label · timezones.
  * Anthropic Partner chip just below the strip.
- * Headline: "We deploy production AI" + green verdict line "inside marketing teams."
+ * Headline: "The AI consultancy" + green verdict line "for marketing departments."
  * Live "today" 4-column data band.
  * Subhead + CTA + Anthropic mention.
  * Bottom strip: node routes + scroll cue.
@@ -285,10 +285,10 @@ export function HeroSection() {
           </span>
         </div>
 
-        {/* Headline — service-explicit, deploy-verb forward */}
+        {/* Headline — AI consultancy, department-targeted */}
         <h1 className="mb-10 md:mb-14">
           <span className="block text-[44px] sm:text-[62px] md:text-[82px] lg:text-[100px] font-semibold tracking-[-0.045em] leading-[0.95] text-[var(--2pt-white)]">
-            {["We", "deploy", "production", "AI"].flatMap((w, i, arr) => [
+            {["The", "AI", "consultancy"].flatMap((w, i, arr) => [
               <span
                 key={`w-${i}`}
                 className={`inline-block transition-all duration-[1100ms] ease-out ${
@@ -304,7 +304,7 @@ export function HeroSection() {
             ])}
           </span>
           <span className="block text-[44px] sm:text-[62px] md:text-[82px] lg:text-[100px] font-semibold tracking-[-0.045em] leading-[0.95] text-[var(--2pt-green)] mt-1">
-            {["inside", "marketing", "teams."].flatMap((w, i, arr) => [
+            {["for", "marketing", "departments."].flatMap((w, i, arr) => [
               <span
                 key={`w-${i}`}
                 className={`inline-block transition-all duration-[1100ms] ease-out ${

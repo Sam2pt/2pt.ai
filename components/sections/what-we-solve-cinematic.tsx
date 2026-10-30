@@ -116,11 +116,13 @@ export function WhatWeSolveCinematic() {
     return () => window.removeEventListener("scroll", handle)
   }, [])
 
-  // Map global progress (0-1) to current panel index and within-panel progress
-  const rawIndex = progress * N
-  const panelIndex = Math.min(N - 1, Math.floor(rawIndex))
-  const panelProgress = Math.min(1, rawIndex - panelIndex)
-  const current = PROBLEMS[panelIndex]
+  // Map global progress (0-1) to current panel index and within-panel progress.
+  // Guard against NaN from a zero-height measurement on first paint so the
+  // panel never reads undefined.label.
+  const rawIndex = Number.isFinite(progress) ? progress * N : 0
+  const panelIndex = Math.max(0, Math.min(N - 1, Math.floor(rawIndex) || 0))
+  const panelProgress = Math.min(1, Math.max(0, rawIndex - panelIndex))
+  const current = PROBLEMS[panelIndex] ?? PROBLEMS[0]
 
   return (
     <section

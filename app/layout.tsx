@@ -29,12 +29,12 @@ const instrumentSerif = Instrument_Serif({
 const SITE_URL = "https://2pt.ai"
 const SITE_NAME = "2PT"
 const ORG_NAME = "Two Point Technologies"
-const TAGLINE = "We deploy production AI inside marketing teams."
+const TAGLINE = "The AI consultancy for marketing departments."
 const SUMMARY =
-  "Two Point Technologies is the embedded AI engineering firm for marketing, advertising and communications. We deploy production AI inside enterprise marketing teams through forward-deployed pods of AI engineers, marketing strategists and data engineers. The system is the product; the client owns it."
+  "Two Point Technologies is an AI consultancy for marketing departments. We work alongside the CMO office on AI strategy, implementation and operation inside enterprise marketing functions. Forward-deployed pods of AI engineers, marketing specialists and data engineers sit inside the client stack. The client owns the system."
 // Kept under 158 chars so it renders whole in Google snippets and social cards.
 const SHORT_SUMMARY =
-  "Embedded AI engineering for marketing. We deploy production AI inside enterprise marketing teams. The client owns the system."
+  "The AI consultancy for marketing departments. Strategy, implementation and operation of AI inside enterprise marketing functions. The client owns the system."
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Metadata — comprehensive, market-leading. Includes title template, OG,
@@ -44,7 +44,7 @@ const SHORT_SUMMARY =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | The embedded AI engineering firm for marketing`,
+    default: `${SITE_NAME} | The AI consultancy for marketing departments`,
     template: `%s | ${SITE_NAME} — ${ORG_NAME}`,
   },
   description: SHORT_SUMMARY,
@@ -53,13 +53,25 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   keywords: [
     // Service category
+    "AI consultancy for marketing",
+    "AI consultancy for marketing departments",
+    "marketing AI consultancy",
+    "AI strategy for marketing",
+    "AI implementation for marketing",
     "AI deployment for marketing",
+    "AI adoption for marketing",
+    "enterprise AI for marketing",
+    "AI consultancy for CMO office",
+    "custom AI for marketing",
+    "managed AI services for marketing",
+    "AI integration for marketing",
+    "AI operating model for marketing",
+    // Delivery model
+    "forward-deployed AI engineers",
     "embedded AI engineering",
     "production AI for marketing",
-    "marketing AI consultancy",
-    "enterprise AI for marketing",
     "AI engineering firm",
-    "forward-deployed engineering",
+    "embedded AI pods",
     // What we solve
     "retail media optimisation",
     "agentic AI for marketing",
@@ -73,11 +85,6 @@ export const metadata: Metadata = {
     "GEO for marketing",
     "AI search visibility",
     "Claude for marketing",
-    // Categorical
-    "AI-native marketing operations",
-    "marketing function modernization",
-    "marketing transformation AI",
-    "embedded AI pods",
   ],
   authors: [{ name: ORG_NAME, url: SITE_URL }],
   creator: ORG_NAME,
@@ -241,16 +248,20 @@ const organizationSchema = {
     "https://www.anthropic.com/partners",
   ],
   knowsAbout: [
+    "AI consultancy for marketing departments",
+    "AI strategy for marketing",
+    "AI implementation for marketing",
+    "AI adoption inside the CMO office",
+    "AI operating model for marketing",
+    "Enterprise AI deployment",
     "Embedded AI engineering",
     "Production AI deployment",
-    "Marketing function modernization",
     "Retail media optimisation",
     "Agentic AI for marketing",
     "Creative scoring and optimisation",
     "Brand voice and compliance AI",
     "Audience segmentation AI",
-    "Forward-deployed engineering",
-    "AI-native marketing operations",
+    "Forward-deployed AI engineers",
     "Generative engine optimisation",
   ],
   hasOfferCatalog: {
@@ -301,9 +312,9 @@ const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${SITE_URL}#service`,
-  name: `${ORG_NAME} — embedded AI engineering`,
+  name: `${ORG_NAME} · AI consultancy for marketing departments`,
   provider: { "@id": `${SITE_URL}#organization` },
-  serviceType: "AI engineering and deployment for marketing",
+  serviceType: "AI consultancy for marketing departments (strategy, implementation, operation)",
   areaServed: [
     { "@type": "Country", name: "United States" },
     { "@type": "Country", name: "United Kingdom" },
@@ -512,15 +523,15 @@ const personSchema = {
   ],
 }
 
-// Article — frames the homepage as a citable explainer on embedded AI
-// engineering for marketing. Helps Claude / ChatGPT / Perplexity treat the
+// Article — frames the homepage as a citable explainer on AI consultancy
+// for marketing departments. Helps Claude / ChatGPT / Perplexity treat the
 // page as an authoritative source on the category itself.
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "@id": `${SITE_URL}#homepage-article`,
   headline:
-    "Embedded AI engineering for marketing: how Two Point Technologies deploys production AI inside enterprise marketing teams",
+    "The AI consultancy for marketing departments: how Two Point Technologies delivers AI strategy, implementation and operation inside enterprise marketing functions",
   description: SUMMARY,
   url: SITE_URL,
   mainEntityOfPage: SITE_URL,
@@ -530,15 +541,18 @@ const articleSchema = {
   inLanguage: "en-US",
   datePublished: "2026-01-15",
   dateModified: new Date().toISOString().split("T")[0],
-  articleSection: "AI engineering for marketing",
+  articleSection: "AI consultancy for marketing",
   keywords: [
+    "AI consultancy for marketing",
+    "AI consultancy for marketing departments",
+    "AI strategy for marketing",
+    "AI implementation for marketing",
     "embedded AI engineering",
     "production AI",
-    "marketing function modernization",
     "agentic AI for marketing",
     "retail media AI",
     "GEO",
-    "forward-deployed engineering",
+    "forward-deployed AI engineers",
     "Claude Partner Network",
   ].join(", "),
   about: [
@@ -644,7 +658,7 @@ const definedTermSetSchema = {
   "@id": `${SITE_URL}#glossary`,
   name: "Two Point Technologies — Glossary",
   description:
-    "A glossary of terms used by Two Point Technologies and the embedded AI engineering category — embedded AI engineering, GEO, production AI, retail media AI, agentic AI for marketing.",
+    "A glossary of terms used by Two Point Technologies and the AI consultancy for marketing category. Covers AI consultancy for marketing departments, embedded AI engineering, GEO, production AI, retail media AI and agentic AI for marketing.",
   url: `${SITE_URL}/glossary`,
   inDefinedTermSet: { "@id": `${SITE_URL}#glossary` },
   hasDefinedTerm: GLOSSARY.map((t) => ({
